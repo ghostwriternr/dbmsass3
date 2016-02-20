@@ -9,11 +9,12 @@
     <meta name="description" content="">
     <meta name="ghost" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Welcome Page</title>
+    <title>Welcome!</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -22,45 +23,102 @@
 </head>
 
 <body>
-    <div class="container col-md-6" ng-controller="AppCtrl">
-        <form class="form-signin">
-            <h2 class="form-signin-heading">Sign in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="person.email" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="person.password" required>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand">Studious</h3>
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">The Devs</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <h1 style="font-size: 800%; font-style: italic; color: white">STUDY + DISCOVER</h1>
+                <p class="lead" style="font-size: 200%; font-weight: bold;">All your course management in one place. Welcome to STUDIOUS.</p>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerModal">Register</button>
+                <div class="mastfoot">
+                    <div class="inner">
+                        <p>Made with <i class="glyphicon glyphicon-heart"></i> for DBMS Assignment 3.</p>
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="studentLogin()">Sign in</button>
-        </form>
+        </div>
     </div>
-    <div class="container col-md-6">
-        <form class="form-signin">
-            <h2 class="form-signin-heading">Register</h2>
-            <label class="sr-only">First Name</label>
-            <input type="text" class="form-control" placeholder="First Name" required></input>
-            <label class="sr-only">Last Name</label>
-            <input type="text" class="form-control" placeholder="Last Name" required></input>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <label for="inputPassword" class="sr-only">Confirm Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-    </div>
-    <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+    </script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body" ng-controller="AppCtrl">
+                    <form class="form-signin">
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="person.email" required autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="person.password" required>
+                        <div class="col-xs-12" style="height:20px;"></div>
+                        <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="studentLogin()">Sign in</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Register</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-signin">
+                        <label class="sr-only">First Name</label>
+                        <input type="text" class="form-control" placeholder="First Name" required></input>
+                        <label class="sr-only">Last Name</label>
+                        <input type="text" class="form-control" placeholder="Last Name" required></input>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <label for="inputPassword" class="sr-only">Confirm Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
+                        <div class="col-xs-12" style="height:20px;"></div>
+                        <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 <script src="studentController/studentController.js"> </script>
+
 </html>
