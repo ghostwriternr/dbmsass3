@@ -5,3 +5,4 @@
 | ------------- | ----------------------------- |
 | Working       | Working Login in Login page   |
 | In Progress   | Register implementation       |
+|               | Student Page                  |
