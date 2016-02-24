@@ -2,16 +2,6 @@ var myApp=angular.module('myApp',[]);
 myApp.controller('AppCtrl',['$scope','$http','$window','$log','$location',function($scope,$http,$window,$log,$location){
 	console.log("Hello Wrold from controller");
 
-// var refresh=function(){
-// 	$http.get('/contactlist').success(function(response){
-// 		console.log("Data recieved");
-// 		$scope.contactlist=response;
-// 		$scope.contact="";
-// 	});
-// };
-
-//refresh();
-
 $scope.studentLogin=function(){
 	var type=$scope.person.type;
 	if(type==1){
@@ -116,3 +106,37 @@ $scope.setType=function(type){
 	$scope.person.type=type;
 }
 }])
+
+myApp.controller('getTypeRegister',['$scope','$log','$location','$window','$http',function($scope,$http,$log,$window){
+	console.log("Hello Wrold from setType");
+
+$scope.setType=function(type){
+	$scope.personR.type=type;
+}
+}])
+
+myApp.controller('personRegister',['$scope','$http','$window','$log','$location',function($scope,$http,$log,$window){
+	console.log("Hello Wrold from personRegister");
+
+$scope.registerPerson=function(type){
+	console.log($scope.personR);
+	console.log('hereh');
+	var type=$scope.personR.type;
+	if(type==1){
+		var student={'name':$scope.personR.fName+' '+$scope.personR.lName,'email':$scope.personR.email,'password':$scope.personR.pass,'contactInfo':'123'};
+		$http.post('/student/register',student).success(function(response){
+			console.log(response);
+		})
+	}
+	else if(type==2){
+		//qwe
+	}
+	else if(type==3){
+		//qwe
+	}
+	else if(type==4){
+		//qwe
+	}
+}
+}])
+

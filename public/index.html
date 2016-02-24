@@ -104,30 +104,30 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Register</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" ng-controller="personRegister">
                     <form class="form-signin">
                         <label class="sr-only">First Name</label>
-                        <input type="text" class="form-control" placeholder="First Name" required></input>
+                        <input type="text" class="form-control" placeholder="First Name" ng-model="personR.fName" required></input>
                         <label class="sr-only">Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" required></input>
+                        <input type="text" class="form-control" placeholder="Last Name" ng-model="personR.lName" required></input>
                         <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="personR.email" required>
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="personR.pass" required>
                         <label for="inputPassword" class="sr-only">Confirm Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
-                        <div class="dropdown">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" ng-model="personR.repass" required>
+                        <div class="dropdown" ng-controller="getTypeRegister">
                             <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;">Role
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Student</a></li>
-                                <li><a href="#">Faculty</a></li>
-                                <li><a href="#">Parent</a></li>
-                                <li><a href="#">Admin</a></li>
+                                <li><a href="#" ng-click="setType(1)">Student</a></li>
+                                <li><a href="#" ng-click="setType(2)">Faculty</a></li>
+                                <li><a href="#" ng-click="setType(3)">Parent</a></li>
+                                <li><a href="#" ng-click="setType(4)">Admin</a></li>
                             </ul>
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
-                        <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+                        <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="registerPerson()">Register</button>
                     </form>
                 </div>
                 <div class="modal-footer">

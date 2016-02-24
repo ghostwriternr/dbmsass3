@@ -51,5 +51,14 @@ app.post('/admin/login',function(req,res){
 	});
 })
 
+app.post('/student/register',function(req,res){
+	console.log('Got a POST request');
+	console.log(req.body);
+	dbStudent.student.insert(req.body,function(err,doc){
+		res.json(doc);
+		//console.log(docs);
+	});
+});
+
 app.listen(3003);
 console.log("server is running on port 3003");
