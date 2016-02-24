@@ -123,19 +123,36 @@ $scope.registerPerson=function(type){
 	console.log('hereh');
 	var type=$scope.personR.type;
 	if(type==1){
-		var student={'name':$scope.personR.fName+' '+$scope.personR.lName,'email':$scope.personR.email,'password':$scope.personR.pass,'contactInfo':'123'};
-		$http.post('/student/register',student).success(function(response){
-			console.log(response);
+		var student={'email':$scope.personR.email};
+		$http.post('/student/login',student).success(function(response){
+			if(response==0){
+				student={'name':$scope.personR.fName+' '+$scope.personR.lName,'email':$scope.personR.email,'password':$scope.personR.pass,'contactInfo':'123'};
+				$http.post('/student/register',student).success(function(reply){
+					console.log(reply);
+				})
+			}
+			else if(response>=1){
+				console.log('A person with that email-id already exists');
+			}
 		})
 	}
 	else if(type==2){
-		//qwe
+		var faculty={'name':$scope.personR.fName+' '+$scope.personR.lName,'email':$scope.personR.email,'password':$scope.personR.pass,'contactInfo':'123'};
+		$http.post('/faculty/register',faculty).success(function(response){
+			console.log(response);
+		})
 	}
 	else if(type==3){
-		//qwe
+		var parent={'name':$scope.personR.fName+' '+$scope.personR.lName,'email':$scope.personR.email,'password':$scope.personR.pass,'contactInfo':'123'};
+		$http.post('parent/register',parent).success(function(response){
+			console.log(response);
+		})
 	}
 	else if(type==4){
-		//qwe
+		var admin={'name':$scope.personR.fName+' '+$scope.personR.lName,'email':$scope.personR.email,'password':$scope.personR.pass,'contactInfo':'123'};
+		$http.post('admin/register',admin).success(function(response){
+			console.log(response);
+		})
 	}
 }
 }])

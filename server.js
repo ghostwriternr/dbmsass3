@@ -60,5 +60,32 @@ app.post('/student/register',function(req,res){
 	});
 });
 
+app.post('/faculty/register',function(req,res){
+	console.log('Got a POST request');
+	console.log(req.body);
+	dbFaculty.faculty.insert(req.body,function(err,doc){
+		res.json(doc);
+		//console.log(docs);
+	});
+});
+
+app.post('/parent/register',function(req,res){
+	console.log('Got a POST request');
+	console.log(req.body);
+	dbParent.parent.insert(req.body,function(err,doc){
+		res.json(doc);
+		//console.log(docs);
+	});
+});
+
+app.post('/admin/register',function(req,res){
+	console.log('Got a POST request');
+	console.log(req.body);
+	dbAdmin.admin.insert(req.body,function(err,doc){
+		res.json(doc);
+		//console.log(docs);
+	});
+});
+
 app.listen(3003);
 console.log("server is running on port 3003");
