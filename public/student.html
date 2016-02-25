@@ -78,6 +78,7 @@
     <div class="row">
         <div class="col-md-1" align="center" ></div>
         <div class="col-md-2" align="center" style="padding-top: 50px">
+<<<<<<< HEAD
                 <button class="btn btn-success btn-block" style="padding: 2%;"type="button">Register New Course</button>
         </div>
         <div class="col-md-1" align="center" ></div>
@@ -90,8 +91,38 @@
                 <div ng-repeat="courseTaken in courseStudent">
                     <button class="btn btn-default btn-block" style="padding: 2%;"type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName+" "+studentName}}</button>
                 </div>
+=======
+            <font size="5">
+            Registration    <br>
+            </font>
+            <div class="dropdown" ng-controller="getTypeRegister" style="padding-bottom: 20px">
+                <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;">Courses
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" ng-click="setType(1)">Course Name</a></li>
+                    <li><a href="#" ng-click="setType(1)">Course Name</a></li>
+                    <li><a href="#" ng-click="setType(1)">Course Name</a></li>
+                    <li><a href="#" ng-click="setType(1)">Course Name</a></li>
+                </ul>
+>>>>>>> 689303cec2769e8bd530f10865d3e27f3e00234e
+            </div>
+                <button class="btn btn-success btn-block" style="padding: 4%;"type="button">Register</button>
+        </div>
+<<<<<<< HEAD
+=======
+        <div class="col-md-1" align="center" ></div>
+        <div class="col-md-6" align="center">
+            <font size="5">
+                Courses
+                <br>
+            </font>
+            <div ng-controller="studentCtrl">
+                <div ng-repeat="courseTaken in courseStudent" style="padding-bottom: 2px">
+                    <button class="btn btn-default btn-block" style="padding: 2%;"type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName}}</button>
+                </div>
             </div>
         </div>
+>>>>>>> 689303cec2769e8bd530f10865d3e27f3e00234e
         <div class="col-md-1" align="center" ></div>
     </div>
     <!-- Bootstrap core JavaScript
