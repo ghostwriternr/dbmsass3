@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="ghost" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Hiya!</title>
+    <title>Student</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -55,7 +55,7 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide">
+    <div class="wide" >
         <div class="col-xs-5 line">
             <hr>
         </div>
@@ -67,39 +67,30 @@
     <div class="jumbotron jumbopos">
         <div class="row">
             <div class="col-md-4">
-                <img src="images/user.jpg" style="margin-top: -25px; margin-left: 8%;">
-                <p>{{studentName}}</p>
+                <img src="images/student.png" style="margin-top: -39px; margin-left: 8%;">
+            </div>
+            <div class="col-md-8" align="center" style="padding-top: 35px">
+                <h3>{{studentName}}</h3>
             </div>
         </div>
     </div>
     <!-- Fill Spaces -->
     <div class="row">
         <div class="col-md-1" align="center" ></div>
-        <div class="col-md-5" align="center">
+        <div class="col-md-2" align="center" style="padding-top: 50px">
+                <button class="btn btn-success btn-block" style="padding: 2%;"type="button">Register New Course</button>
+        </div>
+        <div class="col-md-1" align="center" ></div>
+        <div class="col-md-6" align="center">
             <font size="5">
-                Lectures
+                Courses
                 <br>
             </font>
             <div ng-controller="studentCtrl">
                 <div ng-repeat="courseTaken in courseStudent">
-                    <div class="jumbotron jumbopos">
-                        <div class="row">
-                            <div class="col-md-1" align="center"></div>
-                            <button class="btn btn-default btn-block" type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName+" "+studentName}}</button>
-                        </div>
-                    </div>
+                    <button class="btn btn-default btn-block" style="padding: 2%;"type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName+" "+studentName}}</button>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5" align="center">
-            <font size="5">
-                Assignments
-                <br>
-            </font>
-            <button class="btn btn-default btn-block" type="button"> Assignment1</button>
-            <button class="btn btn-default btn-block" type="button"> Assignment2</button>
-            <button class="btn btn-default btn-block" type="button"> Assignment3</button>
-            <button class="btn btn-default btn-block" type="button"> Assignment4</button>
         </div>
         <div class="col-md-1" align="center" ></div>
     </div>
