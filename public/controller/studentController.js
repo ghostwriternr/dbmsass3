@@ -1,21 +1,13 @@
-var myApp=angular.module('myApp',[]);
-myApp.controller('AppCtrl',['$scope','$http',function($scope,$http){
-	console.log("Hello World from login studentController");
+var myApp=angular.module('myApp',['ngRoute']);
+myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',function($scope,$http,$window,$log,$location){
+	console.log("Hello World from login studentController_new");
+	var urlLogin=$location.absUrl();
+	var output=urlLogin.substr(urlLogin.lastIndexOf('=')+1);
+	console.log(output);
+	this.name=output;
 
-$scope.studentLogin=function(){
-	//console.log($scope.person);
-	console.log("trying to login-")
-	$http.post('/student/login',$scope.person).success(function(response){
-		var studentAuthenticationStatus=response;
-		if(studentAuthenticationStatus==1){
-			console.log('Correct credentials');
-		}
-		else{
-			console.log('Incorrect credentials');
-		}
-		//$scope.person=response;
-	});
-};
-
-
+	this.getName = function(){
+		console.log("qwe");
+		return this.name;
+	};
 }])

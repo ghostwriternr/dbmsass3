@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -64,10 +64,11 @@
             <hr>
         </div>
     </div>
-    <div class="jumbotron jumbopos">
+    <div class="jumbotron jumbopos" ng-controller="studentCtrl">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" >
                 <img src="images/user.jpg" style="margin-top: -25px; margin-left: 8%;">
+                <p>{{studentCtrl.getName()}}</p>
             </div>
         </div>
     </div>
@@ -81,5 +82,7 @@
     <script src="js/bootstrap.min.js"></script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="controller/studentController.js"></script>
+<script src="js/angular-route.js"></script>
 
 </html>
