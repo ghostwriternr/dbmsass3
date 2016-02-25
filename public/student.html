@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="studentCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -64,13 +64,44 @@
             <hr>
         </div>
     </div>
-    <div class="jumbotron jumbopos" ng-controller="studentCtrl">
+    <div class="jumbotron jumbopos">
         <div class="row">
-            <div class="col-md-4" >
+            <div class="col-md-4">
                 <img src="images/user.jpg" style="margin-top: -25px; margin-left: 8%;">
-                <p>{{studentCtrl.getName()}}</p>
+                <p>{{studentName}}</p>
             </div>
         </div>
+    </div>
+    <!-- Fill Spaces -->
+    <div class="row">
+        <div class="col-md-1" align="center" ></div>
+        <div class="col-md-5" align="center">
+            <font size="5">
+                Lectures
+                <br>
+            </font>
+            <div ng-controller="studentCtrl">
+                <div ng-repeat="courseTaken in courseStudent">
+                    <div class="jumbotron jumbopos">
+                        <div class="row">
+                            <div class="col-md-1" align="center"></div>
+                            <button class="btn btn-default btn-block" type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName+" "+studentName}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5" align="center">
+            <font size="5">
+                Assignments
+                <br>
+            </font>
+            <button class="btn btn-default btn-block" type="button"> Assignment1</button>
+            <button class="btn btn-default btn-block" type="button"> Assignment2</button>
+            <button class="btn btn-default btn-block" type="button"> Assignment3</button>
+            <button class="btn btn-default btn-block" type="button"> Assignment4</button>
+        </div>
+        <div class="col-md-1" align="center" ></div>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
