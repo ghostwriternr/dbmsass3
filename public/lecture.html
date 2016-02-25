@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="ghost" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Student</title>
+    <title>Content</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body ng-controller="studentCtrl" ng-init="init()">
+<body ng-controller="lectureCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -55,45 +55,63 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" >
-        <div class="col-xs-5 line">
-            <hr>
-        </div>
-        <div class="col-xs-2 logo">Welcome</div>
-        <div class="col-xs-5 line">
-            <hr>
-        </div>
-    </div>
-    <div class="jumbotron jumbopos">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="images/student.png" style="margin-top: -39px; margin-left: 8%;">
-            </div>
-            <div class="col-md-8" align="center" style="padding-top: 35px">
-                <h3>{{studentName}}</h3>
-            </div>
+    <div class="wide" style=" height : 12%;margin-bottom: 20px;
+    background: #2390fd;
+	background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
+	background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
+	background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
+	background:      -o-linear-gradient(left, #2390fd, #54cfcb);
+	background:         linear-gradient(to right, #2390fd, #54cfcb);
+
+    ">
+        <div style="padding-top: 80px" align="center">
+            <font color="white" size="10" >{{course.name}}</font>
         </div>
     </div>
-    <!-- Fill Spaces -->
+
+    <div>
+    </div>
     <div class="row">
-        <div class="col-md-1" align="center" ></div>
-        <div class="col-md-2" align="center" style="padding-top: 50px">
-                <button class="btn btn-success btn-block" style="padding: 2%;"type="button">Register New Course</button>
+        <div class="col-md-4" align="center" >
+        <font size="4" >
+            Instructor Name<br>
+        </font>
+        <font size="4" >
+            {{course.departmentName}}<br>
+        </font>
+        <font size="4" >
+            {{lecture.lectureDate}}
+        </font>
         </div>
-        <div class="col-md-1" align="center" ></div>
-        <div class="col-md-6" align="center">
-            <font size="5">
-                Courses
-                <br>
+        <div class="col-md-8" align="left" style="padding-right: 10px;">
+            <font size="3">
+            {{course.description}}
             </font>
-            <div ng-controller="studentCtrl">
-                <div ng-repeat="courseTaken in courseStudent">
-                    <button class="btn btn-default btn-block" style="padding: 2%;"type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName+" "+studentName}}</button>
-                </div>
-            </div>
         </div>
-        <div class="col-md-1" align="center" ></div>
     </div>
+    <hr style="border-color: #555555">
+    <div align="center">
+        <div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" align="center">
+                    <h2>{{lecture.lectureName}}</h2>
+                </div>
+                <div class="col-md-3" align="Left" style="padding-top: 30px">
+                    <h6>{{lecture.lectureDate}}</h6>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <font size="4">
+                {{lecture.lectureContent}}
+                </font>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    <div>
+    <hr style="border-color: #555555">
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -104,7 +122,7 @@
     <script src="js/bootstrap.min.js"></script>
 </body>
 <script src="js/angular.min.js"></script>
-<script src="controller/studentController.js"></script>
+<script src="controller/lectureController.js"></script>
 <script src="js/angular-route.js"></script>
 
 </html>

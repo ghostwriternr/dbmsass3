@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,8 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="cStudentCtrl" ng-init="init()">
+
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -56,13 +57,13 @@
     </nav>
     <!-- /container -->
     <div class="wide" style=" height : 12%;margin-bottom: 20px; background: #2390fd;
-	background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
-	background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
-	background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
-	background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-	background:         linear-gradient(to right, #2390fd, #54cfcb);">
+    background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
+    background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
+    background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
+    background:      -o-linear-gradient(left, #2390fd, #54cfcb);
+    background:         linear-gradient(to right, #2390fd, #54cfcb);">
         <div style="padding-top: 80px" align="center">
-            <font color="white" size="10" >Course Name</font>
+            <font color="white" size="10" >{{courseName}}</font>
         </div>
     </div>
     <div>
@@ -70,25 +71,25 @@
     <div class="row">
         <div class="col-md-4" align="center" >
         <font size="4" >
-            Instructor Name<br>
+            {{studentName}}<br>
         </font>
         <font size="4" >
-            Department Name<br>
+        <div ng-repeat="courseInstructorName in courseInstructor">
+            {{courseInstructorName.facultyName+","}}</div><br>
         </font>
         <font size="4" >
-            FromDate -
+            {{department}}<br>
         </font>
         <font size="4" >
-            ToDate<br>
+            {{startDate}}
+        </font>
+        <font size="4" >
+            {{"  --  "+endDate}}<br>
         </font>
         </div>
         <div class="col-md-7" align="left" style="padding-right: 10px;">
             <font size="3">
-                This is Description. This is Description. This is Description.
-                This is Description. This is  is is is is is is is is is is is is is is is is is is is is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
+            {{courseDescription}}
             </font>
         </div>
         <div class="col-md-1"></div>
@@ -104,25 +105,16 @@
             <font size="5" >
                 Lectures<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Lectures</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Lectures</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Lectures</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Lectures</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Lectures</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Lectures</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Lectures</button>
+            <div ng-repeat="lecture in lectureCourse">
+                <button class="btn btn-default btn-block" style="padding: 2%;"type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureName+" "+lecture.lectureNumber}}</button>
+            </div>
         </div>
         <div class="col-md-5" align="center" style="padding-right: 10px;">
             <font size="5">
                 Assignments<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Assignments</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Assignments</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Assignments</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Assignments</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Assignments</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Assignments</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Assignments</button>
+            <div ng-repeat="assignment in assignmentCourse">
+                <button class="btn btn-default btn-block" style="padding: 2%;"type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentName+" "+assignment.assignmentNumber}}</button>
             </div>
         <div class="col-md-1" align="left" >
         </div>
@@ -138,10 +130,10 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Contact</h4>
                     </div>
-                    <div class="modal-body" ng-controller="AppCtrl">
+                    <div class="modal-body">
                         <form>
                             <!--this dropdown provides list of students if faculty is visiting the page....hide it when student is visiting the page ><-->
-                            <div class="dropdown" ng-controller="getType" ng-model="person.type">
+                            <div class="dropdown"  ng-model="person.type">
                                 <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;">Receiver
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
@@ -185,7 +177,7 @@
                 <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="personR.lName" required></input>
                 <textarea placeholder="Content" class="form-control" rows="5" ></textarea>
                 <div style="padding-left: 200px;padding-right: 200px;">
-                    <div class="dropdown" ng-controller="getTypeRegister">
+                    <div class="dropdown" >
                         <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;">Type
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
@@ -208,6 +200,7 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-
+<script src="js/angular.min.js"></script>
+<script src="controller/courseStudent.js"></script>
+<script src="js/angular-route.js"></script>
 </html>
