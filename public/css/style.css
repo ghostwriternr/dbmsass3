@@ -21,3 +21,11 @@
     margin: 0 auto;
     pointer-events: all;
 }
+
+.form-signin .ng-invalid.ng-dirty {
+    background-color: #ffd2ff;
+}
+
+.form-signin .ng-valid.ng-dirty {
+    background-color: #d2ffd2;
+}

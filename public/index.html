@@ -59,6 +59,7 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
+
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
     <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center">
@@ -69,7 +70,7 @@
                     <h4 class="modal-title" id="myModalLabel">Login</h4>
                 </div>
                 <div class="modal-body" ng-controller="AppCtrl">
-                    <form class="form-signin">
+                    <form name="loginForm" class="form-signin" novalidate>
                         <label for="inputEmail" class="sr-only">Email address</label>
                         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="person.email" required autofocus>
                         <label for="inputPassword" class="sr-only">Password</label>
@@ -85,7 +86,8 @@
                             </ul>
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
-                        <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="studentLogin()" a href="#">Sign in</button>
+                        <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="loginForm.$valid && studentLogin()" a href="#">Sign in</button>
+                        <p ng-show="!studentLogin()">YO</p>
                     </form>
                 </div>
                 <div class="modal-footer">

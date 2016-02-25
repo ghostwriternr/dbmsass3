@@ -155,5 +155,4 @@ $scope.registerPerson=function(type){
 		})
 	}
 }
-}])
-
+}]);
