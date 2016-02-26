@@ -123,6 +123,15 @@ app.post('/course/getDetails',function(req,res){
 	})
 })
 
+app.post('/faculty/getDetails',function(req,res){
+	console.log('Got a POST request for facultyDeatils');
+	console.log(req.body);
+	dbFaculty.faculty.find(req.body,function(err,doc){
+		console.log(doc);
+		res.json(doc);
+	})
+})
+
 app.post('/courseInstructor/getDetails',function(req,res){
 	console.log('Got a POST request for courseInstructor details');
 	console.log(req.body);
@@ -172,8 +181,26 @@ app.post('/assignment/getDetails',function(req,res){
 		res.json(doc);
 	})
 })
+
+app.post('/course/notInList',function(req,res){
+	console.log('Got a POST request for courseNotInList details');
+	console.log("here->"+req.body);
+	console.log("done");
+	dbCourse.course.find({'name':{$nin:req.body}},function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/courseTaught/getCourses',function(req,res){
+	console.log('Got a POST request for courseTaught details');
+	console.log(req.body);
+	dbCourseTaught.courseTaught.find(req.body,function(err,doc){
+		res.json(doc);
+	})
+})
 //To Add a new course->db.studentCourse.update({email:'abc@xyz'},{$push:{course:{courseId:"56cf294f3d25a2f651cd56a8",assignmentCompleted:'2',lecturesCompleted:'4'}}})
 
+//To get the list of all courses not registered by that guy->db.course.find({'name':{$nin:['Algorithms']}})
 
 app.listen(3005);
 console.log("server is running on port 3005");

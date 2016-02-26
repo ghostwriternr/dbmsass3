@@ -18,7 +18,7 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 		})
 		$http.post('/courseInstructor/getDetails',{'courseName':courseName}).success(function(response){
 			var reply=response;
-			console.log(reply[0].facultyName);
+			console.log(reply[0].facultyName+" "+reply[1].facultyName);
 			$scope.courseInstructor=reply;
 		})
 		$http.post('/course/getDetails',{'name':courseName}).success(function(response){
@@ -34,6 +34,31 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 		$http.post('/assignment/getList',{'courseName':courseName}).success(function(response){
 			$scope.assignmentCourse=response;
 			console.log('done');
+		})
+		var courseStudent=[];
+		$http.post('/studentCourse/getContent',{'email':userEmail}).success(function(response){
+			var reply=response;
+			var courseStudentContent={}
+			for(var i=0;i<reply[0].course.length;i++){
+				var queryCourse={'name':reply[0].course[i].courseName};
+				console.log(queryCourse);
+				var trytofill=function(courseinfo){
+					$http.post('/course/getDetails',{'name':courseinfo.courseName}).success(function(response){
+					var replyC=response[0];
+					console.log(response[0].name);
+					var fillin=function(replyC){
+						courseStudentContent={'courseName':courseinfo.courseName,'completedAssignments':courseinfo.assignmentCompleted,'completedLectures':courseinfo.lecturesCompleted,
+							'courseAssignment':replyC.assignment,'courseLectures':replyC.lectures};
+						courseStudent.push(courseStudentContent);
+						console.log(courseStudentContent);
+					}
+					fillin(replyC);
+					console.log(courseStudentContent);
+					});
+				}
+				trytofill(reply[0].course[i],queryCourse);
+			}
+			$scope.courseStudent=courseStudent;
 		})
 	}
 

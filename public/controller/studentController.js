@@ -27,6 +27,8 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 
 		//Filling in the content of course
 		var courseStudent=[];
+		var courseListName=[];
+		var coursesNotRegistered=[];
 		$http.post('/studentCourse/getContent',query).success(function(response){
 			var reply=response;
 			var courseStudentContent={}
@@ -41,6 +43,18 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 						courseStudentContent={'courseName':courseinfo.courseName,'completedAssignments':courseinfo.assignmentCompleted,'completedLectures':courseinfo.lecturesCompleted,
 							'courseAssignment':replyC.assignment,'courseLectures':replyC.lectures};
 						courseStudent.push(courseStudentContent);
+					 	courseListName.push(courseinfo.courseName);
+						var getNotReg=function(courseListName){
+								console.log(courseListName[0]);
+								$http.post('/course/notInList',courseListName).success(function(response){
+									var reply=response;
+									coursesNotRegistered=reply;
+									$scope.coursesNotRegistered=reply;
+									console.log("here->"+coursesNotRegistered[0].name);
+								})
+						}
+						getNotReg(courseListName);
+						//console.log("courseList->"+courseListName[courseListName.length-1]);
 					}
 					fillin(replyC);
 					console.log(courseStudentContent);
@@ -48,8 +62,15 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 				}
 				trytofill(reply[0].course[i],queryCourse);
 			}
+			//$scope.coursesNotRegistered=coursesNotRegistered;
 			$scope.courseStudent=courseStudent;
+			//coursesNotRegistered=courseListName;
 		})
+	}
+
+	$scope.goToRegistration=function(email,name){
+		console.log(email+" "+name);
+		$window.open("/register_course.html"+"?email="+email+"?course="+name);
 	}
 	//Fill the contents of the course
 
