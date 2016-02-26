@@ -12,6 +12,7 @@ var dbLectureCourse=mongojs('lectureCourse',['lectureCourse']);
 var dbAssignmentCourse=mongojs('assignmentCourse',['assignmentCourse']);
 var dbLecture=mongojs('lecture',['lecture']);
 var dbAssignment=mongojs('assignment',['assignment']);
+var dbAssignmentAnswer=mongojs('assignmentAnswer',['assignmentAnswer']);
 var app=express();
 
 app.use(express.static(__dirname+"/public"));
@@ -177,8 +178,7 @@ app.post('/assignment/getDetails',function(req,res){
 	console.log('Got a POST request for assignemnt details');
 	console.log(req.body);
 	dbAssignment.assignment.find(req.body,function(err,docs){
-		console.log(doc[0].assignmentName);
-		res.json(doc);
+		res.json(docs);
 	})
 })
 
@@ -218,6 +218,13 @@ app.post('/lecture/addLecture',function(req,res){
 app.post('/lectureCourse/addEntry',function(req,res){
 	console.log('Got a POST request for lectureCourse/addEntry');
 	dbLectureCourse.lectureCourse.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/answerToAssignment/getAnswers',function(req,res){
+	console.log('Got a POST request for answerToAssignment/getAnswers');
+	dbAssignmentAnswer.assignmentAnswer.find(req.body,function(err,docs){
 		res.json(docs);
 	})
 })

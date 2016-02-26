@@ -81,13 +81,6 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 						$http.post('/lectureCourse/addEntry',lectureContent).success(function(response){
 							console.log(response[0]);
 						})
-						var refreshListLectures=function(){
-							$http.post('/lecture/getList',{'courseName':courseName}).success(function(response){
-								$scope.lectureCourse=response;
-								console.log('done');
-							})
-						}
-						refreshListLectures();
 					}
 					httprequest(lecture);
 				}

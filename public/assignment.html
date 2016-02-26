@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="assignmentCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -77,22 +77,18 @@
             Instructor Name<br>
         </font>
         <font size="4" >
-            Department Name<br>
+            {{course.departmentName}}<br>
         </font>
         <font size="4" >
-            FromDate -
+            {{assignment.assignmentStartDate}}
         </font>
         <font size="4" >
-            ToDate<br>
+            {{assignment.assignmentEndDate}}<br>
         </font>
         </div>
         <div class="col-md-8" align="left" style="padding-right: 10px;">
             <font size="3">
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
+            {{"Solve the below"}}
             </font>
         </div>
     </div>
@@ -102,7 +98,7 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" align="center">
-                    <h2>Tiltle</h2>
+                    <h2>{{assignment.assignmentName}}</h2>
                 </div>
                 <div class="col-md-3" align="Left" style="padding-top: 30px">
                     <h6>StartDate-EndDate</h6>
@@ -112,24 +108,26 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <font size="4">
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
-                    This is content. This is content. This is content. This is content. This is content.
+                {{assignment.assignmentContent}}
                 </font>
             </div>
             <div class="col-md-1"></div>
         </div>
     <div>
+
+<div ng-controller="assignmentCtrl">
+   <fieldset  data-ng-repeat="choice in choices">
+      <input type="text" ng-model="choice.answer" name="" placeholder="Enter answer">
+   </fieldset>
+   <button class="addfields" ng-click="evaluate()">Evaluate</button>
+    <div class="col-md-10">
+        <font size="4">
+        {{correctAnswerCount}}
+        </font>
+    </div>
+</div>
+
+
     <hr style="border-color: #555555">
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -140,6 +138,7 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-
+<script src="js/angular.min.js"></script>
+<script src="controller/assignmentController.js"></script>
+<script src="js/angular-route.js"></script>
 </html>
