@@ -228,9 +228,30 @@ app.post('/answerToAssignment/getAnswers',function(req,res){
 		res.json(docs);
 	})
 })
+
+app.post('/assignment/addAssignment',function(req,res){
+	console.log('Got a POST request for assignment/addAssignment');
+	dbAssignment.assignment.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/AssignmentCourse/addEntry',function(req,res){
+	console.log('Got a POST request for AssignmentCourse/assEntry');
+	dbAssignmentCourse.assignmentCourse.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/AssignmentAnswer/addAnswer',function(req,res){
+	console.log('Got a POST request for /AssignmentAnswer/addAnswer');
+	dbAssignmentAnswer.assignmentAnswer.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
 //To Add a new course->db.studentCourse.update({email:'abc@xyz'},{$push:{course:{courseId:"56cf294f3d25a2f651cd56a8",assignmentCompleted:'2',lecturesCompleted:'4'}}})
 
 //To get the list of all courses not registered by that guy->db.course.find({'name':{$nin:['Algorithms']}})
 
-app.listen(3005);
-console.log("server is running on port 3005");
+app.listen(3007);
+console.log("server is running on port 3007");

@@ -11,6 +11,8 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 		var courseName=tempData[1];
 		console.log(userEmail+" "+courseName);
 		$scope.courseName=courseName;
+		$scope.choices=[];
+		$scope.content={};
 		$http.post('/faculty/getDetails',{'email':userEmail}).success(function(response){
 			var reply=response[0];
 			$scope.facultyName=reply.name;
@@ -48,10 +50,14 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 
 	$scope.setTypeOfContent=function(type){
 		$scope.content.type=type;
+		for(index=0;index<$scope.questionsCount;index++){
+			$scope.choices.push({'id':''});
+		}
+		console.log($scope.content.type)
 	}
 
 	$scope.addContent=function(content){
-		console.log(content);
+		console.log(content.type);
 		if(content.type==1){
 			//lecture
 			var update=function(){
@@ -90,6 +96,57 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 		}
 		else if(content.type==2){
 			//assignment
+			var update=function(){
+				$scope.course.assignment=parseInt($scope.course.assignment)+1;
+				var update=function(){
+					$http.post('/course/updateDetails/'+$scope.course.name,{'assignment':$scope.course.assignment}).success(function(response){
+						//qwe
+					})
+				}
+				update();
+				var assignment={};
+				var assignmentContent={};
+				var assignmentAnswer={};
+				var addLecture=function(){
+					assignment.courseName=$scope.courseName;
+					assignment.assignmentName=content.title;
+					assignment.assignmentNumber=$scope.course.assignment+"";
+					assignment.assignmentContent=content.content;
+					assignment.assignmentStartDate=content.startDate;
+					assignment.assignmentEndDate=content.endDate;
+					assignment.assignmentQuestionCount=$scope.questionsCount;
+					assignmentContent.courseName=$scope.courseName;
+					assignmentContent.assignmentName=content.title;
+					assignmentContent.assignmentNumber=$scope.course.assignment+"";
+					assignmentAnswer.courseName=$scope.courseName;
+					assignmentAnswer.assignmentNumber=$scope.course.assignment+"";
+					assignmentAnswer.answer=[];
+					var FillArray=function(){
+						for(var index=0;index<$scope.questionsCount;index++){
+							assignmentAnswer.answer.push($scope.choices[index].answer+"");
+						}
+						var httprequest=function(){
+							console.log(assignment);
+							console.log(assignmentContent);
+							console.log(assignmentAnswer);
+							$http.post('/assignment/addAssignment',assignment).success(function(response){
+								console.log(response[0]);
+							})
+							$http.post('/AssignmentCourse/addEntry',assignmentContent).success(function(response){
+								console.log(response[0]);
+							})
+							$http.post('/AssignmentAnswer/addAnswer',assignmentAnswer).success(function(response){
+								console.log(response[0]);
+							})
+						}
+						httprequest();
+					}
+					FillArray();
+					//httprequest(lecture);
+				}
+				addLecture();
+			}
+			update();
 		}
 	}
 }])

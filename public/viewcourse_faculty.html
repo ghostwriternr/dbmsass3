@@ -183,6 +183,8 @@
             <form class="form-signin">
                 <label class="sr-only">Title</label>
                 <input type="text" class="form-control" placeholder="Title" ng-model="content.title" required></input>
+                <label class="sr-only">Assignment Number of Questions</label>
+                <input type="text" class="form-control" placeholder="Number of questions(only for assignments" ng-model="questionsCount"></input>
                 <label class="sr-only">Start Date</label>
                 <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="content.startDate" required></input>
                 <label class="sr-only">End Date</label>
@@ -196,6 +198,17 @@
                             <li><a href="#" ng-click="setTypeOfContent(1)">Lecture</a></li>
                             <li><a href="#" ng-click="setTypeOfContent(2)">Assignment</a></li>
                         </ul>
+                    </div>
+                    <div>
+                       <fieldset  data-ng-repeat="choice in choices">
+                          <input type="text" ng-model="choice.answer" name="" placeholder="Enter answer">
+                       </fieldset>
+                       <button class="addfields" ng-click="setAnswer()">Set Answers</button>
+                        <div class="col-md-10">
+                            <font size="4">
+                            {{correctAnswerCount}}
+                            </font>
+                        </div>
                     </div>
                     <div class="col-xs-12" style="height:20px;"></div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="addContent(content)">Add</button>
