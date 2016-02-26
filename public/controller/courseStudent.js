@@ -18,7 +18,7 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 		})
 		$http.post('/courseInstructor/getDetails',{'courseName':courseName}).success(function(response){
 			var reply=response;
-			console.log(reply[0].facultyName);
+			console.log(reply[0].facultyName+" "+reply[1].facultyName);
 			$scope.courseInstructor=reply;
 		})
 		$http.post('/course/getDetails',{'name':courseName}).success(function(response){
