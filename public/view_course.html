@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="ghost" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <title>Course</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 15%;margin-bottom: 20px; background: #2390fd;
+    <div class="wide" style=" height : 35%;margin-bottom: 20px; background: #2390fd;
     background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
     background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
     background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
@@ -76,27 +76,22 @@
         <div class="row">
             <div class="col-xs-3" align="center"></div>
             <div class="col-xs-6" align="center">
-                <font color="white" size="6">{{courseDescription}}</font>
+                <h3 style="color: white">{{courseDescription}}</h3>
             </div>
             <div class="col-xs-3" align="center"></div>
         </div>
     </div>
     <div class="row">
-        <div align="center">
-            <font size="4">
-                <b>Name: </b>{{studentName}}
-                <br>
-            </font>
-        </div>
-    </div>
-    <div class="row">
-        <div align="center">
+        <div class="col-md-2"></div>
+        <div class="col-md-4" align="center">
             <font size="4">
                 <b>Instructors: </b>
                 <div ng-repeat="courseInstructorName in courseInstructor">
                     <span>{{courseInstructorName.facultyName}}</span>
                 </div>
             </font>
+        </div>
+        <div class="col-md-4" align="center">
             <font size="4">
                 {{department}}
                 <br>
@@ -109,6 +104,7 @@
                 <br>
             </font>
         </div>
+        <div class="col-md-2"></div>
     </div>
     <hr style="border-color: #555555">
     <div class="row">
@@ -118,8 +114,8 @@
                 Lectures
                 <br>
             </font>
-            <div ng-repeat="lecture in lectureCourse">
-                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureName+" "+lecture.lectureNumber}}</button>
+            <div ng-repeat="lecture in lectureCourse" style="padding-bottom: 5px">
+                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureNumber+". "+lecture.lectureName}}</button>
             </div>
         </div>
         <div class="col-md-5" align="center" style="padding-right: 10px;">
@@ -127,8 +123,8 @@
                 Assignments
                 <br>
             </font>
-            <div ng-repeat="assignment in assignmentCourse">
-                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentName+" "+assignment.assignmentNumber}}</button>
+            <div ng-repeat="assignment in assignmentCourse" style="padding-bottom: 5px">
+                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentNumber+". "+assignment.assignmentName}}</button>
             </div>
         </div>
         <div class="col-md-1" align="left"></div>
@@ -137,7 +133,7 @@
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
-                <div class="modal-content" style=" background-color :    #F8F8F8;">
+                <div class="modal-content" style=" background-color: #F8F8F8;">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span area-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
@@ -163,6 +159,7 @@
     <div align="center">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Contact Faculty</button>
     </div>
+    <br>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

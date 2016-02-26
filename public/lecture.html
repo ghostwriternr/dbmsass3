@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="ghost" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <title>Content</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -55,39 +55,49 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 12%;margin-bottom: 20px;
+    <div class="wide" style=" height : 35%;margin-bottom: 20px;
     background: #2390fd;
-	background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
-	background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
-	background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
-	background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-	background:         linear-gradient(to right, #2390fd, #54cfcb);
+    background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
+    background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
+    background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
+    background:      -o-linear-gradient(left, #2390fd, #54cfcb);
+    background:         linear-gradient(to right, #2390fd, #54cfcb);
 
     ">
-        <div style="padding-top: 80px" align="center">
-            <font color="white" size="10" >{{course.name}}</font>
+        <div class="row">
+            <div class="col-xs-5 line" style="padding-top: 30px">
+                <hr>
+            </div>
+            <div class="col-xs-2 logo">
+                <font color="white" size="6">{{course.name}}</font>
+            </div>
+            <div class="col-xs-5 line" style="padding-top: 30px">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3" align="center"></div>
+            <div class="col-xs-6" align="center">
+                <h1 style="color: white">Lecture</h1>
+            </div>
+            <div class="col-xs-3" align="center"></div>
         </div>
     </div>
-
     <div>
     </div>
-    <div class="row">
-        <div class="col-md-4" align="center" >
-        <font size="4" >
-            Instructor Name<br>
-        </font>
-        <font size="4" >
-            {{course.departmentName}}<br>
-        </font>
-        <font size="4" >
-            {{lecture.lectureDate}}
-        </font>
-        </div>
-        <div class="col-md-8" align="left" style="padding-right: 10px;">
-            <font size="3">
-            {{course.description}}
+    <div class="row" align="center">
+        <div class="col-md-2"></div>
+        <div class="col-md-4" align="center">
+            <font size="4">
+                <b>Department: </b>{{course.departmentName}}
             </font>
         </div>
+        <div class="col-md-4" align="center">
+            <font size="4">
+                <b>Date: </b>{{lecture.lectureDate}}
+            </font>
+        </div>
+        <div class="col-md-2"></div>
     </div>
     <hr style="border-color: #555555">
     <div align="center">
@@ -100,26 +110,26 @@
                 <div class="col-md-3" align="Left" style="padding-top: 30px">
                     <h6>{{lecture.lectureDate}}</h6>
                 </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <font size="4">
-                {{lecture.lectureContent}}
-                </font>
             </div>
-            <div class="col-md-1"></div>
-        </div>
-    <div>
-    <hr style="border-color: #555555">
-    <!-- Bootstrap core JavaScript
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <font size="4">
+                        {{lecture.lectureContent}}
+                    </font>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div>
+                <hr style="border-color: #555555">
+                <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
-    </script>
-    <script src="js/bootstrap.min.js"></script>
+                <!-- Placed at the end of the document so the pages load faster -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                <script>
+                window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+                </script>
+                <script src="js/bootstrap.min.js"></script>
 </body>
 <script src="js/angular.min.js"></script>
 <script src="controller/lectureController.js"></script>
