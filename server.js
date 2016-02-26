@@ -198,6 +198,29 @@ app.post('/courseTaught/getCourses',function(req,res){
 		res.json(doc);
 	})
 })
+
+app.post('/course/updateDetails/:courseName',function(req,res){
+	console.log('Got a POST request for course/updateDeatils');
+	var courseName=req.params.courseName;
+	console.log(courseName+" "+req.body);
+	dbCourse.course.update({'name':req.params.courseName},{$set:req.body},function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/lecture/addLecture',function(req,res){
+	console.log('Got a POST request for lecture/addLecture');
+	dbLecture.lecture.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/lectureCourse/addEntry',function(req,res){
+	console.log('Got a POST request for lectureCourse/addEntry');
+	dbLectureCourse.lectureCourse.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
 //To Add a new course->db.studentCourse.update({email:'abc@xyz'},{$push:{course:{courseId:"56cf294f3d25a2f651cd56a8",assignmentCompleted:'2',lecturesCompleted:'4'}}})
 
 //To get the list of all courses not registered by that guy->db.course.find({'name':{$nin:['Algorithms']}})

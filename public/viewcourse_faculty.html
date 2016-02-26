@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body ng-controller="cStudentCtrl" ng-init="init()">
+<body ng-controller="cFacultyCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -84,7 +84,7 @@
     <div class="row">
         <div align="center">
             <font size="4">
-                <b>Name: </b>{{studentName}}
+                <b>Name: </b>{{facultyName}}
                 <br>
             </font>
         </div>
@@ -119,7 +119,7 @@
                 <br>
             </font>
             <div ng-repeat="lecture in lectureCourse">
-                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureName+" "+lecture.lectureNumber}}</button>
+                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToLecture(facultyEmail,courseName,lecture.lectureNumber)">{{lecture.lectureName+" "+lecture.lectureNumber}}</button>
             </div>
         </div>
         <div class="col-md-5" align="center" style="padding-right: 10px;">
@@ -128,7 +128,7 @@
                 <br>
             </font>
             <div ng-repeat="assignment in assignmentCourse">
-                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentName+" "+assignment.assignmentNumber}}</button>
+                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToAssignment(facultyEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentName+" "+assignment.assignmentNumber}}</button>
             </div>
         </div>
         <div class="col-md-1" align="left"></div>
@@ -146,7 +146,7 @@
                     <div class="modal-body">
                         <form>
                             <!--this dropdown provides list of students if faculty is visiting the page....hide it when student is visiting the page ><-->
-                            <div class="dropdown" ng-model="person.type">
+                            <div class="dropdown">
                                 <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;">Receiver
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
@@ -182,25 +182,23 @@
             </font>
             <form class="form-signin">
                 <label class="sr-only">Title</label>
-                <input type="text" class="form-control" placeholder="Title" ng-model="personR.fName" required></input>
-                <label class="sr-only">Marks</label>
-                <input type="text" class="form-control" placeholder="Marks (If Assignment)" ng-model="personR.lName"></input>
+                <input type="text" class="form-control" placeholder="Title" ng-model="content.title" required></input>
                 <label class="sr-only">Start Date</label>
-                <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="personR.lName" required></input>
+                <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="content.startDate" required></input>
                 <label class="sr-only">End Date</label>
-                <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="personR.lName" required></input>
-                <textarea placeholder="Content" class="form-control" rows="5"></textarea>
+                <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="content.endDate" required></input>
+                <textarea placeholder="Content" class="form-control" rows="5" ng-model="content.content"></textarea>
                 <div style="padding-left: 200px;padding-right: 200px;">
                     <div class="dropdown">
                         <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;">Type
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="setType(1)">Lecture</a></li>
-                            <li><a href="#" ng-click="setType(2)">Assignment</a></li>
+                            <li><a href="#" ng-click="setTypeOfContent(1)">Lecture</a></li>
+                            <li><a href="#" ng-click="setTypeOfContent(2)">Assignment</a></li>
                         </ul>
                     </div>
                     <div class="col-xs-12" style="height:20px;"></div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="registerPerson()">Add</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="addContent(content)">Add</button>
                 </div>
             </form>
         </div>
@@ -219,7 +217,7 @@
     <script src="js/bootstrap.min.js"></script>
 </body>
 <script src="js/angular.min.js"></script>
-<script src="controller/courseStudent.js"></script>
+<script src="controller/courseFaculty.js"></script>
 <script src="js/angular-route.js"></script>
 
 </html>
