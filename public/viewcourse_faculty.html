@@ -141,10 +141,25 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span area-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Contact Faculty</h4>
+                        <h4 class="modal-title" id="myModalLabel">Contact</h4>
                     </div>
                     <div class="modal-body">
                         <form>
+                            <!--this dropdown provides list of students if faculty is visiting the page....hide it when student is visiting the page ><-->
+                            <div class="dropdown" ng-model="person.type">
+                                <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;">Receiver
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="setType(1)">Student1</a></li>
+                                    <li><a href="#" ng-click="setType(1)">Student2</a></li>
+                                    <li><a href="#" ng-click="setType(1)">Student3</a></li>
+                                    <li><a href="#" ng-click="setType(1)">Student4</a></li>
+                                    <li><a href="#" ng-click="setType(1)">Student5</a></li>
+                                    <li><a href="#" ng-click="setType(1)">Student6</a></li>
+                                    <li><a href="#" ng-click="setType(1)">Student7</a></li>
+                                    <li><a href="#" ng-click="setType(1)">Student8</a></li>
+                                </ul>
+                            </div>
                             <!-- Textarea -->
                             <div class="form-group">
                                 <textarea class="form-control" rows="5" autofocus style="background-color: white"></textarea>
@@ -159,9 +174,40 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-2" align="center"></div>
+        <div class="col-md-8" align="center">
+            <font size="5">Add Content
+                <br>
+            </font>
+            <form class="form-signin">
+                <label class="sr-only">Title</label>
+                <input type="text" class="form-control" placeholder="Title" ng-model="personR.fName" required></input>
+                <label class="sr-only">Marks</label>
+                <input type="text" class="form-control" placeholder="Marks (If Assignment)" ng-model="personR.lName"></input>
+                <label class="sr-only">Start Date</label>
+                <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="personR.lName" required></input>
+                <label class="sr-only">End Date</label>
+                <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="personR.lName" required></input>
+                <textarea placeholder="Content" class="form-control" rows="5"></textarea>
+                <div style="padding-left: 200px;padding-right: 200px;">
+                    <div class="dropdown">
+                        <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;">Type
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="setType(1)">Lecture</a></li>
+                            <li><a href="#" ng-click="setType(2)">Assignment</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="registerPerson()">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <br>
     <div align="center">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Contact Faculty</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Contact</button>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

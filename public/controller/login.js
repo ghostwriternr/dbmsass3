@@ -25,9 +25,9 @@ $scope.studentLogin=function(){
 		$http.post('/faculty/login',faculty).success(function(response){
 			if(response==1){
 				console.log("Authnetication success");
-				var url="/student.html";
+				var url="/faculty.html";
 				console.log("Authentication successful");
-				$window.location.href=url;
+				$window.location.href=url+"?email="+$scope.person.email;
 				console.log("Authnetication successfull");
 			}
 			else{

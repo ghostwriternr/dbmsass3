@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="facultyCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -74,6 +74,7 @@
         <div class="row">
             <div class="col-md-4">
                 <img src="images/faculty.png" style="margin-top: -23px; margin-left: 8%;">
+                <p>{{facultyName}}</p>
             </div>
         </div>
     </div>
@@ -83,12 +84,9 @@
             <font size="6">
                 Courses<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Course Name1</button>
+            <div ng-repeat="course in courseList">
+            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button" ng-click="goToCourse(facultyEmail,course.courseName)">{{course.courseName}}</button>
+            </div>
             </div>
         <div class="col-md-1" align="center" ></div>
     </div>
@@ -109,6 +107,7 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-
+<script src="js/angular.min.js"></script>
+<script src="controller/facultyController.js"></script>
+<script src="js/angular-route.js"></script>
 </html>
