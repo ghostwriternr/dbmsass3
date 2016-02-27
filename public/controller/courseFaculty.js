@@ -1,6 +1,6 @@
 var myApp=angular.module('myApp',['ngRoute']);
 myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',function($scope,$http,$window,$log,$location){
-	console.log("Hello World from studentCtrl");
+	console.log("Hello World from cFacultyCtrl");
 
 	$scope.init=function(){
 		console.log($location.absUrl());
@@ -40,22 +40,24 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 			console.log('done');
 		})
 		$http.post('/studentsEnrolled/getList',{'courseName':courseName}).success(function(response){
-			console.log(response[0]);
-			var display=function(){
-				console.log('here');
-				for(var index=0;index<response[0].studentEmail.length;index++){
-					console.log(response[0].studentEmail[index]);
-					var studentEmail=response[0].studentEmail[index].email;
-					$http.post('/student/getDetails',{'email':response[0].studentEmail[index].email}).success(function(responseStudent){
-						console.log(responseStudent[0]);
-						var fill=function(){
-							$scope.studentsEnrolled.push({'email':studentEmail,'name':responseStudent[0].name});
-						}
-						fill();
-					})
+			if(response.length!=0){
+				console.log(response[0]);
+				var display=function(){
+					console.log('here');
+					for(var index=0;index<response[0].studentEmail.length;index++){
+						console.log(response[0].studentEmail[index]);
+						var studentEmail=response[0].studentEmail[index].email;
+						$http.post('/student/getDetails',{'email':response[0].studentEmail[index].email}).success(function(responseStudent){
+							console.log(responseStudent[0]);
+							var fill=function(){
+								$scope.studentsEnrolled.push({'email':studentEmail,'name':responseStudent[0].name});
+							}
+							fill();
+						})
+					}
 				}
+				display();
 			}
-			display();
 		})
 	}
 
@@ -125,6 +127,26 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 							}
 						}
 						sendAll();
+						var sendAllInstructors=function(){
+							for(var index=0;index<$scope.courseInstructor.length;index++){
+								var notification={};
+								notification.email=$scope.courseInstructor[index].facultyEmail;
+								notification.message="Lecture number "+lectureContent.lectureNumber+" "+"for course "+$scope.courseName;
+								notification.type="lecture";
+								notification.from=$scope.facultyName;
+								notification.fromEmail=$scope.facultyEmail;
+								notification.number=lectureContent.lectureNumber;
+								notification.courseName=lectureContent.courseName;
+								var send=function(){
+									console.log(notification);
+									$http.post('/notification/student',notification).success(function(response){
+										console.log(response[0]);
+									})
+								}
+								send();
+							}
+						}
+						sendAllInstructors();
 					}
 					httprequest(lecture);
 				}
@@ -195,6 +217,27 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 								}
 							}
 							sendAll();
+							//console.log("werwerwer "+$scope.courseInstructor.length);
+							var sendAllInstructors=function(){
+								for(var index=0;index<$scope.courseInstructor.length;index++){
+									var notification={};
+									notification.email=$scope.courseInstructor[index].facultyEmail;
+									notification.message="Assignment number "+assignmentContent.assignmentNumber+" "+"for course "+$scope.courseName;
+									notification.type="assignment";
+									notification.from=$scope.facultyName;
+									notification.fromEmail=$scope.facultyEmail;
+									notification.number=assignmentContent.assignmentNumber;
+									notification.courseName=assignmentContent.courseName;
+									var send=function(){
+										console.log(notification);
+										$http.post('/notification/student',notification).success(function(response){
+											console.log(response[0]);
+										})
+									}
+									send();
+								}
+							}
+							sendAllInstructors();
 						}
 						httprequest();
 					}

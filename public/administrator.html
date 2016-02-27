@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="administratorCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -82,45 +82,33 @@
             <font size="6">
                 Courses<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Course Name1</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Course Name1</button>
+            <div ng-repeat="course in courseList">
+            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{course.name}}</button>
+            </div>
         </div>
         <div class="col-md-3" align="center" >
             <font size="6">
                 Students<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Student Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Student Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Student Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Student Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Student Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Student Name</button>
+            <div ng-repeat="student in studentList">
+            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{student.name}}</button>
+            </div>
         </div>
         <div class="col-md-3" align="center" >
             <font size="6">
                 Faculties<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Faculty Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Faculty Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Faculty Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Faculty Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Faculty Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Faculty Name</button>
+            <div ng-repeat="faculty in facultyList">
+            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{faculty.name}}</button>
+            </div>
         </div>
         <div class="col-md-3" align="center" >
             <font size="6">
-                Guardians<br>
+                Parents<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Guardian Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Guardian Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Guardian Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Guardian Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Guardian Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button"> Guardian Name</button>
+            <div ng-repeat="parent in parentList">
+            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{parent.name}}</button>
+            </div>
         </div>
     </div>
     <div>
@@ -135,6 +123,8 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="controller/administratorController.js"></script>
+<script src="js/angular-route.js"></script>
 
 </html>

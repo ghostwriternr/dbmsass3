@@ -27,7 +27,7 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 	}
 
 	$scope.reject=function(parent){
-		$http.post('/parentChild/deleteRequest',parent).success(function(response){
+		$http.post('/parentChild/deleteRequest',{'parentName':parent.parentName,'parentEmail':parent.parentEmail,'childEmail':parent.childEmail}).success(function(response){
 			console.log(response[0]);
 		})
 	}
@@ -43,7 +43,7 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 	}
 
 	$scope.setPassword=function(){
-		if($scope.studentOldPassword==$scope.studentPassword && $scope.studentNewPassword==$scope.studentNewPassword){
+		if($scope.studentOldPassword==$scope.studentPassword && $scope.studentNewPassword==$scope.studentNewPasswordC){
 			console.log($scope.studentOldPassword+" "+$scope.studentNewPassword+" "+$scope.studentNewPasswordC);
 			$http.post('/student/updateDetails/'+$scope.studentEmail,{'password':$scope.studentNewPassword}).success(function(response){
 				console.log(response[0]);

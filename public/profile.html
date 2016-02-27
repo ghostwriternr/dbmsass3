@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -23,7 +23,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="profileFacultyCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -118,38 +118,38 @@
     <div class="row">
         <div class="col-md-1" align="center"></div>
         <div class="col-md-7" align="center">
-            <font size="5"> Name
+            <font size="5">{{faculty.name}}
                 <br>
             </font>
-            <font size="5"> abcd@xyz.kl
+            <font size="5">{{faculty.email}}
                 <br>
             </font>
-            <font size="5"> 0222-32154
+            <font size="5">{{faculty.contactinfo}}
                 <br>
             </font>
-            <font size="5"> Role
+            <font size="5">FACULTY
                 <br>
             </font>
-            <font size="5"> Dept Name(if faculty)
+            <font size="5">{{faculty.department}}
                 <br>
             </font>
         </div>
         <div class="col-md-3" align="center">
             <form class="form-signin">
                 <label class="sr-only">Old Password</label>
-                <input type="password" class="form-control" placeholder="Old Password" ng-model="personR.fName" required></input>
+                <input type="password" class="form-control" placeholder="Old Password" ng-model="facultyOldPassword" required></input>
                 <label class="sr-only">New Password</label>
-                <input type="password" class="form-control" placeholder="New Password" ng-model="personR.fName" required></input>
+                <input type="password" class="form-control" placeholder="New Password" ng-model="facultyNewPassword" required></input>
                 <label class="sr-only">Re-Enter New Password</label>
-                <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="personR.fName" required></input>
+                <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="facultyNewPasswordC" required></input>
                 <div style="padding-top: 10px">
-                    <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px">Update</button>
+                    <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setPassword()">Update</button>
                     <hr style="border-color: #555555">
                     <div>
                         <label class="sr-only">New Phone Number</label>
-                        <input type="text" class="form-control" placeholder="New Phone Number" ng-model="personR.fName" required></input>
+                        <input type="text" class="form-control" placeholder="New Phone Number" ng-model="facultyContactInfo" required></input>
                         <div style="padding-top: 10px">
-                            <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px">Update</button>
+                            <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setContact()">Update</button>
                         </div>
                     </div>
             </form>
@@ -188,7 +188,7 @@ $(document).ready(function() {
 });
 </script>
 <script src="js/angular.min.js"></script>
-<script src="controller/studentController.js"></script>
+<script src="controller/profileFacultyController.js"></script>
 <script src="js/angular-route.js"></script>
 
 </html>

@@ -119,6 +119,7 @@ myApp.controller('registerCourseCtrl',['$scope','$http','$window','$log','$locat
 				var reply=response[0];
 				console.log(response[0]);
 			})
+			console.log('hererer'+course+" "+email);
 		}
 		else{
 			console.log("LOLXD");

@@ -143,7 +143,7 @@ app.post('/courseInstructor/getDetails',function(req,res){
 	console.log('Got a POST request for courseInstructor details');
 	console.log(req.body);
 	dbCourseTaught.courseTaught.find(req.body,function(err,doc){
-		console.log(doc[0].facultyName);
+		//console.log(doc[0].facultyName);
 		res.json(doc);
 	})
 })
@@ -156,7 +156,7 @@ app.post('/lecture/getList',function(req,res){
 			console.log('Error');
 		}
 		else{
-			console.log(doc[0].lectureName);
+			//console.log(doc[0].lectureName);
 			res.json(doc);
 		}
 	})
@@ -166,7 +166,7 @@ app.post('/assignment/getList',function(req,res){
 	console.log('Got a POST request for assignmentCourse details');
 	console.log(req.body);
 	dbAssignmentCourse.assignmentCourse.find(req.body,function(err,doc){
-		console.log(doc[0].assignmentName);
+		//console.log(doc[0].assignmentName);
 		res.json(doc);
 	})
 })
@@ -175,7 +175,7 @@ app.post('/lecture/getDetails',function(req,res){
 	console.log('Got a POST request for lecture details');
 	console.log(req.body);
 	dbLecture.lecture.find(req.body,function(err,doc){
-		console.log(doc[0].lectureContent);
+		//console.log(doc[0].lectureContent);
 		res.json(doc);
 	})
 })
@@ -279,8 +279,8 @@ app.post('/course/RegisterStudent/:email',function(req,res){
 })
 
 app.post('/enroll/student/:courseName',function(req,res){
-	console.log('Got a POST request from /enroll/student');
-	dbCourseStudents.courseStudents.update({'course':req.params.courseName},{$push:{'studentEmail':req.body}},function(err,docs){
+	console.log('Got a POST request from /enroll/student'+" "+req.body);
+	dbCourseStudents.courseStudents.update({'courseName':req.params.courseName},{$push:{studentEmail:req.body}},function(err,docs){
 		res.json(docs);
 	})
 })
@@ -362,6 +362,55 @@ app.post('/student/updateDetails/:email',function(req,res){
 	console.log('Got a POST request from /student/updateDetails');
 	console.log(req.params.email);
 	dbStudent.student.update({'email':req.params.email},{$set:req.body},function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/course/AddCourse',function(req,res){
+	console.log('Got a POST request from /course/AddCourse');
+	dbCourse.course.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/courseTaught/addEntry',function(req,res){
+	console.log('Got a POST request from /courseTaught/addEntry');
+	console.log(req.body);
+	dbCourseTaught.courseTaught.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/coursePrerequisites/addEntry',function(req,res){
+	console.log('Got a POST from /coursePrerequisites/addEntry');
+	console.log(req.body);
+	dbCoursePrerequisites.coursePrerequisites.insert(req.body,function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	})
+})
+
+app.post('/studentCourse/addEntry',function(req,res){
+	console.log('Got a POST request from /studentCourse/addEntry');
+	console.log(req.body);
+	dbCourseStudents.courseStudents.insert(req.body,function(err,docs){
+		console.log(docs);
+	})
+})
+
+app.post('/studentCourseReg/addEntry',function(req,res){
+	console.log('Got a POST request from /studentCourseReg/addEntry');
+	console.log(req.body);
+	dbStudentCourse.studentCourse.insert(req.body,function(err,docs){
+		console.log(docs);
+	})
+})
+
+app.post('/faculty/updateDetails/:email',function(req,res){
+	console.log('Got a POST request from /faculty/updateDetails');
+	console.log(res.body);
+	dbFaculty.faculty.update({'email':req.params.email},{$set:req.body},function(err,docs){
+		console.log(docs);
 		res.json(docs);
 	})
 })

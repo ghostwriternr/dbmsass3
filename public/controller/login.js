@@ -55,7 +55,7 @@ $scope.studentLogin=function(){
 		console.log(admin);
 		$http.post('/admin/login',admin).success(function(response){
 			if(response==1){
-				var url="/admin.html";
+				var url="/administrator.html";
 				console.log("Authentication successful");
 				$window.location.href=url;
 				console.log("Authnetication successfull");
@@ -129,6 +129,9 @@ $scope.registerPerson=function(type){
 				student={'name':$scope.personR.fName+' '+$scope.personR.lName,'email':$scope.personR.email,'password':$scope.personR.pass,'contactInfo':'123'};
 				$http.post('/student/register',student).success(function(reply){
 					console.log(reply);
+				})
+				$http.post('/studentCourseReg/addEntry',{'email':$scope.personR.email,'course':[]}).success(function(response){
+					console.log(response);
 				})
 			}
 			else if(response>=1){

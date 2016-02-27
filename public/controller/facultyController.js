@@ -24,4 +24,12 @@ myApp.controller('facultyCtrl',['$scope','$http','$window','$log','$location',fu
 		console.log("here->"+email+" "+courseName);
 		$window.open("/viewcourse_faculty.html"+"?email="+email+"?course="+courseName);
 	}
+
+	$scope.addNewCourse=function(email){
+		$window.open("/add_course.html"+"?email="+email);
+	}
+
+	$scope.goToProfile=function(){
+		$window.open("/profile.html"+"?email="+$scope.facultyEmail);
+	}
 }])

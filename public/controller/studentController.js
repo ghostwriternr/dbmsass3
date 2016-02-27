@@ -33,41 +33,52 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 		$scope.assignmentNotifications=[];
 		$scope.messageNotifications=[];
 		$http.post('/studentCourse/getContent',query).success(function(response){
-			var reply=response;
-			var courseStudentContent={}
-			for(var i=0;i<reply[0].course.length;i++){
-				var queryCourse={'name':reply[0].course[i].courseName};
-				console.log(queryCourse);
-				var trytofill=function(courseinfo){
-					$http.post('/course/getDetails',{'name':courseinfo.courseName}).success(function(response){
-					var replyC=response[0];
-					console.log(response[0].name);
-					var fillin=function(replyC){
-						courseStudentContent={'courseName':courseinfo.courseName,'completedAssignments':courseinfo.assignmentCompleted,'completedLectures':courseinfo.lecturesCompleted,
-							'courseAssignment':replyC.assignment,'courseLectures':replyC.lectures};
-						courseStudent.push(courseStudentContent);
-					 	courseListName.push(courseinfo.courseName);
-						var getNotReg=function(courseListName){
-								console.log(courseListName[0]);
-								$http.post('/course/notInList',courseListName).success(function(response){
-									var reply=response;
-									coursesNotRegistered=reply;
-									$scope.coursesNotRegistered=reply;
-									console.log("here->"+coursesNotRegistered[0].name);
-								})
-						}
-						getNotReg(courseListName);
-						//console.log("courseList->"+courseListName[courseListName.length-1]);
-					}
-					fillin(replyC);
-					console.log(courseStudentContent);
-					});
-				}
-				trytofill(reply[0].course[i],queryCourse);
+			if(response[0].course.length==0){
+				console.log("hi there");
+				$http.post('/course/getDetails',{}).success(function(response){
+					var reply=response;
+					coursesNotRegistered=reply;
+					$scope.coursesNotRegistered=reply;
+					console.log("here->"+coursesNotRegistered[0].name);
+				})
 			}
-			//$scope.coursesNotRegistered=coursesNotRegistered;
-			$scope.courseStudent=courseStudent;
-			//coursesNotRegistered=courseListName;
+			else{
+				var reply=response;
+				var courseStudentContent={}
+				for(var i=0;i<response[0].course.length;i++){
+					var queryCourse={'name':reply[0].course[i].courseName};
+					console.log(queryCourse);
+					var trytofill=function(courseinfo){
+						$http.post('/course/getDetails',{'name':courseinfo.courseName}).success(function(response){
+						var replyC=response[0];
+						console.log(response[0].name);
+						var fillin=function(replyC){
+							courseStudentContent={'courseName':courseinfo.courseName,'completedAssignments':courseinfo.assignmentCompleted,'completedLectures':courseinfo.lecturesCompleted,
+								'courseAssignment':replyC.assignment,'courseLectures':replyC.lectures};
+							courseStudent.push(courseStudentContent);
+						 	courseListName.push(courseinfo.courseName);
+							var getNotReg=function(courseListName){
+									console.log(courseListName[0]);
+									$http.post('/course/notInList',courseListName).success(function(response){
+										var reply=response;
+										coursesNotRegistered=reply;
+										$scope.coursesNotRegistered=reply;
+										console.log("here->"+coursesNotRegistered[0].name);
+									})
+							}
+							getNotReg(courseListName);
+							//console.log("courseList->"+courseListName[courseListName.length-1]);
+						}
+						fillin(replyC);
+						console.log(courseStudentContent);
+						});
+					}
+					trytofill(reply[0].course[i],queryCourse);
+				}
+				//$scope.coursesNotRegistered=coursesNotRegistered;
+				$scope.courseStudent=courseStudent;
+				//coursesNotRegistered=courseListName;
+			}
 		})
 		
 		var fillNotifications=function(){
