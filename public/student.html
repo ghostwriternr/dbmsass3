@@ -15,6 +15,7 @@
     <!-- Custom styles for this template -->
     <link href="css/navbar-fixed-top.css" rel="stylesheet">
     <link href="css/spage.css" rel="stylesheet">
+    <link href="css/notifications.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -36,12 +37,41 @@
             </div>
             <a class="navbar-brand" href="#"><b>Studious</b> | Study + Discover</a>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
+                <ul class="nav navbar-nav" style="font-size: 15px;">
+                    <li><a href="#"><b>Home</b></a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" style="font-size: 15px;">
+                    <li id="notification_li">
+                        <span id="notification_count">{{notificationCount}}</span>
+                        <button class="btn btn-default btn-link" style="font-size:20px;padding-top: 15px;" id="notificationLink">
+                            <span class="glyphicon glyphicon-inbox"></span>
+                        </button>
+                        <div id="notificationContainer">
+                            <div id="notificationTitle">Notifications</div>
+                            <div id="notificationsBody" class="notifications">
+                                <div class="dropdown">
+                                    <ul class="dropdown-menu" style="display: block; position: static; width: 100%;">
+                                        <li class="dropdown-header">Lecture Notifications</li>
+                                        <li><a href="#">Lecture 1</a></li>
+                                        <li><a href="#">Lecture 2</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">Assignment Notifications</li>
+                                        <li><a href="#">Assignment 1</a></li>
+                                        <li><a href="#">Assignment 2</a></li>
+                                        <li><a href="#">Assignment 3</a></li>
+                                        <li><a href="#">Assignment 4</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">Messages</li>
+                                        <li><a href="#">From Vikas</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="notificationFooter"><a href="#">Clear</a></div>
+                        </div>
+                    </li>
+                    <li><span class="btn-separator"></span></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i>  Menu</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><b>  Menu</b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
                             <li role="separator" class="divider"></li>
@@ -107,14 +137,14 @@
                             <div class="row">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
-                                    <div class="progress">
+                                    <div class="progress p1">
                                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemax="100" ng-style='{"width":((courseTaken.completedLectures/courseTaken.courseLectures)*100)+"%"}'>
-                                        <span><b>Lecture Completion</b></span></div>
+                                            <span><b>Lecture Completion</b></span></div>
                                     </div>
-                                    <div class="progress">
+                                    <div class="progress p2">
                                         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuemax="100" ng-style='{"width":((courseTaken.completedAssignments/courseTaken.courseAssignment)*100)+"%"}'>
+                                        <span><b>Assignment Completion</b></span></div>
                                         </div>
-                                    <span><b>Assignment Completion</b></span></div>
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>
@@ -178,6 +208,26 @@ $('#registerModal').on('hide.bs.modal', function() {
 })
 </script>
 -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#notificationLink").click(function() {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+    });
+
+    //Document Click hiding the popup 
+    $(document).click(function() {
+        $("#notificationContainer").hide();
+    });
+
+    //Popup on click
+    $("#notificationContainer").click(function() {
+        return false;
+    });
+
+});
+</script>
 <script src="js/angular.min.js"></script>
 <script src="controller/studentController.js"></script>
 <script src="js/angular-route.js"></script>

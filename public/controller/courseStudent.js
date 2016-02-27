@@ -43,6 +43,8 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 				var queryCourse={'name':reply[0].course[i].courseName};
 				console.log(queryCourse);
 				var trytofill=function(courseinfo){
+					$scope.assignmentCompleted = courseinfo.assignmentCompleted;
+                    $scope.lecturesCompleted = courseinfo.lecturesCompleted;
 					$http.post('/course/getDetails',{'name':courseinfo.courseName}).success(function(response){
 					var replyC=response[0];
 					console.log(response[0].name);

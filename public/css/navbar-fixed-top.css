@@ -10,3 +10,26 @@ body {
     text-align: center;
     margin: auto;
 }
+
+.btn-separator:after {
+    content: ' ';
+    display: block;
+    float: left;
+    background: #5c5c5c;
+    margin-top: 18px;
+    height: 25px;
+    width: 2px;
+}
+
+.badge-notify {
+    background: red;
+    position: relative;
+    top: -10px;
+    left: -25px;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}

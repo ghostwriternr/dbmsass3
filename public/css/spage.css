@@ -66,3 +66,15 @@ body {
     display: block;
     width: 100%;
  }
+
+ .p1 span {
+    color: #2e6d6f;
+ }
+
+ .p2 span {
+    color: #8c5300;
+ }
+
+ .btn:focus {
+  outline: none;
+}
