@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="addCourseCtrl">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -55,39 +55,90 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 12%;margin-bottom: 20px; background: #2390fd;
+    <div class="wide" style=" height : 35%;margin-bottom: 20px; background: #2390fd;
     background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
     background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
     background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
     background:      -o-linear-gradient(left, #2390fd, #54cfcb);
     background:         linear-gradient(to right, #2390fd, #54cfcb);">
-        <div style="padding-top: 80px" align="center">
-            <font color="white" size="10">Add Course</font>
+        <div class="row">
+            <div class="col-xs-5 line" style="padding-top: 30px">
+                <hr>
+            </div>
+            <div class="col-xs-2 logo">
+                <font color="white" size="6">Edit</font>
+            </div>
+            <div class="col-xs-5 line" style="padding-top: 30px">
+                <hr>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-3" align="center"></div>
+            <div class="col-xs-6" align="center">
+                <h3 style="color: white">Add New Course</h3>
+            </div>
+            <div class="col-xs-3" align="center"></div>
         </div>
     </div>
-    <div>
-    </div>
-    <div class="row">
+    <div class="row" align="center">
         <div class="col-md-2" align="center"></div>
         <div class="col-md-8" align="center">
-            <form class="form-signin">
-                <label class="sr-only">Title</label>
-                <input type="text" class="form-control" placeholder="Title" ng-model="personR.fName" required></input>
-                <label class="sr-only">Department Name</label>
-                <input type="text" class="form-control" placeholder="Department Name" ng-model="personR.fName" required></input>
-                <label class="sr-only">Fee</label>
-                <input type="text" class="form-control" placeholder="Fee (in INR)" ng-model="personR.lName" required></input>
-                <label class="sr-only">Prerequisites</label>
-                <input type="text" class="form-control" placeholder="Prerequisites : Course1,Course2,..." ng-model="personR.enddate" required></input>
-                <label class="sr-only">Start Date</label>
-                <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="personR.lName" required></input>
-                <label class="sr-only">End Date</label>
-                <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="personR.enddate" required></input>
-                <textarea placeholder="Description" class="form-control" autofocus rows="3"></textarea>
-                <div style="padding-top: 10px">
-                    <button class="btn btn-primary" type="button" style="padding-left: 100px ; padding-right: 100px">Add Course</button>
+            <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+                <div class="row" align="center">
+                    <div class="col-md-1" align="center"></div>
+                    <div class="col-md-10" align="center">
+                        <form class="form-signin">
+                            <label class="sr-only">Title</label>
+                            <input type="text" class="form-control" placeholder="Title" autofocus required>
+                            <label class="sr-only">Department Name</label>
+                            <input type="text" class="form-control" placeholder="Department Name" required>
+                            <label class="sr-only">Fee</label>
+                            <input type="text" class="form-control" placeholder="Fee (in INR)" required>
+                            <button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#prereqModal" style="text-align: left;text-transform: lowercase;text-transform: capitalize;">Prerequisites</button>
+                            <label class="sr-only">Start Date</label>
+                            <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" required>
+                            <label class="sr-only">End Date</label>
+                            <input type="text" class="form-control" placeholder="End Date dd-mm-yy" required>
+                            <textarea placeholder="Description" class="form-control" rows="3"></textarea>
+                            <div style="padding-top: 10px">
+                                <button class="btn btn-primary" type="button" style="padding-left: 100px ; padding-right: 100px">Add Course</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-1" align="center"></div>
                 </div>
-            </form>
+            </div>
+        </div>
+        <div class="col-md-2" align="center"></div>
+    </div>
+    <div class="modal fade" id="prereqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel" align="center">Prerequisites</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <div ng-repeat="course in courseList">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="x" ng-change="setPreReq(course.name, $index, x)">{{course.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Done</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Bootstrap core JavaScript
@@ -100,7 +151,7 @@
     <script src="js/bootstrap.min.js"></script>
 </body>
 <script src="js/angular.min.js"></script>
-<script src="controller/studentController.js"></script>
+<script src="controller/addCourseCtrl.js"></script>
 <script src="js/angular-route.js"></script>
 
 </html>
