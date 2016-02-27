@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="parentCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -75,6 +75,11 @@
             <div class="col-md-4">
                 <img src="images/guardian.png" style="margin-top: -37px; margin-left: 8%;">
             </div>
+            <div>
+            <p>{{parent.name}}</p>
+            <p>{{parent.email}}</p>
+            <p>{{parentChildNumber}}</p>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -83,12 +88,9 @@
             <font size="6">
                 Wards<br>
             </font>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Ward Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Ward Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Ward Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Ward Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Ward Name</button>
-            <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button"> Ward Name</button>
+            <div ng-repeat="child in parentChildList">
+                <button class="btn btn-default btn-block" style=" padding: 2% 0;"type="button" ng-click="viewProfile(child)">{{child.childName}}</button>
+            </div>
         </div>
         <div class="col-md-1" align="center" ></div>
         <div class="col-md-3" align="center" style="padding-top: 10px">
@@ -98,9 +100,9 @@
             <form class="form-signin">
                 <div  style="padding-top: 40px;">
                     <label class="sr-only">Email ID</label>
-                    <input type="text" class="form-control" placeholder="Ward's Email ID" ng-model="personR.fName" required></input>
+                    <input type="text" class="form-control" placeholder="Ward's Email ID" ng-model="childEmailRequest" required></input>
                     <div  style="padding-top: 30px">
-                        <button class="btn btn-primary" type="button"  style="padding-left: 100px ; padding-right: 100px">Add</button>
+                        <button class="btn btn-primary" type="button"  style="padding-left: 100px ; padding-right: 100px" ng-click="addChild(childEmailRequest)">Add</button>
                     </div>
                 </div>
             </form>
@@ -116,6 +118,8 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="controller/parentController.js"></script>
+<script src="js/angular-route.js"></script>
 
 </html>

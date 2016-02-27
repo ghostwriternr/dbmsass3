@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -92,12 +92,12 @@
         <div class="col-md-4" align="center">
             <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
                 <div style="padding-bottom: 20px">
-                    <font size="5"> Pending Guardian Requests
+                    <font size="5"> Pending Parent Requests
                         <br>
                     </font>
                 </div>
-                <div style="padding-bottom: 2px; padding-left: 25px;padding-right: 25px">
-                    <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#loginModal" type="button">Guardian Name</button>
+                <div style="padding-bottom: 2px; padding-left: 25px;padding-right: 25px" ng-repeat="parent in parentRequestList">
+                    <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#loginModal" type="button" ng-click="showRequest(parent)">{{parent.parentName}}</button>
                 </div>
             </div>
         </div>
@@ -113,13 +113,13 @@
                     <div class="col-md-10" align="center">
                         <form class="form-signin">
                             <label class="sr-only">Old Password</label>
-                            <input type="password" class="form-control" placeholder="Old Password" ng-model="personR.fName" required>
+                            <input type="password" class="form-control" placeholder="Old Password" ng-model="studentOldPassword" required>
                             <label class="sr-only">New Password</label>
-                            <input type="password" class="form-control" placeholder="New Password" ng-model="personR.fName" required>
+                            <input type="password" class="form-control" placeholder="New Password" ng-model="studentNewPassword" required>
                             <label class="sr-only">Re-Enter New Password</label>
-                            <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="personR.fName" required>
+                            <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="studentNewPasswordC" required>
                             <div style="padding-top: 10px">
-                                <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px">Update</button>
+                                <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setPassword()">Update</button>
                             </div>
                         </form>
                     </div>
@@ -138,9 +138,9 @@
                     <div class="col-md-1" align="center"></div>
                     <div class="col-md-10" align="center">
                         <label class="sr-only">New Phone Number</label>
-                        <input type="text" class="form-control" placeholder="New Phone Number" ng-model="personR.fName" required>
+                        <input type="text" class="form-control" placeholder="New Phone Number" ng-model="studentNewContact" required>
                         <div style="padding-top: 10px">
-                            <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px">Update</button>
+                            <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setContact()">Update</button>
                         </div>
                     </div>
                     <div class="col-md-1" align="center"></div>
@@ -162,20 +162,20 @@
                         <form>
                             <div align="center">
                                 <font size="4">
-                                    Gurdian Name
+                                    {{selectedParent.parentName}}
                                     <br>
                                 </font>
                                 <font size="4">
-                                    Guardian Email ID
+                                    {{selectedParent.parentEmail}}
                                 </font>
                             </div>
                             <div class="form-group" align="center">
                                 <div class="row">
                                     <div class="col-md-6" align="center">
-                                        <button class="btn btn-primary" type="submit">Confirm</button>
+                                        <button class="btn btn-primary" type="submit" ng-click="reject(selectedParent)">Reject</button>
                                     </div>
                                     <div class="col-md-6" align="center">
-                                        <button class="btn btn-primary" type="submit">Reject</button>
+                                        <button class="btn btn-primary" type="submit" ng-click="confirm(selectedParent)">Confirm</button>
                                     </div>
                                 </div>
                             </div>
@@ -194,6 +194,8 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="controller/profileStudentController.js"></script>
+<script src="js/angular-route.js"></script>
 
 </html>

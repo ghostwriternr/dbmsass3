@@ -17,6 +17,8 @@ var dbCoursePrerequisites=mongojs('coursePrerequisites',['coursePrerequisites'])
 var dbCourseComplete=mongojs('courseComplete',['courseComplete']);
 var dbCourseStudents=mongojs('courseStudents',['courseStudents']);
 var dbNotification=mongojs('notification',['notification']);
+var dbParentChild=mongojs('parentChild',['parentChild']);
+var dbParentChildRequest=mongojs('parentChildRequest',['parentChildRequest']);
 var app=express();
 
 app.use(express.static(__dirname+"/public"));
@@ -303,6 +305,67 @@ app.post('/notification/getDetails',function(req,res){
 		res.json(docs);
 	})
 })
+
+app.post('/studentCourse/updateContent/:email',function(req,res){
+	console.log('Got a POST request from /studentCourse/updateContent');
+	console.log(req.params.email);
+	console.log(req.body);
+	dbStudentCourse.studentCourse.update({'email':req.params.email},{$set:{'course':req.body.course}},function(err,docs){
+		res.json(docs);
+		console.log(docs);
+	})
+})
+
+app.post('/parent/getDetails',function(req,res){
+	console.log('Got a POST request from /parent/getDetails');
+	dbParent.parent.find(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/parent/getChildList',function(req,res){
+	console.log('Got a POST request from /parent/getChildList');
+	dbParentChild.parentChild.find(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/parent/sendRequest',function(req,res){
+	console.log('Got a POST request from /parent/sendRequest');
+	dbParentChildRequest.parentChildRequest.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/parentChild/getDetails',function(req,res){
+	console.log('Got a POST request from /parentChild/getDetails');
+	dbParentChildRequest.parentChildRequest.find(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/parentChild/deleteRequest',function(req,res){
+	console.log('Got a POST request from /parentChild/deleteRequest');
+	dbParentChildRequest.parentChildRequest.remove(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/parentChild/addEntry',function(req,res){
+	console.log('Got a POST request from /parentChild/addEntry');
+	dbParentChild.parentChild.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/student/updateDetails/:email',function(req,res){
+	console.log('Got a POST request from /student/updateDetails');
+	console.log(req.params.email);
+	dbStudent.student.update({'email':req.params.email},{$set:req.body},function(err,docs){
+		res.json(docs);
+	})
+})
+
 //To Add a new course->db.studentCourse.update({email:'abc@xyz'},{$push:{course:{courseId:"56cf294f3d25a2f651cd56a8",assignmentCompleted:'2',lecturesCompleted:'4'}}})
 
 //To get the list of all courses not registered by that guy->db.course.find({'name':{$nin:['Algorithms']}})

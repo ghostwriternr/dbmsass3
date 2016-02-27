@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="ghost" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Content</title>
+    <title>Course</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body ng-controller="lectureCtrl" ng-init="init()">
+<body ng-controller="cStudentCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -55,77 +55,111 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 35%;margin-bottom: 20px;
-    background: #2390fd;
+    <div class="wide" style=" height : 35%;margin-bottom: 20px; background: #2390fd;
     background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
     background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
     background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
     background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-    background:         linear-gradient(to right, #2390fd, #54cfcb);
-
-    ">
+    background:         linear-gradient(to right, #2390fd, #54cfcb);">
         <div class="row">
             <div class="col-xs-5 line" style="padding-top: 30px">
                 <hr>
             </div>
             <div class="col-xs-2 logo">
-                <font color="white" size="6">{{course.name}}</font>
+                <font color="white" size="6">{{courseName}}</font>
             </div>
             <div class="col-xs-5 line" style="padding-top: 30px">
                 <hr>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-xs-3" align="center"></div>
             <div class="col-xs-6" align="center">
-                <h1 style="color: white">Lecture</h1>
+                <h3 style="color: white">{{courseDescription}}</h3>
             </div>
             <div class="col-xs-3" align="center"></div>
         </div>
     </div>
-    <div>
-    </div>
-    <div class="row" align="center">
+    <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-4" align="center">
             <font size="4">
-                <b>Department: </b>{{course.departmentName}}
+                <b>Instructors: </b>
+                <div ng-repeat="courseInstructorName in courseInstructor">
+                    <span>{{courseInstructorName.facultyName}}</span>
+                </div>
             </font>
         </div>
         <div class="col-md-4" align="center">
             <font size="4">
-                <b>Date: </b>{{lecture.lectureDate}}
+                {{department}}
+                <br>
+            </font>
+            <font size="4">
+                <b>Start Date: </b>{{startDate}}
+            </font>
+            <font size="4">
+                <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date: </b>{{endDate}}
+                <br>
             </font>
         </div>
         <div class="col-md-2"></div>
     </div>
     <hr style="border-color: #555555">
-    <div align="center">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6" align="center">
-                <h2>{{lecture.lectureName}}</h2>
-            </div>
-            <div class="col-md-3" align="Left" style="padding-top: 30px">
-                <h6>{{lecture.lectureDate}}</h6>
+    <div class="row">
+        <div class="col-md-1" align="center"></div>
+        <div class="col-md-5" align="center">
+            <font size="5">
+                Lectures
+                <br>
+            </font>
+            <div ng-repeat="lecture in lectureCourse" style="padding-bottom: 5px">
+                <button class="btn btn-block" ng-class="$index<lecturesCompleted?'btn-success':'btn-default'" style="padding: 2%;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureNumber+". "+lecture.lectureName}}</button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <font size="4">
-                    {{lecture.lectureContent}}
-                </font>
+        <div class="col-md-5" align="center" style="padding-right: 10px;">
+            <font size="5">
+                Assignments
+                <br>
+            </font>
+            <div ng-repeat="assignment in assignmentCourse" style="padding-bottom: 5px">
+                <button class="btn btn-block" ng-class="$index<assignmentCompleted?'btn-success':'btn-default'" style="padding: 2%;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentNumber+". "+assignment.assignmentName}}</button>
             </div>
-            <div class="col-md-1"></div>
         </div>
-        <div>
-            <hr style="border-color: #555555">
+        <div class="col-md-1" align="left"></div>
+    </div>
+    <hr style="border-color: #555555">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content" style=" background-color: #F8F8F8;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span area-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Contact Faculty</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <!-- Textarea -->
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" autofocus style="background-color: white"></textarea>
+                            </div>
+                            <!-- Button -->
+                            <div class="form-group" align="center">
+                                <button class="btn btn-primary" type="submit">Email</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <br>
     <div align="center">
-        <button class="btn btn-primary" type="button" ng-click="doneWithLecture(studentEmail,courseName)">Done with this lecture!</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Contact Faculty</button>
     </div>
+    <br>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -135,8 +169,28 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#notificationLink").click(function() {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+    });
+
+    //Document Click hiding the popup 
+    $(document).click(function() {
+        $("#notificationContainer").hide();
+    });
+
+    //Popup on click
+    $("#notificationContainer").click(function() {
+        return false;
+    });
+
+});
+</script>
 <script src="js/angular.min.js"></script>
-<script src="controller/lectureController.js"></script>
+<script src="controller/courseStudent.js"></script>
 <script src="js/angular-route.js"></script>
 
 </html>

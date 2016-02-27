@@ -42,7 +42,7 @@ $scope.studentLogin=function(){
 			if(response==1){
 				var url="/parent.html";
 				console.log("Authentication successful");
-				$window.location.href=url;
+				$window.location.href=url+"?email="+$scope.person.email;
 				console.log("Authnetication successfull");
 			}
 			else{

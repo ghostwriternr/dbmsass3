@@ -106,6 +106,10 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 	$scope.goToAssignment=function(assignment){
 		$window.open('/assignment.html'+'?email='+$scope.studentEmail+"?course="+assignment.courseName+"?assignmentNum="+assignment.number);
 	}
+
+	$scope.goToProfile=function(){
+		$window.open('/profile_student.html'+"?email="+$scope.studentEmail);
+	}
 	//Fill the contents of the course
 
 }]);
