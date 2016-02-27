@@ -13,6 +13,8 @@ var dbAssignmentCourse=mongojs('assignmentCourse',['assignmentCourse']);
 var dbLecture=mongojs('lecture',['lecture']);
 var dbAssignment=mongojs('assignment',['assignment']);
 var dbAssignmentAnswer=mongojs('assignmentAnswer',['assignmentAnswer']);
+var dbCoursePrerequisites=mongojs('coursePrerequisites',['coursePrerequisites']);
+var dbCourseComplete=mongojs('courseComplete',['courseComplete']);
 var app=express();
 
 app.use(express.static(__dirname+"/public"));
@@ -249,9 +251,31 @@ app.post('/AssignmentAnswer/addAnswer',function(req,res){
 		res.json(docs);
 	})
 })
+
+app.post('/course/getPrerequisites',function(req,res){
+	console.log('Got a POST request from /course/getPrerequisites');
+	dbCoursePrerequisites.coursePrerequisites.find(req.body,function(err,docs){
+		res.json(docs);
+		console.log(docs[0]);
+	})
+})
+
+app.post('/course/getCompletedList',function(req,res){
+	console.log('Got a POST request from /course/getCompletedList');
+	dbCourseComplete.courseComplete.find(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/course/RegisterStudent/:email',function(req,res){
+	console.log('Got a POST request from /course/RegisterStudent');
+	dbStudentCourse.studentCourse.update({'email':req.params.email},{$push:{course:req.body}},function(err,docs){
+		res.json(docs);
+	})
+})
 //To Add a new course->db.studentCourse.update({email:'abc@xyz'},{$push:{course:{courseId:"56cf294f3d25a2f651cd56a8",assignmentCompleted:'2',lecturesCompleted:'4'}}})
 
 //To get the list of all courses not registered by that guy->db.course.find({'name':{$nin:['Algorithms']}})
 
-app.listen(3007);
-console.log("server is running on port 3007");
+app.listen(3008);
+console.log("server is running on port 3008");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="registerCourseCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -65,7 +65,7 @@
 
     ">
         <div style="padding-top: 80px" align="center">
-            <font color="white" size="10" >Course Name</font>
+            <font color="white" size="10" >{{courseName}}</font>
         </div>
     </div>
 
@@ -74,25 +74,21 @@
     <div class="row">
         <div class="col-md-4" align="center" >
         <font size="4" >
-            Instructor Name<br>
+            {{courseInstructor[0].facultyName+" "+courseInstructor[1].facultyName}}<br>
         </font>
         <font size="4" >
-            Department Name<br>
+            {{courseDepartmentName}}<br>
         </font>
         <font size="4" >
-            FromDate -
+            FromDate -{{courseStartDate}}
         </font>
         <font size="4" >
-            ToDate<br>
+            ToDate-{{courseEndDate}}<br>
         </font>
         </div>
         <div class="col-md-8" align="left" style="padding-right: 10px;">
             <font size="3">
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
-                This is Description. This is Description. This is Description.
+            {{courseDescription}}
             </font>
         </div>
     </div>
@@ -105,23 +101,25 @@
         </div>
         <div class="col-md-8" align="center" >
             <div style="padding-top: 15px;">
-                <font size="4" >
-                    course name ,
-                </font>
-                <font size="4" >
-                    course name ,
-                </font>
-                <font size="4" >
-                    course name ,
-                </font>
-                <font size="4" >
-                    course name
-                </font>
+                <div ng-repeat="courseNamePre in courseCompleted" align="center">
+                    <div style="padding-bottom:3px">
+                        <button class="btn btn-success btn-block" type="button" style="font-size: 20px" a ng-click="goToCourse(studentEmail,courseNamePre.name)">{{courseNamePre.name}}</button>
+                    </div>                    <!-- check here -->
+                </div>
+            </div>
+        </div>
+
+            <div style="padding-top: 15px;">
+                <div ng-repeat="courseNamePre in courseNotCompleted" align="center">
+                    <div style="padding-bottom:3px">
+                        <button class="btn btn-warning btn-block" type="button" style="font-size: 20px" a ng-click="goToRegistration(studentEmail,courseNamePre.name)">{{courseNamePre.name+" "}}</button>
+                    </div>                    <!-- check here -->
+                </div>
             </div>
         </div>
     </div>
     <hr style="border-color: #555555">
-    <button class="btn btn-primary btn-block" type="button" style="font-size: 20px">Fee : 1000 INR &nbsp;&nbsp;&nbsp;Register</button>
+    <button class="btn btn-primary btn-block" type="button" style="font-size: 20px" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -131,6 +129,9 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+<script src="js/angular.min.js"></script>
+<script src="controller/registerCourse.js"></script>
+<script src="js/angular-route.js"></script>
 
 </html>
