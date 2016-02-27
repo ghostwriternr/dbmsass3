@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="ghost" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <title>Content</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,12 +36,12 @@
             </div>
             <a class="navbar-brand" href="#"><b>Studious</b> | Study + Discover</a>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
+                <ul class="nav navbar-nav" style="font-size: 15px;">
+                    <li><a href="#"><b>Home</b></a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" style="font-size: 15px;">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i>  Menu</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><b>  Menu</b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
                             <li role="separator" class="divider"></li>
@@ -57,78 +57,81 @@
     <!-- /container -->
     <div class="wide" style=" height : 12%;margin-bottom: 20px;
     background: #2390fd;
-	background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
-	background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
-	background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
-	background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-	background:         linear-gradient(to right, #2390fd, #54cfcb);
+    background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
+    background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
+    background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
+    background:      -o-linear-gradient(left, #2390fd, #54cfcb);
+    background:         linear-gradient(to right, #2390fd, #54cfcb);
 
     ">
         <div style="padding-top: 80px" align="center">
-            <font color="white" size="10" >Course Name</font>
+            <font color="white" size="10">Course Name</font>
         </div>
     </div>
-
     <div>
     </div>
     <div class="row">
-        <div class="col-md-4" align="center" >
-        <font size="4" >
-            Instructor Name<br>
-        </font>
-        <font size="4" >
-            {{course.departmentName}}<br>
-        </font>
-        <font size="4" >
-            {{assignment.assignmentStartDate}}
-        </font>
-        <font size="4" >
-            {{assignment.assignmentEndDate}}<br>
-        </font>
+        <div class="col-md-4" align="center">
+            <font size="4">
+                Instructor Name
+                <br>
+            </font>
+            <font size="4">
+                {{course.departmentName}}
+                <br>
+            </font>
+            <font size="4">
+                {{assignment.assignmentStartDate}}
+            </font>
+            <font size="4">
+                {{assignment.assignmentEndDate}}
+                <br>
+            </font>
         </div>
         <div class="col-md-8" align="left" style="padding-right: 10px;">
             <font size="3">
-            {{"Solve the below"}}
+                {{"Solve the below"}}
             </font>
         </div>
     </div>
     <hr style="border-color: #555555">
     <div align="center">
-        <div>
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6" align="center">
-                    <h2>{{assignment.assignmentName}}</h2>
-                </div>
-                <div class="col-md-3" align="Left" style="padding-top: 30px">
-                    <h6>StartDate-EndDate</h6>
-                </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" align="center">
+                <h2>{{assignment.assignmentName}}</h2>
+            </div>
+            <div class="col-md-3" align="Left" style="padding-top: 30px">
+                <h6>StartDate-EndDate</h6>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <font size="4">
-                {{assignment.assignmentContent}}
+                    {{assignment.assignmentContent}}
                 </font>
             </div>
             <div class="col-md-1"></div>
         </div>
-    <div>
-
-<div ng-controller="assignmentCtrl">
-   <fieldset  data-ng-repeat="choice in choices">
-      <input type="text" ng-model="choice.answer" name="" placeholder="Enter answer">
-   </fieldset>
-   <button class="addfields" ng-click="evaluate()">Evaluate</button>
-    <div class="col-md-10">
-        <font size="4">
-        {{correctAnswerCount}}
-        </font>
+        <div>
+            <div ng-controller="assignmentCtrl">
+                <fieldset data-ng-repeat="choice in choices">
+                    <input type="text" ng-model="choice.answer" name="" placeholder="Enter answer">
+                </fieldset>
+                <button class="addfields" ng-click="evaluate()">Evaluate</button>
+                <div class="col-md-10">
+                    <font size="4">
+                        {{correctAnswerCount}}
+                    </font>
+                </div>
+            </div>
+            <hr style="border-color: #555555">
+        </div>
     </div>
-</div>
-
-
-    <hr style="border-color: #555555">
+    <div align="center">
+        <button class="btn btn-primary" type="button">Done with this assignment!</button>
+    </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -141,4 +144,5 @@
 <script src="js/angular.min.js"></script>
 <script src="controller/assignmentController.js"></script>
 <script src="js/angular-route.js"></script>
+
 </html>
