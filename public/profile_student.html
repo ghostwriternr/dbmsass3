@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="studentCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -56,12 +56,12 @@
     </nav>
     <!-- /container -->
     <div class="wide" style="background: #5b0000;
-									background: -webkit-linear-gradient(left, #5b0000, #ef8d18);
-									background:    -moz-linear-gradient(left, #5b0000, #ef8d18);
-									background:     -ms-linear-gradient(left, #5b0000, #ef8d18);
-									background:      -o-linear-gradient(left, #5b0000, #ef8d18);
-									background:         linear-gradient(to right, #5b0000, #ef8d18);
-							">
+                                    background: -webkit-linear-gradient(left, #5b0000, #ef8d18);
+                                    background:    -moz-linear-gradient(left, #5b0000, #ef8d18);
+                                    background:     -ms-linear-gradient(left, #5b0000, #ef8d18);
+                                    background:      -o-linear-gradient(left, #5b0000, #ef8d18);
+                                    background:         linear-gradient(to right, #5b0000, #ef8d18);
+                            ">
         <div class="col-xs-5 line">
             <hr>
         </div>
@@ -70,59 +70,89 @@
             <hr>
         </div>
     </div>
-    <div class="jumbotron jumbopos" style="padding-bottom: 0">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="images/profile.png" style="margin-top: -37px; margin-left: 8%;">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-1" align="center" ></div>
-        <div class="col-md-3" align="center" >
-            <div style="padding-bottom: 20px">
-                <font size="5" > Pending Guardian Requests <br></font>
-            </div>
-            <div style="padding-bottom: 2px; padding-left: 25px;padding-right: 25px">
-                <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#loginModal" type="button">Guardian Name</button>
-            </div>
-        </div>
-        <div class="col-md-4" align="center" >
-            <font size="5"> Name <br></font>
-            <font size="4"> abcd@xyz.kl<br></font>
-            <font size="4"> 0222-32154<br></font>
-            <font size="4"> Role<br></font>
-            <font size="4"> Dept Name(if faculty)<br></font>
-        </div>
-        <div class="col-md-3" align="center" >
-            <form class="form-signin">
-                <label class="sr-only">Old Password</label>
-                <input type="password" class="form-control" placeholder="Old Password" ng-model="personR.fName" required></input>
-                <label class="sr-only">New Password</label>
-                <input type="password" class="form-control" placeholder="New Password" ng-model="personR.fName" required></input>
-                <label class="sr-only">Re-Enter New Password</label>
-                <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="personR.fName" required></input>
-                <div  style="padding-top: 10px">
-                <button class="btn btn-warning" type="button"  style="padding-left: 100px ; padding-right: 100px">Update</button>
-                <hr style="border-color: #555555">
-                <div >
-                    <label class="sr-only">New Phone Number</label>
-                    <input type="text" class="form-control" placeholder="New Phone Number" ng-model="personR.fName" required></input>
-                    <div  style="padding-top: 10px">
-                    <button class="btn btn-warning" type="button"  style="padding-left: 100px ; padding-right: 100px">Update</button>
+    <div class="row vertical-align">
+        <div class="jumbotron jumbopos">
+            <div class="row">
+                <div class="col-md-1" align="center"></div>
+                <div class="col-md-2" align="center">
+                    <img src="images/profile.png">
                 </div>
+                <div class="col-md-8" align="center" style="padding-top: 20px">
+                    <h1>{{studentName}}</h1>
+                    <h4>{{studentEmail}}</h4>
+                    <h4>{{contactInfo}}</h4>
+                    <br>
                 </div>
-            </form>
+                <div class="col-md-1" align="center"></div>
+            </div>
         </div>
     </div>
-    <div class="col-md-1" align="center" ></div>
+    <div class="row" style="position: relative; top: -100px;">
+        <div class="col-md-1" align="center"></div>
+        <div class="col-md-4" align="center">
+            <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+                <div style="padding-bottom: 20px">
+                    <font size="5"> Pending Guardian Requests
+                        <br>
+                    </font>
+                </div>
+                <div style="padding-bottom: 2px; padding-left: 25px;padding-right: 25px">
+                    <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#loginModal" type="button">Guardian Name</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" align="center">
+            <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+                <div style="padding-bottom: 20px">
+                    <font size="5">Update Password
+                        <br>
+                    </font>
+                </div>
+                <div class="row" align="center">
+                    <div class="col-md-1" align="center"></div>
+                    <div class="col-md-10" align="center">
+                        <form class="form-signin">
+                            <label class="sr-only">Old Password</label>
+                            <input type="password" class="form-control" placeholder="Old Password" ng-model="personR.fName" required>
+                            <label class="sr-only">New Password</label>
+                            <input type="password" class="form-control" placeholder="New Password" ng-model="personR.fName" required>
+                            <label class="sr-only">Re-Enter New Password</label>
+                            <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="personR.fName" required>
+                            <div style="padding-top: 10px">
+                                <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-1" align="center"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" align="center">
+            <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+                <div style="padding-bottom: 20px">
+                    <font size="5">Update Contact Info
+                        <br>
+                    </font>
+                </div>
+                <div class="row" align="center">
+                    <div class="col-md-1" align="center"></div>
+                    <div class="col-md-10" align="center">
+                        <label class="sr-only">New Phone Number</label>
+                        <input type="text" class="form-control" placeholder="New Phone Number" ng-model="personR.fName" required>
+                        <div style="padding-top: 10px">
+                            <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px">Update</button>
+                        </div>
+                    </div>
+                    <div class="col-md-1" align="center"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1" align="center"></div>
     </div>
-    <hr style="border-color: #555555">
-    
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
-                <div class="modal-content" style=" background-color :    #F8F8F8;">
+                <div class="modal-content" style=" background-color: #F8F8F8;">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span area-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
@@ -132,18 +162,19 @@
                         <form>
                             <div align="center">
                                 <font size="4">
-                                Gurdian Name<br>
+                                    Gurdian Name
+                                    <br>
                                 </font>
                                 <font size="4">
-                                Guardian Email ID
+                                    Guardian Email ID
                                 </font>
                             </div>
                             <div class="form-group" align="center">
                                 <div class="row">
-                                    <div class="col-md-6" align="center" >
+                                    <div class="col-md-6" align="center">
                                         <button class="btn btn-primary" type="submit">Confirm</button>
                                     </div>
-                                    <div class="col-md-6" align="center" >
+                                    <div class="col-md-6" align="center">
                                         <button class="btn btn-primary" type="submit">Reject</button>
                                     </div>
                                 </div>
@@ -154,8 +185,6 @@
             </div>
         </div>
     </div>
-    
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
