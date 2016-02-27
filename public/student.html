@@ -72,7 +72,7 @@
                     <img src="images/profile.png">
                 </div>
                 <div class="col-md-8" align="center" style="padding-top: 20px">
-                    <h2>{{studentName}}</h2>
+                    <h1>{{studentName}}</h1>
                     <h4>{{studentEmail}}</h4>
                     <br>
                     <div class="row">
@@ -94,10 +94,7 @@
     <div class="row" style="position: relative; top: -100px;">
         <div class="col-md-1" align="center"></div>
         <div class="col-md-10" align="center">
-            <font size="5">
-                Courses
-                <br>
-            </font>
+            <h1>Courses</h1>
             <div class="col-md-1" align="center"></div>
             <div class="col-md-10" align="center">
                 <div ng-controller="studentCtrl">
@@ -105,25 +102,23 @@
                         <!--
                         <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName}}</button>
                         -->
-                        <div class="jumbotron">
-                            <h2>{{courseTaken.courseName}}</h2>
+                        <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+                            <h3>{{courseTaken.courseName}}</h3>
                             <div class="row">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemax="100" style="width:40%">
-                                            Lecture Completion
-                                        </div>
+                                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemax="100" ng-style='{"width":((courseTaken.completedLectures/courseTaken.courseLectures)*100)+"%"}'>
+                                        <span><b>Lecture Completion</b></span></div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuemax="100" style="width:60%">
-                                            Assignment Completion
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuemax="100" ng-style='{"width":((courseTaken.completedAssignments/courseTaken.courseAssignment)*100)+"%"}'>
                                         </div>
-                                    </div>
+                                    <span><b>Assignment Completion</b></span></div>
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>
-                            <p><a class="btn btn-primary">Button</a></p>
+                            <p><a class="btn btn-info" ng-click="goToCourse(studentEmail,courseTaken.courseName)">Open Course Page</a></p>
                         </div>
                     </div>
                 </div>

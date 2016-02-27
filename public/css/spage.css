@@ -55,3 +55,14 @@ body {
 .blur {
     -webkit-filter: blur(5px) grayscale(50%);
 }
+
+.progress {
+    height: 22px;
+    position: relative;
+}
+
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+ }
