@@ -13,6 +13,7 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 		$scope.courseName=courseName;
 		$scope.choices=[];
 		$scope.content={};
+		$scope.studentsEnrolled=[];
 		$http.post('/faculty/getDetails',{'email':userEmail}).success(function(response){
 			var reply=response[0];
 			$scope.facultyName=reply.name;
@@ -37,6 +38,24 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 		$http.post('/assignment/getList',{'courseName':courseName}).success(function(response){
 			$scope.assignmentCourse=response;
 			console.log('done');
+		})
+		$http.post('/studentsEnrolled/getList',{'courseName':courseName}).success(function(response){
+			console.log(response[0]);
+			var display=function(){
+				console.log('here');
+				for(var index=0;index<response[0].studentEmail.length;index++){
+					console.log(response[0].studentEmail[index]);
+					var studentEmail=response[0].studentEmail[index].email;
+					$http.post('/student/getDetails',{'email':response[0].studentEmail[index].email}).success(function(responseStudent){
+						console.log(responseStudent[0]);
+						var fill=function(){
+							$scope.studentsEnrolled.push({'email':studentEmail,'name':responseStudent[0].name});
+						}
+						fill();
+					})
+				}
+			}
+			display();
 		})
 	}
 
@@ -87,6 +106,25 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 						$http.post('/lectureCourse/addEntry',lectureContent).success(function(response){
 							console.log(response[0]);
 						})
+						var sendAll=function(){
+							for(var index=0;index<$scope.studentsEnrolled.length;index++){
+								var notification={};
+								notification.email=$scope.studentsEnrolled[index].email;
+								notification.message="Lecture number "+lectureContent.lectureNumber+" "+"for course "+$scope.courseName;
+								notification.type="lecture";
+								notification.from=$scope.facultyName;
+								notification.fromEmail=$scope.facultyEmail;
+								notification.number=lectureContent.lectureNumber;
+								notification.courseName=lectureContent.courseName;
+								var send=function(){
+									$http.post('/notification/student',notification).success(function(response){
+										console.log(response[0]);
+									})
+								}
+								send();
+							}
+						}
+						sendAll();
 					}
 					httprequest(lecture);
 				}
@@ -138,6 +176,25 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 							$http.post('/AssignmentAnswer/addAnswer',assignmentAnswer).success(function(response){
 								console.log(response[0]);
 							})
+							var sendAll=function(){
+								for(var index=0;index<$scope.studentsEnrolled.length;index++){
+									var notification={};
+									notification.email=$scope.studentsEnrolled[index].email;
+									notification.message="Assignment number "+assignmentContent.assignmentNumber+" "+"for course "+$scope.courseName;
+									notification.type="assignment";
+									notification.from=$scope.facultyName;
+									notification.fromEmail=$scope.facultyEmail;
+									notification.number=assignmentContent.assignmentNumber;
+									notification.courseName=assignmentContent.courseName;
+									var send=function(){
+										$http.post('/notification/student',notification).success(function(response){
+											console.log(response[0]);
+										})
+									}
+									send();
+								}
+							}
+							sendAll();
 						}
 						httprequest();
 					}
@@ -148,5 +205,27 @@ myApp.controller('cFacultyCtrl',['$scope','$http','$window','$log','$location',f
 			}
 			update();
 		}
+	}
+
+	$scope.setStudentRecieveEmail=function(email){
+		$scope.studentREmail=email;
+	}
+
+	$scope.sendMessage=function(courseName){
+		var notification={};
+		notification.email=$scope.studentREmail;
+		notification.message=$scope.message;
+		notification.type="message"
+		notification.from=$scope.facultyName;
+		notification.fromEmail=$scope.facultyEmail;
+		notification.number="0";
+		notification.courseName=courseName;
+		var display=function(){
+			console.log(notification);
+			$http.post('/notification/student',notification).success(function(response){
+				console.log(response[0]);
+			})
+		}
+		display();
 	}
 }])

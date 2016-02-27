@@ -15,6 +15,8 @@ var dbAssignment=mongojs('assignment',['assignment']);
 var dbAssignmentAnswer=mongojs('assignmentAnswer',['assignmentAnswer']);
 var dbCoursePrerequisites=mongojs('coursePrerequisites',['coursePrerequisites']);
 var dbCourseComplete=mongojs('courseComplete',['courseComplete']);
+var dbCourseStudents=mongojs('courseStudents',['courseStudents']);
+var dbNotification=mongojs('notification',['notification']);
 var app=express();
 
 app.use(express.static(__dirname+"/public"));
@@ -270,6 +272,34 @@ app.post('/course/getCompletedList',function(req,res){
 app.post('/course/RegisterStudent/:email',function(req,res){
 	console.log('Got a POST request from /course/RegisterStudent');
 	dbStudentCourse.studentCourse.update({'email':req.params.email},{$push:{course:req.body}},function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/enroll/student/:courseName',function(req,res){
+	console.log('Got a POST request from /enroll/student');
+	dbCourseStudents.courseStudents.update({'course':req.params.courseName},{$push:{'studentEmail':req.body}},function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/studentsEnrolled/getList',function(req,res){
+	console.log('Got a POST request from /studentsEnrolled/getList');
+	dbCourseStudents.courseStudents.find(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/notification/student',function(req,res){
+	console.log('Got a POST request from /notification/student');
+	dbNotification.notification.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
+app.post('/notification/getDetails',function(req,res){
+	console.log('Got a POST request from /notification/getDetails');
+	dbNotification.notification.find(req.body,function(err,docs){
 		res.json(docs);
 	})
 })

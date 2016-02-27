@@ -29,6 +29,9 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 		var courseStudent=[];
 		var courseListName=[];
 		var coursesNotRegistered=[];
+		$scope.lectureNotifications=[];
+		$scope.assignmentNotifications=[];
+		$scope.messageNotifications=[];
 		$http.post('/studentCourse/getContent',query).success(function(response){
 			var reply=response;
 			var courseStudentContent={}
@@ -66,11 +69,42 @@ myApp.controller('studentCtrl',['$scope','$http','$window','$log','$location',fu
 			$scope.courseStudent=courseStudent;
 			//coursesNotRegistered=courseListName;
 		})
+		
+		var fillNotifications=function(){
+			$http.post('/notification/getDetails',query).success(function(response){
+				console.log(response);
+				$scope.notificationCount=response.length;
+				var fill=function(){
+					for(var index=0;index<response.length;index++){
+						console.log(response[index]);
+						if(response[index].type=='message'){
+							$scope.messageNotifications.push(response[index]);
+						}
+						else if(response[index].type=='lecture'){
+							$scope.lectureNotifications.push(response[index]);
+						}
+						else if(response[index].type=='assignment'){
+							$scope.assignmentNotifications.push(response[index]);
+						}
+					}
+				}
+				fill();
+			})
+		}
+		fillNotifications();
 	}
 
 	$scope.goToRegistration=function(email,name){
 		console.log(email+" "+name);
 		$window.open("/register_course.html"+"?email="+email+"?course="+name);
+	}
+
+	$scope.goToLecture=function(lecture){
+		$window.open("/lecture.html"+"?=email"+$scope.studentEmail+"?course="+lecture.courseName+"?lectNum="+lecture.number);
+	}
+
+	$scope.goToAssignment=function(assignment){
+		$window.open('/assignment.html'+'?email='+$scope.studentEmail+"?course="+assignment.courseName+"?assignmentNum="+assignment.number);
 	}
 	//Fill the contents of the course
 

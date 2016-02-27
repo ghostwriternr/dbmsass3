@@ -52,17 +52,21 @@
                                 <div class="dropdown">
                                     <ul class="dropdown-menu" style="display: block; position: static; width: 100%;">
                                         <li class="dropdown-header">Lecture Notifications</li>
-                                        <li><a href="#">Lecture 1</a></li>
-                                        <li><a href="#">Lecture 2</a></li>
+                                        <div ng-repeat="lectureNoti in lectureNotifications">
+                                        <li><a href="#" ng-click="goToLecture(lectureNoti)">{{lectureNoti.message}}</a></li>
+                                        </div>
                                         <li class="divider"></li>
                                         <li class="dropdown-header">Assignment Notifications</li>
-                                        <li><a href="#">Assignment 1</a></li>
-                                        <li><a href="#">Assignment 2</a></li>
-                                        <li><a href="#">Assignment 3</a></li>
-                                        <li><a href="#">Assignment 4</a></li>
+                                        <div ng-repeat="assignmentNoti in assignmentNotifications">
+                                        <li><a href="#" ng-click="goToAssignment(assignmentNoti)">{{assignmentNoti.message}}</a></li>
+                                        </div>
                                         <li class="divider"></li>
                                         <li class="dropdown-header">Messages</li>
-                                        <li><a href="#">From Vikas</a></li>
+                                        <div ng-repeat="messageNoti in messageNotifications">
+                                        <li><a href="#">{{messageNoti.message}}</a>
+                                            <p>{{"From- "+messageNoti.from}}</p>
+                                        </li>
+                                        </div>
                                     </ul>
                                 </div>
                             </div>

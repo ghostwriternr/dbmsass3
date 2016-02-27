@@ -44,6 +44,7 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 				console.log(queryCourse);
 				var trytofill=function(courseinfo){
 					$scope.assignmentCompleted = courseinfo.assignmentCompleted;
+					console.log("here ---->"+$scope.assignmentCompleted+" ");
                     $scope.lecturesCompleted = courseinfo.lecturesCompleted;
 					$http.post('/course/getDetails',{'name':courseinfo.courseName}).success(function(response){
 					var replyC=response[0];
@@ -58,7 +59,9 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 					console.log(courseStudentContent);
 					});
 				}
-				trytofill(reply[0].course[i],queryCourse);
+				if(reply[0].course[i].courseName==courseName){
+					trytofill(reply[0].course[i],queryCourse);
+				}
 			}
 			$scope.courseStudent=courseStudent;
 		})

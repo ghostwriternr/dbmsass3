@@ -149,24 +149,17 @@
                             <div class="dropdown">
                                 <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;">Receiver
                                     <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" ng-click="setType(1)">Student1</a></li>
-                                    <li><a href="#" ng-click="setType(1)">Student2</a></li>
-                                    <li><a href="#" ng-click="setType(1)">Student3</a></li>
-                                    <li><a href="#" ng-click="setType(1)">Student4</a></li>
-                                    <li><a href="#" ng-click="setType(1)">Student5</a></li>
-                                    <li><a href="#" ng-click="setType(1)">Student6</a></li>
-                                    <li><a href="#" ng-click="setType(1)">Student7</a></li>
-                                    <li><a href="#" ng-click="setType(1)">Student8</a></li>
+                                <ul class="dropdown-menu" ng-repeat="student in studentsEnrolled">
+                                    <li><a href="#" ng-click="setStudentRecieveEmail(student.email)">{{student.name}}</a></li>
                                 </ul>
                             </div>
                             <!-- Textarea -->
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" autofocus style="background-color: white"></textarea>
+                                <textarea class="form-control" rows="5" autofocus style="background-color: white" ng-model="message"></textarea>
                             </div>
                             <!-- Button -->
                             <div class="form-group" align="center">
-                                <button class="btn btn-primary" type="submit">Email</button>
+                                <button class="btn btn-primary" type="submit" ng-click="sendMessage(courseName)">Email</button>
                             </div>
                         </form>
                     </div>

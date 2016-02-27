@@ -114,6 +114,11 @@ myApp.controller('registerCourseCtrl',['$scope','$http','$window','$log','$locat
 				var reply=response;
 				console.log(response[0]);
 			})
+			//New databse add it in StudentsEntrolled
+			$http.post('/enroll/student/'+course,{'email':email}).success(function(response){
+				var reply=response[0];
+				console.log(response[0]);
+			})
 		}
 		else{
 			console.log("LOLXD");
