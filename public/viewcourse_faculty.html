@@ -184,19 +184,21 @@
                 <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="content.endDate" required></input>
                 <textarea placeholder="Content" class="form-control" rows="5" ng-model="content.content"></textarea>
                 <div style="padding-left: 200px;padding-right: 200px;">
-                    <div class="dropdown">
-                        <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;">Type
+                    <div class="dropdown" style="padding-top: 10px">
+                        <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;" id="type">Type
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="setTypeOfContent(1)">Lecture</a></li>
-                            <li><a href="#" ng-click="setTypeOfContent(2)">Assignment</a></li>
+                            <li><a href="#" ng-click="setTypeOfContent(1)" onclick="change('Lecture')">Lecture</a></li>
+                            <li><a href="#" ng-click="setTypeOfContent(2)" onclick="change('Assignment')">Assignment</a></li>
                         </ul>
                     </div>
                     <div>
                        <fieldset  data-ng-repeat="choice in choices">
                           <input type="text" ng-model="choice.answer" name="" placeholder="Enter answer">
                        </fieldset>
-                       <button class="addfields" ng-click="setAnswer()">Set Answers</button>
+                       <div style="padding-top: 20px;">
+                            <button class="addfields" ng-click="setAnswer()">Set Answers</button>
+                        </div>
                         <div class="col-md-10">
                             <font size="4">
                             {{correctAnswerCount}}
@@ -210,7 +212,7 @@
         </div>
     </div>
     <br>
-    <div align="center">
+    <div align="center" style="padding-bottom: 10px">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Contact</button>
     </div>
     <!-- Bootstrap core JavaScript
@@ -225,5 +227,8 @@
 <script src="js/angular.min.js"></script>
 <script src="controller/courseFaculty.js"></script>
 <script src="js/angular-route.js"></script>
-
+<script type="text/javascript">
+function change(x)
+    {document.getElementById("type").innerHTML=x;}
+</script>
 </html>

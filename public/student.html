@@ -183,11 +183,11 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="dropdown">
-                                <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;">Courses <span class="caret"></span>
+                                <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="height:40px; margin-top: 10px;" id="course">Courses <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" style="width: 100%;">
                                     <div ng-repeat="courseList in coursesNotRegistered" align="center">
-                                        <li><a a href="#" ng-click="goToRegistration(studentEmail,courseList.name)" style="text-decoration: none !important;color: black;">{{courseList.name}}</a></li>
+                                        <li onclick="change({{courseList.name}})"><a a href="#" ng-click="goToRegistration(studentEmail,courseList.name)" style="text-decoration: none !important;color: black;">{{courseList.name}}</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -214,6 +214,8 @@ $('#registerModal').on('hide.bs.modal', function() {
 </script>
 -->
 <script type="text/javascript">
+function change(x)
+    {document.getElementById("course").innerHTML=x;}
 $(document).ready(function() {
     $("#notificationLink").click(function() {
         $("#notificationContainer").fadeToggle(300);
