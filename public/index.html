@@ -76,13 +76,13 @@
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="person.password" required>
                         <div class="dropdown" ng-controller="getType" ng-model="person.type">
-                            <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;">Role
+                            <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;" id="lo">Role
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li><a href="#" ng-click="setType(1)">Student</a></li>
-                                <li><a href="#" ng-click="setType(2)">Faculty</a></li>
-                                <li><a href="#" ng-click="setType(3)">Parent</a></li>
-                                <li><a href="#" ng-click="setType(4)">Admin</a></li>
+                                <li><a href="#" ng-click="setType(1)" onclick="role('lo','Student')">Student</a></li>
+                                <li><a href="#" ng-click="setType(2)" onclick="role('lo','Faculty')">Faculty</a></li>
+                                <li><a href="#" ng-click="setType(3)" onclick="role('lo','Parent')">Parent</a></li>
+                                <li><a href="#" ng-click="setType(4)" onclick="role('lo','Adminstrator')">Adminstrator</a></li>
                             </ul>
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
@@ -118,13 +118,13 @@
                         <label for="inputPassword" class="sr-only">Confirm Password</label>
                         <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" ng-model="personR.repass" required>
                         <div class="dropdown" ng-controller="getTypeRegister">
-                            <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;">Role
+                            <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;" id="ro">Role
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li><a href="#" ng-click="setType(1)">Student</a></li>
-                                <li><a href="#" ng-click="setType(2)">Faculty</a></li>
-                                <li><a href="#" ng-click="setType(3)">Parent</a></li>
-                                <li><a href="#" ng-click="setType(4)">Admin</a></li>
+                                <li><a href="#" ng-click="setType(1)" onclick="role('ro','Student')">Student</a></li>
+                                <li><a href="#" ng-click="setType(2)" onclick="role('ro','Faculty')">Faculty</a></li>
+                                <li><a href="#" ng-click="setType(3)" onclick="role('ro','Parent')">Parent</a></li>
+                                <li><a href="#" ng-click="setType(4)" onclick="role('ro','Adminstrator')">Adminstrator</a></li>
                             </ul>
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
@@ -141,5 +141,8 @@
 <script src="js/angular.min.js"></script>
 <script src="controller/login.js"></script>
 <script src="js/angular-route.js"></script>
-
+<script type="text/javascript">
+function role(x,y)
+	{document.getElementById(x).innerHTML=y;}
+</script>
 </html>
