@@ -16,11 +16,6 @@
     <link href="css/navbar-fixed-top.css" rel="stylesheet">
     <link href="css/spage.css" rel="stylesheet">
     <link href="css/notifications.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body ng-controller="studentCtrl" ng-init="init()">
@@ -134,9 +129,6 @@
             <div class="col-md-10" align="center">
                 <div ng-controller="studentCtrl">
                     <div ng-repeat="courseTaken in courseStudent" style="padding-bottom: 10px">
-                        <!--
-                        <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToCourse(studentEmail,courseTaken.courseName)">{{courseTaken.courseName}}</button>
-                        -->
                         <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
                             <h3>{{courseTaken.courseName}}</h3>
                             <div class="row">
