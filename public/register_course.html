@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="ghost" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <title>Course Registeration</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,9 +43,6 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><b>  Menu</b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <!--<li class="dropdown-header">Nav header</li>-->
                             <li><a href="#">Logout</a></li>
                         </ul>
                     </li>
@@ -55,51 +52,63 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 12%;margin-bottom: 20px;
+    <div class="wide" style=" height : 35%;margin-bottom: 20px;
     background: #2390fd;
 	background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
 	background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
 	background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
 	background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-	background:         linear-gradient(to right, #2390fd, #54cfcb);
-
-    ">
-        <div style="padding-top: 80px" align="center">
-            <font color="white" size="10" >{{courseName}}</font>
+	background:         linear-gradient(to right, #2390fd, #54cfcb);">
+        <div class="row">
+            <div class="col-xs-5 line" style="padding-top: 25px">
+                <hr>
+            </div>
+            <div class="col-xs-2 logo">
+                <font color="white" size="5">{{courseName}}</font>
+            </div>
+            <div class="col-xs-5 line" style="padding-top: 25px">
+                <hr>
+            </div>
         </div>
-    </div>
-
-    <div>
+        <br>
+        <div class="row">
+            <div class="col-xs-3" align="center"></div>
+            <div class="col-xs-6" align="center">
+                <h3 style="color: white">{{courseDescription}}</h3>
+            </div>
+            <div class="col-xs-3" align="center"></div>
+        </div>
     </div>
     <div class="row">
-        <div class="col-md-4" align="center" >
-        <font size="4" >
-            {{courseInstructor[0].facultyName+" "+courseInstructor[1].facultyName}}<br>
-        </font>
-        <font size="4" >
-            {{courseDepartmentName}}<br>
-        </font>
-        <font size="4" >
-            FromDate -{{courseStartDate}}
-        </font>
-        <font size="4" >
-            ToDate-{{courseEndDate}}<br>
-        </font>
-        </div>
-        <div class="col-md-8" align="left" style="padding-right: 10px;">
-            <font size="3">
-            {{courseDescription}}
+        <div class="col-md-2"></div>
+        <div class="col-md-4" align="center">
+            <font size="4">
+                <b>Instructors: </b>
+                <div ng-repeat="courseInstructorName in courseInstructor">
+                    <span>{{courseInstructorName.facultyName}}</span>
+                </div>
             </font>
         </div>
+        <div class="col-md-4" align="center">
+            <font size="4">
+                {{department}}
+                <br>
+            </font>
+            <font size="4">
+                <b>Start Date: </b>{{courseStartDate}}
+            </font>
+            <font size="4">
+                <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date: </b>{{courseEndDate}}
+                <br>
+            </font>
+        </div>
+        <div class="col-md-2"></div>
     </div>
     <hr style="border-color: #555555">
     <div class="row">
-        <div class="col-md-4" align="center" >
-            <font size="6" >
-                Pre-Requisites<br>
-            </font>
-        </div>
-        <div class="col-md-8" align="center" >
+        <div class="col-md-2" align="center"></div>
+        <div class="col-md-8" align="center">
+            <h3>Pre-requisites</h3>
             <div style="padding-top: 15px;">
                 <div ng-repeat="courseNamePre in courseCompleted" align="center">
                     <div style="padding-bottom:3px">
@@ -107,8 +116,6 @@
                     </div>                    <!-- check here -->
                 </div>
             </div>
-        </div>
-
             <div style="padding-top: 15px;">
                 <div ng-repeat="courseNamePre in courseNotCompleted" align="center">
                     <div style="padding-bottom:3px">
@@ -117,9 +124,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-2" align="center"></div>
     </div>
-    <hr style="border-color: #555555">
-    <button class="btn btn-primary btn-block" type="button" style="font-size: 20px" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
+    <div class="row" style="padding-top: 15px;">
+        <div class="col-md-2" align="center"></div>
+        <div class="col-md-8" align="center">
+            <button class="btn btn-primary btn-block" type="button" style="font-size: 20px;" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
+        </div>
+        <div class="col-md-2" align="center"></div>
+    </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

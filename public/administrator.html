@@ -56,12 +56,11 @@
     </nav>
     <!-- /container -->
     <div class="wide" style="background: #786718;
-									background: -webkit-linear-gradient(left, #786718, #e7c114);
-									background:    -moz-linear-gradient(left, #786718, #e7c114);
-									background:     -ms-linear-gradient(left, #786718, #e7c114);
-									background:      -o-linear-gradient(left, #786718, #e7c114);
-									background:         linear-gradient(to right, #786718, #e7c114);
-							">
+                                    background: -webkit-linear-gradient(left, #786718, #e7c114);
+                                    background:    -moz-linear-gradient(left, #786718, #e7c114);
+                                    background:     -ms-linear-gradient(left, #786718, #e7c114);
+                                    background:      -o-linear-gradient(left, #786718, #e7c114);
+                                    background:         linear-gradient(to right, #786718, #e7c114);">
         <div class="col-xs-5 line">
             <hr>
         </div>
@@ -70,50 +69,64 @@
             <hr>
         </div>
     </div>
-    <div class="jumbotron jumbopos" style="padding-bottom: 0">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="images/adminstrator.png" style="margin-top: -37px; margin-left: 8%;">
+    <div class="row vertical-align">
+        <div class="jumbotron jumbopos">
+            <div class="row">
+                <div class="col-md-1" align="center"></div>
+                <div class="col-md-2" align="center">
+                    <img src="images/adminstrator.png">
+                </div>
+                <div class="col-md-8" align="center" style="padding-top: 50px">
+                    <h1>Admin Central</h1>
+                </div>
+                <div class="col-md-1" align="center"></div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3" align="center" >
-            <font size="6">
-                Courses<br>
-            </font>
-            <div ng-repeat="course in courseList">
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{course.name}}</button>
+    <div class="row" style="position: relative; top: -100px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row" align="center">
+                <div class="col-md-3" align="center">
+                    <font size="6">
+                        Courses
+                        <br>
+                    </font>
+                    <div ng-repeat="course in courseList" style="padding-bottom: 8px;">
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{course.name}}</button>
+                    </div>
+                </div>
+                <div class="col-md-3" align="center">
+                    <font size="6">
+                        Students
+                        <br>
+                    </font>
+                    <div ng-repeat="student in studentList" style="padding-bottom: 8px;">
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{student.name}}</button>
+                    </div>
+                </div>
+                <div class="col-md-3" align="center">
+                    <font size="6">
+                        Faculties
+                        <br>
+                    </font>
+                    <div ng-repeat="faculty in facultyList" style="padding-bottom: 8px;">
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{faculty.name}}</button>
+                    </div>
+                </div>
+                <div class="col-md-3" align="center">
+                    <font size="6">
+                        Parents
+                        <br>
+                    </font>
+                    <div ng-repeat="parent in parentList" style="padding-bottom: 8px;">
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{parent.name}}</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-3" align="center" >
-            <font size="6">
-                Students<br>
-            </font>
-            <div ng-repeat="student in studentList">
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{student.name}}</button>
-            </div>
-        </div>
-        <div class="col-md-3" align="center" >
-            <font size="6">
-                Faculties<br>
-            </font>
-            <div ng-repeat="faculty in facultyList">
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{faculty.name}}</button>
-            </div>
-        </div>
-        <div class="col-md-3" align="center" >
-            <font size="6">
-                Parents<br>
-            </font>
-            <div ng-repeat="parent in parentList">
-            <button class="btn btn-default btn-block" style=" padding: 3% 0;"type="button">{{parent.name}}</button>
-            </div>
-        </div>
+        <div class="col-md-1"></div>
     </div>
-    <div>
-    </div>
-    <hr style="border-color: #555555">
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
