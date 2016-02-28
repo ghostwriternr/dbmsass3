@@ -143,11 +143,11 @@
                         <form>
                             <!-- Textarea -->
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" autofocus style="background-color: white"></textarea>
+                                <textarea class="form-control" rows="5" autofocus style="background-color: white" ng-model="messageContent"></textarea>
                             </div>
                             <!-- Button -->
                             <div class="form-group" align="center">
-                                <button class="btn btn-primary" type="submit">Email</button>
+                                <button class="btn btn-primary" type="submit" ng-click="emailFaculty()">Email</button>
                             </div>
                         </form>
                     </div>

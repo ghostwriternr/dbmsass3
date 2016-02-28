@@ -23,6 +23,7 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 		})
 		$http.post('/course/getDetails',{'name':courseName}).success(function(response){
 			var reply=response[0];
+			//$scope.courseName=reply.name;
 			$scope.startDate=reply.startDate;
 			$scope.endDate=reply.endDate;
 			$scope.courseDescription=reply.description;
@@ -73,5 +74,25 @@ myApp.controller('cStudentCtrl',['$scope','$http','$window','$log','$location',f
 
 	$scope.goToAssignment=function(email,course,assignmentNum){
 		$window.open('/assignment.html'+"?email="+email+"?course="+course+"?assignmentNum="+assignmentNum);
+	}
+
+	$scope.emailFaculty=function(){
+		var notification={};
+		for(var index=0;index<$scope.courseInstructor.length;index++){
+			var notification={};
+			notification.email=$scope.courseInstructor[index].facultyEmail;
+			notification.message=$scope.messageContent;
+			notification.type="message"
+			notification.from=$scope.studentName;
+			notification.fromEmail=$scope.studentEmail;
+			notification.number="0";
+			notification.courseName=$scope.courseName;
+			var display=function(){
+				$http.post('/notification/student/',notification).success(function(response){
+					console.log(response[0]);
+				})
+			}
+			display();
+		}
 	}
 }])
