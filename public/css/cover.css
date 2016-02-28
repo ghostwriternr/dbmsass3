@@ -38,6 +38,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow-x: hidden;
 }
 
 body {
@@ -87,7 +88,7 @@ body {
 }
 
 .masthead-nav > li {
-    display: inline-block;
+    display: inline-flex;
 }
 
 .masthead-nav > li + li {
@@ -178,13 +179,5 @@ body {
     .cover-container {
         width: 100%;
         /* Must be percentage or pixels for horizontal alignment */
-    }
-}
-
-@media (min-width: 992px) {
-    .masthead,
-    .mastfoot,
-    .cover-container {
-        width: 1700px;
     }
 }

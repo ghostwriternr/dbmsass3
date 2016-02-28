@@ -76,33 +76,29 @@
             <div class="col-xs-3" align="center"></div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4" align="center">
-            <font size="4">
-                <b>Instructors: </b>
+    <div class="row vertical-align">
+        <div class="jumbotron jumbopos" style="top: -60px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-4" align="center">
+                <p><b>Instructors</b></p>
                 <div ng-repeat="courseInstructorName in courseInstructor">
-                    <span>{{courseInstructorName.facultyName}}</span>
+                    <p>{{courseInstructorName.facultyName}}</p>
                 </div>
-            </font>
+            </div>
+            <div class="col-md-4" align="center">
+                <p>
+                    <br/>
+                    <b>Start Date: </b>{{startDate}}
+                    <br/>
+                </p>
+                <p>
+                    <b>End Date: </b>{{endDate}}
+                </p>
+            </div>
+            <div class="col-md-2"></div>
         </div>
-        <div class="col-md-4" align="center">
-            <font size="4">
-                {{department}}
-                <br>
-            </font>
-            <font size="4">
-                <b>Start Date: </b>{{startDate}}
-            </font>
-            <font size="4">
-                <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date: </b>{{endDate}}
-                <br>
-            </font>
-        </div>
-        <div class="col-md-2"></div>
     </div>
-    <hr style="border-color: #555555">
-    <div class="row">
+    <div class="row" style="top: -60px;">
         <div class="col-md-1" align="center"></div>
         <div class="col-md-5" align="center">
             <font size="5">

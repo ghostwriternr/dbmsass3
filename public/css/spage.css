@@ -2,6 +2,7 @@ body,
 html {
     height: 100%;
     background-color: #F5F6FA;
+    overflow-x: hidden;
 }
 
 body {
@@ -65,16 +66,16 @@ body {
     position: absolute;
     display: block;
     width: 100%;
- }
+}
 
- .p1 span {
+.p1 span {
     color: #2e6d6f;
- }
+}
 
- .p2 span {
+.p2 span {
     color: #8c5300;
- }
+}
 
- .btn:focus {
-  outline: none;
+.btn:focus {
+    outline: none;
 }
