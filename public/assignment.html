@@ -56,9 +56,7 @@
     background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
     background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
     background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-    background:         linear-gradient(to right, #2390fd, #54cfcb);
-
-    ">
+    background:         linear-gradient(to right, #2390fd, #54cfcb);">
         <div class="row">
             <div class="col-xs-5 line" style="padding-top: 30px">
                 <hr>
@@ -78,66 +76,61 @@
             <div class="col-xs-3" align="center"></div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4" align="center">
-            <font size="4">
-                Instructor Name
-                <br>
-            </font>
-            <font size="4">
-                {{course.departmentName}}
-                <br>
-            </font>
-            <font size="4">
-                {{assignment.assignmentStartDate}}
-            </font>
-            <font size="4">
-                {{assignment.assignmentEndDate}}
-                <br>
-            </font>
-        </div>
-        <div class="col-md-8" align="left" style="padding-right: 10px;">
-            <font size="3">
-                {{"Solve the below"}}
-            </font>
-        </div>
-    </div>
-    <hr style="border-color: #555555">
-    <div align="center">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6" align="center">
-                <h2>{{assignment.assignmentName}}</h2>
-            </div>
-            <div class="col-md-3" align="Left" style="padding-top: 30px">
-                <h6>StartDate-EndDate</h6>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <font size="4">
-                    {{assignment.assignmentContent}}
-                </font>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
-        <div>
-            <div ng-controller="assignmentCtrl">
-                <fieldset data-ng-repeat="choice in choices">
-                    <input type="text" ng-model="choice.answer" name="" placeholder="Enter answer">
-                </fieldset>
-                <button class="addfields" ng-click="evaluate()">Evaluate</button>
-                <div class="col-md-10">
-                    <font size="4">
-                        {{correctAnswerCount}}
-                    </font>
+    <div align="center" style="position: relative;top: -60px;">
+        <div class="row" align="center">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+                    <h5>ASSIGNMENT {{assignment.assignmentNumber}}</h5>
+                    <h2>{{assignment.assignmentName}}</h2>
+                    <h5>Mode of Evaluation: Self</h5>
+                    <p>Float Date: {{assignment.assignmentStartDate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due Date: {{assignment.assignmentEndDate}}</p>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <font size="4">
+                                {{assignment.assignmentContent}}
+                            </font>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="form-group" ng-controller="assignmentCtrl">
+                                <div data-ng-repeat="choice in choices track by $index">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <p>Q{{$index+1}}:</p>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" ng-model="choice.answer" name="" placeholder="Your answer">
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row" align="center">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6" align="center">
+                            <button class="addfields btn btn-default btn-block" ng-click="evaluate();showme=true" align="center">Evaluate</button>
+                            <br/>
+                            <p ng-show="showme">Your Score: {{correctAnswerCount}}</p>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
                 </div>
             </div>
-            <hr style="border-color: #555555">
+            <div class="col-md-2"></div>
         </div>
     </div>
-    <div align="center">
+    <div align="center" style="position: relative;top: -75px;">
         <button class="btn btn-primary" type="button" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
     </div>
     <!-- Bootstrap core JavaScript
