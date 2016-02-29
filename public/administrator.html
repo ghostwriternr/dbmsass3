@@ -83,7 +83,7 @@
                         <br>
                     </font>
                     <div ng-repeat="course in courseList" style="padding-bottom: 8px;">
-                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{course.name}}</button>
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button" ng-click="goToCourse(course)">{{course.name}}</button>
                     </div>
                 </div>
                 <div class="col-md-3" align="center">
@@ -92,7 +92,7 @@
                         <br>
                     </font>
                     <div ng-repeat="student in studentList" style="padding-bottom: 8px;">
-                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{student.name}}</button>
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button" ng-click="goToStudent(student)">{{student.name}}</button>
                     </div>
                 </div>
                 <div class="col-md-3" align="center">
@@ -101,7 +101,7 @@
                         <br>
                     </font>
                     <div ng-repeat="faculty in facultyList" style="padding-bottom: 8px;">
-                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{faculty.name}}</button>
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button" ng-click="goToFaculty(faculty)">{{faculty.name}}</button>
                     </div>
                 </div>
                 <div class="col-md-3" align="center">
@@ -110,7 +110,7 @@
                         <br>
                     </font>
                     <div ng-repeat="parent in parentList" style="padding-bottom: 8px;">
-                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button">{{parent.name}}</button>
+                        <button class="btn btn-default btn-block" style="padding: 3% 0;" type="button" ng-click="goToParent(parent)">{{parent.name}}</button>
                     </div>
                 </div>
             </div>

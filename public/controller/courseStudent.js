@@ -5,6 +5,7 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
     $scope.init = function() {
         console.log($location.absUrl());
         var res = $location.absUrl().split('?');
+        $scope.locationRes=$location.absUrl().split('?');
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
         tempData = res[2].split('=');
@@ -74,39 +75,49 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
     }
 
     $scope.goToLecture = function(email, course, lectureNum) {
-        $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum+"?type=student");
+        if($scope.locationRes.length==4){
+            $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum+"?type=student");
+        }
     }
 
     $scope.goToAssignment = function(email, course, assignmentNum) {
-        $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum+"?type=student");
+        if($scope.locationRes.length==4){
+            $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum+"?type=student");
+        }
     }
 
     $scope.emailFaculty = function() {
-        var notification = {};
-        for (var index = 0; index < $scope.courseInstructor.length; index++) {
+        if($scope.locationRes.length==4){
             var notification = {};
-            notification.email = $scope.courseInstructor[index].facultyEmail;
-            notification.message = $scope.messageContent;
-            notification.type = "message"
-            notification.from = $scope.studentName;
-            notification.fromEmail = $scope.studentEmail;
-            notification.number = "0";
-            notification.courseName = $scope.courseName;
-            var display = function() {
-                $http.post('/notification/student/', notification).success(function(response) {
-                    console.log(response[0]);
-                })
+            for (var index = 0; index < $scope.courseInstructor.length; index++) {
+                var notification = {};
+                notification.email = $scope.courseInstructor[index].facultyEmail;
+                notification.message = $scope.messageContent;
+                notification.type = "message"
+                notification.from = $scope.studentName;
+                notification.fromEmail = $scope.studentEmail;
+                notification.number = "0";
+                notification.courseName = $scope.courseName;
+                var display = function() {
+                    $http.post('/notification/student/', notification).success(function(response) {
+                        console.log(response[0]);
+                    })
+                }
+                display();
             }
-            display();
         }
     }
 
     $scope.goToHome=function(){
-        console.log('Go To HOME');
-        $window.location.href="/student.html"+"?email="+$scope.studentEmail+"?type=student";
+        if($scope.locationRes.length==4){
+            console.log('Go To HOME');
+            $window.location.href="/student.html"+"?email="+$scope.studentEmail+"?type=student";
+        }
     }
 
     $scope.goToProfile=function(){
-        $window.location.href="/profile_student.html"+"?email="+$scope.studentEmail+"?type=student";
+        if($scope.locationRes.length==4){
+            $window.location.href="/profile_student.html"+"?email="+$scope.studentEmail+"?type=student";
+        }
     }
 }])
