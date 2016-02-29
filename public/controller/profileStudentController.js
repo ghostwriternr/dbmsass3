@@ -6,7 +6,10 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         var urlLogin = $location.absUrl();
         var student = {};
         var query = {};
-        var output = urlLogin.substr(urlLogin.lastIndexOf('=') + 1);
+        var res = $location.absUrl().split('?');
+        var tempData = res[1].split('=');
+        var userEmail = tempData[1];
+        var output=tempData[1];
         console.log(output);
         query = { 'email': output };
         $http.post('/student/getDetails', query).success(function(response) {
@@ -59,6 +62,10 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToHome=function(){
         console.log('Go to HOME');
-        $window.location.href="/student.html"+"?email="+$scope.studentEmail;
+        $window.location.href="/student.html"+"?email="+$scope.studentEmail+"?type=student";
+    }
+
+    $scope.logout=function(){
+        $window.location.href="/index.html";
     }
 }])

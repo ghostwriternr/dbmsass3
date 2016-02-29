@@ -14,6 +14,8 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
         tempData = res[3].split('=');
         var assignmentNumber = tempData[1];
         $scope.currentAssignmentNumber=tempData[1];
+        tempData=res[4].split('=');
+        $scope.personType=tempData[1];
         var student = {};
         var course = {};
         var assignment = {};
@@ -47,60 +49,81 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
     }
 
     $scope.evaluate = function() {
-        var answers = [];
-        $http.post('/answerToAssignment/getAnswers', { 'courseName': $scope.course.name, 'assignmentNumber': $scope.assignment.assignmentNumber }).success(function(response) {
-            var reply = response[0].answer;
-            console.log(response[0]);
-            var evaluateAnswer = function(reply) {
-                var countCorrectAnswers = 0;
-                var check = function(countCorrectAnswers) {
-                    for (index = 0; index < $scope.assignment.assignmentQuestionCount; index++) {
-                        if (response[0].answer[index] == $scope.choices[index].answer) {
-                            countCorrectAnswers++;
+        if($scope.personType=='student'){
+            var answers = [];
+            $http.post('/answerToAssignment/getAnswers', { 'courseName': $scope.course.name, 'assignmentNumber': $scope.assignment.assignmentNumber }).success(function(response) {
+                var reply = response[0].answer;
+                console.log(response[0]);
+                var evaluateAnswer = function(reply) {
+                    var countCorrectAnswers = 0;
+                    var check = function(countCorrectAnswers) {
+                        for (index = 0; index < $scope.assignment.assignmentQuestionCount; index++) {
+                            if (response[0].answer[index] == $scope.choices[index].answer) {
+                                countCorrectAnswers++;
+                            }
+                            //console.log($scope.choices[index]+" "+response[0].answer[index]);
                         }
-                        //console.log($scope.choices[index]+" "+response[0].answer[index]);
+                        var displayResult = function(countCorrectAnswers) {
+                            console.log('You got->' + countCorrectAnswers);
+                            $scope.correctAnswerCount = countCorrectAnswers;
+                        }
+                        displayResult(countCorrectAnswers);
                     }
-                    var displayResult = function(countCorrectAnswers) {
-                        console.log('You got->' + countCorrectAnswers);
-                        $scope.correctAnswerCount = countCorrectAnswers;
-                    }
-                    displayResult(countCorrectAnswers);
+                    check(countCorrectAnswers);
                 }
-                check(countCorrectAnswers);
-            }
-            evaluateAnswer(reply);
-        })
+                evaluateAnswer(reply);
+            })
+        }
+        else{
+            //qwe
+        }
     }
 
     $scope.doneWithAssignment = function(studentEmail, courseName) {
-        $http.post('/studentCourse/getContent', { 'email': studentEmail }).success(function(response) {
-            console.log(response[0]);
-            var addCount = function() {
-                for (var index = 0; index < response[0].course.length; index++) {
-                    console.log(response[0].course[index]);
-                    var check = function() {
-                        if (response[0].course[index].courseName == courseName && parseInt(response[0].course[index].assignmentCompleted)+1==parseInt($scope.currentAssignmentNumber)) {
-                            console.log(response[0].course[index].courseName);
-                            response[0].course[index].assignmentCompleted = (parseInt(response[0].course[index].assignmentCompleted) + 1) + "";
-                            var update = function() {
-                                console.log(response[0]);
-                                $http.post('/studentCourse/updateContent/' + studentEmail, response[0]).success(function(response) {
-                                    var reply = response[0];
+        if($scope.personType=='student'){
+            $http.post('/studentCourse/getContent', { 'email': studentEmail }).success(function(response) {
+                console.log(response[0]);
+                var addCount = function() {
+                    for (var index = 0; index < response[0].course.length; index++) {
+                        console.log(response[0].course[index]);
+                        var check = function() {
+                            if (response[0].course[index].courseName == courseName && parseInt(response[0].course[index].assignmentCompleted)+1==parseInt($scope.currentAssignmentNumber) && $scope.personType=='student') {
+                                console.log(response[0].course[index].courseName);
+                                response[0].course[index].assignmentCompleted = (parseInt(response[0].course[index].assignmentCompleted) + 1) + "";
+                                var update = function() {
                                     console.log(response[0]);
-                                })
+                                    $http.post('/studentCourse/updateContent/' + studentEmail, response[0]).success(function(response) {
+                                        var reply = response[0];
+                                        console.log(response[0]);
+                                    })
+                                }
+                                update();
                             }
-                            update();
                         }
+                        check();
                     }
-                    check();
                 }
-            }
-            addCount();
-        })
+                addCount();
+            })
+        }
     }
 
     $scope.goToHome=function(){
-        $window.location.href="/student.html"+"?email="+$scope.studentEmail;
+        if($scope.personType=='student'){
+            $window.location.href='/student.html'+"?email="+$scope.studentEmail+"?type=student";
+        }
+        else if($scope.personType=='faculty'){
+            $window.location.href="/faculty.html"+"?email="+$scope.studentEmail+"?type=faculty";
+        }
+    }
+
+    $scope.goToProfile=function(){
+        if($scope.personType=='student'){
+            $window.location.href='/profile_student.html'+"?email="+$scope.studentEmail+"?type=student";
+        }
+        else if($scope.personType=='faculty'){
+            $window.location.href="/profile.html"+"?email="+$scope.studentEmail+"?type=faculty";
+        }
     }
 
 }])

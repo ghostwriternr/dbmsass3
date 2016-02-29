@@ -15,6 +15,9 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         tempData = res[3].split('=');
         var lectureNumber = tempData[1];
         $scope.lectureCurrentNumber=tempData[1];
+        tempData=res[4].split('=');
+        $scope.personType=tempData[1];
+        console.log(tempData[1]);
         var student = {};
         var course = {};
         var lecture = {};
@@ -36,14 +39,14 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     }
 
     $scope.doneWithLecture = function(studentEmail, courseName) {
-        if($scope.locationRes.length==4){
+        if($scope.personType=='student'){
             $http.post('/studentCourse/getContent', { 'email': studentEmail }).success(function(response) {
                 console.log(response[0]);
                 var addCount = function() {
                     for (var index = 0; index < response[0].course.length; index++) {
                         console.log(response[0].course[index]);
                         var check = function() {
-                            if (response[0].course[index].courseName == courseName && parseInt(response[0].course[index].lecturesCompleted)+1==parseInt($scope.lectureCurrentNumber) && $scope.locationRes.length==4) {
+                            if (response[0].course[index].courseName == courseName && parseInt(response[0].course[index].lecturesCompleted)+1==parseInt($scope.lectureCurrentNumber) && $scope.personType=='student') {
                                 console.log(response[0].course[index].courseName);
                                 response[0].course[index].lecturesCompleted = (parseInt(response[0].course[index].lecturesCompleted) + 1) + "";
                                 var update = function() {
@@ -65,19 +68,26 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     }
 
     $scope.goToProfile=function(){
-        if($scope.locationRes.length==5){
-            var res=$scope.locationRes[4].split('=');
-            var check=function(){
-                if(res[1]=='faculty'){
-                    $window.location.href="/faculty.html"+"?email="+$scope.studentEmail+"?type=faculty";
-                }
-            }
-            check();
-            //$window.location.href="/student.html"+"?email="+$scope.studentEmail;
+        console.log('hiii');
+        if($scope.personType=='student'){
+            $window.location.href="/profile_student.html"+"?email="+$scope.studentEmail+"?type=student";
         }
-        else{
-            console.log($scope.locationRes.length);
-            $window.location.href="/student.html"+"?email="+$scope.studentEmail;
+        else if($scope.personType=='faculty'){
+            $window.location.href="/profile.html"+"?email="+$scope.studentEmail+"?type=faculty";
+        }
+    }
+
+    $scope.logout=function(){
+        console.log('hiiii');
+        $window.location.href="/index.html";
+    }
+
+    $scope.goToHome=function(){
+        if($scope.personType=='student'){
+            $window.location.href='/student.html'+"?email="+$scope.studentEmail+"?type=student";
+        }
+        else if($scope.personType=='faculty'){
+            $window.location.href="/faculty.html"+"?email="+$scope.studentEmail+"?type=faculty";
         }
     }
 }])

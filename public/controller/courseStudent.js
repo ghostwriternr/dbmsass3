@@ -74,11 +74,11 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
     }
 
     $scope.goToLecture = function(email, course, lectureNum) {
-        $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum);
+        $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum+"?type=student");
     }
 
     $scope.goToAssignment = function(email, course, assignmentNum) {
-        $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum);
+        $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum+"?type=student");
     }
 
     $scope.emailFaculty = function() {
@@ -103,6 +103,10 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
 
     $scope.goToHome=function(){
         console.log('Go To HOME');
-        $window.location.href="/student.html"+"?email="+$scope.studentEmail;
+        $window.location.href="/student.html"+"?email="+$scope.studentEmail+"?type=student";
+    }
+
+    $scope.goToProfile=function(){
+        $window.location.href="/profile_student.html"+"?email="+$scope.studentEmail+"?type=student";
     }
 }])

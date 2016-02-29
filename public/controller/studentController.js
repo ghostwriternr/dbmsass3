@@ -4,19 +4,22 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
         //$window.open("/view_course.html" + "?email=" + email);
-        $window.location.href="/view_course.html" + "?email=" + email;
+        $window.location.href="/view_course.html" + "?email=" + email+"?type=student";
     }
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
         //$window.open("/view_course.html" + "?email=" + email + "?course=" + courseName);
-        $window.location.href="/view_course.html" + "?email=" + email + "?course=" + courseName;
+        $window.location.href="/view_course.html" + "?email=" + email + "?course=" + courseName+"?type=student";
     }
     $scope.init = function() {
         console.log("check if this works");
         var urlLogin = $location.absUrl();
         var student = {};
         var query = {};
-        var output = urlLogin.substr(urlLogin.lastIndexOf('=') + 1);
+        var res = $location.absUrl().split('?');
+        var tempData = res[1].split('=');
+        var userEmail = tempData[1];
+        var output=tempData[1];
         console.log(output);
         query = { 'email': output };
         $http.post('/student/getDetails', query).success(function(response) {
@@ -111,19 +114,19 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToRegistration = function(email, name) {
         console.log(email + " " + name);
-        $window.location.href=("/register_course.html" + "?email=" + email + "?course=" + name);
+        $window.location.href=("/register_course.html" + "?email=" + email + "?course=" + name+"?type=student");
     }
 
     $scope.goToLecture = function(lecture) {
-        $window.location.href=("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number);
+        $window.location.href=("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number+"?type=student");
     }
 
     $scope.goToAssignment = function(assignment) {
-        $window.location.href=('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number);
+        $window.location.href=('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number+"?type=student");
     }
 
     $scope.goToProfile = function() {
-            $window.location.href=('/profile_student.html' + "?email=" + $scope.studentEmail);
+            $window.location.href=('/profile_student.html' + "?email=" + $scope.studentEmail+"?type=student");
     }
         //Fill the contents of the course
     $scope.replyMessage = function(index) {

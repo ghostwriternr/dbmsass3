@@ -11,7 +11,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
                 if (response == 1) {
                     var url = "/student.html";
                     console.log("Authentication successful");
-                    $window.location.href = url + "?email=" + $scope.person.email;
+                    $window.location.href = url + "?email=" + $scope.person.email+"?type=student";
                     console.log("Authnetication successfull");
                 } else {
                     console.log("Authentication failed");
@@ -38,7 +38,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
                 if (response == 1) {
                     var url = "/parent.html";
                     console.log("Authentication successful");
-                    $window.location.href = url + "?email=" + $scope.person.email;
+                    $window.location.href = url + "?email=" + $scope.person.email+"?type=parent";
                     console.log("Authnetication successfull");
                 } else {
                     console.log("Authentication failed");
@@ -49,7 +49,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
             console.log(admin);
             $http.post('/admin/login', admin).success(function(response) {
                 if (response == 1) {
-                    var url = "/administrator.html";
+                    var url = "/administrator.html"+"?type=administrator";
                     console.log("Authentication successful");
                     $window.location.href = url;
                     console.log("Authnetication successfull");
