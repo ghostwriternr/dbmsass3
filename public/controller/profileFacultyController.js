@@ -77,4 +77,8 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
             //qwe
         }
     }
+
+    $scope.logout=function(){
+        $window.location.href="/index.html";
+    }
 }])

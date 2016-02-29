@@ -8,6 +8,8 @@ myApp.controller('facultyCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
         console.log(userEmail);
+        tempData=res[2].split('=');
+        $scope.personType=tempData[1];
         var faculty = {};
         $http.post('/faculty/getDetails', { 'email': userEmail }).success(function(response) {
             var reply = response[0];
@@ -31,5 +33,9 @@ myApp.controller('facultyCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToProfile = function() {
         $window.location.href=("/profile.html" + "?email=" + $scope.facultyEmail+"?type=faculty");
+    }
+
+    $scope.logout=function(){
+        $window.location.href=("/index.html");
     }
 }])
