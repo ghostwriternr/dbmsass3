@@ -16,6 +16,7 @@
     <link href="css/navbar-fixed-top.css" rel="stylesheet">
     <link href="css/spage.css" rel="stylesheet">
     <link href="css/notifications.css" rel="stylesheet">
+    <link href="css/calendar.css" rel="stylesheet">
 </head>
 
 <body ng-controller="studentCtrl" ng-init="init()">
@@ -124,6 +125,72 @@
         </div>
     </div>
     <!-- Fill Spaces -->
+    <div class="row" style="position: relative; top: -100px;" align="center">
+        <div class="col-md-2" align="center"></div>
+        <div class="col-md-8">
+            <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#calendar">Check Agenda</button>
+            <div id="calendar" class="collapse">
+                <div class="jumbotron" style="padding: 0!important;">
+                    <div id="accordion">
+                        <div class="panel panel-default list-group">
+                            <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#courseCal" style="background-color: #F3A746;margin: 10px;">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div>
+                                            <font color="white" size="5px"><b>19</b> Jan, <b>2016</b></font>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div style="text-align: left;color: white;font-size: 25px;">
+                                            <td>The end is near.</td>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="courseCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
+                                <img src="images/spring.png">
+                            </div>
+                            <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#lecCal" style="background-color: #46E4FB;margin: 10px;">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div>
+                                            <font color="white" size="5px"><b>20</b> Jan, <b>2016</b></font>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div style="text-align: left;color: white;font-size: 25px;">
+                                            <td>Seriously, you are screwed.</td>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="lecCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
+                                <img src="images/summer.png">
+                            </div>
+                            <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#assignCal" style="background-color: #5BB58E;margin: 10px;">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div>
+                                            <font color="white" size="5px"><b>20</b> Jan, <b>2016</b></font>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div style="text-align: left;color: white;font-size: 25px;">
+                                            <td>Lulz.</td>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="assignCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
+                                <img src="images/autumn.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2" align="center"></div>
+    </div>
     <div class="row" style="position: relative; top: -100px;">
         <div class="col-md-1" align="center"></div>
         <div class="col-md-10" align="center">

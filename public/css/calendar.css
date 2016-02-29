@@ -1,0 +1,23 @@
+.panel, .route-blurb-container {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #F5F6FA;
+}
+
+#courseCal img {
+	position: relative;
+	min-width: 98%;
+	padding: 0!important;
+}
+
+#lecCal img {
+	position: relative;
+	min-width: 98%;
+	padding: 0!important;
+}
+
+#assignCal img {
+	position: relative;
+	min-width: 98%;
+	padding: 0!important;
+}
