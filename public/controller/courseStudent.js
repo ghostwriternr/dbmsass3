@@ -8,6 +8,7 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
         $scope.locationRes=$location.absUrl().split('?');
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
+        $scope.userEmail=tempData[1];
         tempData = res[2].split('=');
         var courseName = tempData[1];
         console.log(userEmail + " " + courseName);
@@ -72,6 +73,36 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
             }
             $scope.courseStudent = courseStudent;
         })
+        
+        var call=function(){
+            console.log("here");
+            var query={'studentEmail':$scope.userEmail,'courseName':$scope.courseName};
+            var display=function(){
+                console.log(query);
+                $http.post('/assignmentMarks/getDetails',query).success(function(response){
+                    console.log("herererer");
+                    console.log("idar hun");
+                    var dataset=[];
+                    var fill=function(){
+                        for(var index=0;index<response.length;index++){
+                            dataset=dataset.concat(30*parseFloat(response[index].assignmentMarks)/parseFloat(response[index].assignmentQuestions));
+                        }
+                        d3.select("#graph").selectAll("div")
+                            .data(dataset)
+                            .enter()
+                            .append("div")
+                            .attr("class", "bar")
+                            .style("height", function(d) {
+                                var barHeight = d * 5;
+                                return barHeight + "px";
+                            });
+                    }
+                    fill();
+                })
+            }
+            display();
+        }
+        call();
     }
 
     $scope.goToLecture = function(email, course, lectureNum) {

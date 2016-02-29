@@ -426,9 +426,11 @@ app.post('/assignmentMarks/insert',function(req,res){
 
 app.post('/assignmentMarks/getDetails',function(req,res){
 	console.log('Got a POST request from /assignmentMarks/getDetails');
+	console.log("here");
 	console.log(req.body);
 	dbAssignmentMarks.assignmentMarks.find(req.body,function(err,docs){
 		console.log(docs);
+		res.json(docs);
 	})
 })
 
