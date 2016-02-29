@@ -17,6 +17,17 @@
     <link href="css/spage.css" rel="stylesheet">
 </head>
 
+<script type="text/javascript" src="js/d3.min.js"></script>
+<style type="text/css">
+  div.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px; /* Gets overriden by D3-assigned height below */
+    margin-right: 2px;
+    background-color: teal;
+  }
+</style>
+
 <body ng-controller="cStudentCtrl" ng-init="init()">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -159,6 +170,7 @@
     window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     </script>
     <script src="js/bootstrap.min.js"></script>
+    <div id="graph" align ="center"></div>
 </body>
 <script type="text/javascript">
 $(document).ready(function() {

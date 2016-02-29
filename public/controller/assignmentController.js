@@ -86,16 +86,27 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
                 var addCount = function() {
                     for (var index = 0; index < response[0].course.length; index++) {
                         console.log(response[0].course[index]);
+                        var assignmentMarks={};
                         var check = function() {
                             if (response[0].course[index].courseName == courseName && parseInt(response[0].course[index].assignmentCompleted)+1==parseInt($scope.currentAssignmentNumber) && $scope.personType=='student') {
                                 console.log(response[0].course[index].courseName);
                                 response[0].course[index].assignmentCompleted = (parseInt(response[0].course[index].assignmentCompleted) + 1) + "";
+                                assignmentMarks.studentEmail=$scope.student.email;
+                                assignmentMarks.courseName=$scope.course.name;
+                                assignmentMarks.assignmentNumber=$scope.currentAssignmentNumber;
+                                assignmentMarks.assignmentQuestions=$scope.assignment.assignmentQuestionCount;
+                                assignmentMarks.assignmentMarks=$scope.correctAnswerCount;
                                 var update = function() {
                                     console.log(response[0]);
+                                    console.log("updating here");
                                     $http.post('/studentCourse/updateContent/' + studentEmail, response[0]).success(function(response) {
                                         var reply = response[0];
                                         console.log(response[0]);
                                     })
+                                    $http.post('/assignmentMarks/insert',assignmentMarks).success(function(response){
+                                        console.log(respose[0]);
+                                    })
+                                    console.log(assignmentMarks);
                                 }
                                 update();
                             }

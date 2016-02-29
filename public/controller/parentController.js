@@ -4,8 +4,12 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
 
     $scope.init = function() {
         var urlLogin = $location.absUrl();
-        var query = {};
-        var output = urlLogin.substr(urlLogin.lastIndexOf('=') + 1);
+        var res = $location.absUrl().split('?');
+        var tempData = res[1].split('=');
+        var userEmail = tempData[1];
+        var output=userEmail;
+        tempData=res[2].split('=');
+        $scope.personType="parent";
         console.log(output);
         query = { 'email': output };
         $http.post('/parent/getDetails', query).success(function(response) {
@@ -21,11 +25,11 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
 
     $scope.viewProfile = function(child) {
         console.log(child);
-        $window.location.href=('/student.html' + "?email=" + child.childEmail);
+        $window.location.href=('/student.html' + "?email=" + child.childEmail+"?type=student"+"?type=parent");
     }
 
     $scope.goToProfile = function() {
-            $window.open('/profile.html' + "?email=" + $scope.parent.email);
+            $window.open('/profile_parent.html' + "?email=" + $scope.parent.email+"?type=parent");
     }
 
     $scope.addChild = function(childEmailRequest) {
@@ -45,7 +49,11 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
         fill();
     }
 
+    $scope.logout=function(){
+        $window.location.href="/index.html";
+    }
+
     $scope.goToProfile=function(){
-        //qwe
+        $window.location.href="/profile_parent.html"+"?email="+$scope.parentEmail+"?type=parent";
     }
 }])

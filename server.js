@@ -19,6 +19,7 @@ var dbCourseStudents=mongojs('courseStudents',['courseStudents']);
 var dbNotification=mongojs('notification',['notification']);
 var dbParentChild=mongojs('parentChild',['parentChild']);
 var dbParentChildRequest=mongojs('parentChildRequest',['parentChildRequest']);
+var dbAssignmentMarks=mongojs('assignmentMarks',['assignmentMarks']);
 var app=express();
 
 app.use(express.static(__dirname+"/public"));
@@ -410,6 +411,24 @@ app.post('/faculty/updateDetails/:email',function(req,res){
 	console.log('Got a POST request from /faculty/updateDetails');
 	console.log(res.body);
 	dbFaculty.faculty.update({'email':req.params.email},{$set:req.body},function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	})
+})
+
+app.post('/assignmentMarks/insert',function(req,res){
+	console.log('Got a POST request from /assignmentMarks/insert');
+	console.log(req.body);
+	dbAssignmentMarks.assignmentMarks.insert(req.body,function(err,docs){
+		console.log(docs);
+	})
+})
+
+app.post('/assignmentMarks/getDetails',function(req,res){
+	console.log('Got a POST request from /assignmentMarks/getDetails');
+	console.log("here");
+	console.log(req.body);
+	dbAssignmentMarks.assignmentMarks.find(req.body,function(err,docs){
 		console.log(docs);
 		res.json(docs);
 	})
