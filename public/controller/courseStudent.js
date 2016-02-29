@@ -18,7 +18,7 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
         })
         $http.post('/courseInstructor/getDetails', { 'courseName': courseName }).success(function(response) {
             var reply = response;
-            console.log(reply[0].facultyName + " " + reply[1].facultyName);
+            //console.log(reply[0].facultyName + " " + reply[1].facultyName);
             $scope.courseInstructor = reply;
         })
         $http.post('/course/getDetails', { 'name': courseName }).success(function(response) {
@@ -74,11 +74,11 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
     }
 
     $scope.goToLecture = function(email, course, lectureNum) {
-        $window.open('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum);
+        $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum);
     }
 
     $scope.goToAssignment = function(email, course, assignmentNum) {
-        $window.open('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum);
+        $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum);
     }
 
     $scope.emailFaculty = function() {
@@ -99,5 +99,10 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
             }
             display();
         }
+    }
+
+    $scope.goToHome=function(){
+        console.log('Go To HOME');
+        $window.location.href="/student.html"+"?email="+$scope.studentEmail;
     }
 }])

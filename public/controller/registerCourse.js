@@ -70,7 +70,7 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
     }
 
     $scope.goToCourse = function(email, name) {
-        $window.open("/view_course.html" + "?email=" + email + "?course=" + name);
+        $window.location.href=("/view_course.html" + "?email=" + email + "?course=" + name);
     }
 
     $scope.goToRegistration = function(email, name) {

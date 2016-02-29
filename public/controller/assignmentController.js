@@ -13,6 +13,7 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
         $scope.courseName = tempData[1];
         tempData = res[3].split('=');
         var assignmentNumber = tempData[1];
+        $scope.currentAssignmentNumber=tempData[1];
         var student = {};
         var course = {};
         var assignment = {};
@@ -78,7 +79,7 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
                 for (var index = 0; index < response[0].course.length; index++) {
                     console.log(response[0].course[index]);
                     var check = function() {
-                        if (response[0].course[index].courseName == courseName) {
+                        if (response[0].course[index].courseName == courseName && parseInt(response[0].course[index].assignmentCompleted)+1==parseInt($scope.currentAssignmentNumber)) {
                             console.log(response[0].course[index].courseName);
                             response[0].course[index].assignmentCompleted = (parseInt(response[0].course[index].assignmentCompleted) + 1) + "";
                             var update = function() {
@@ -96,6 +97,10 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
             }
             addCount();
         })
+    }
+
+    $scope.goToHome=function(){
+        $window.location.href="/student.html"+"?email="+$scope.studentEmail;
     }
 
 }])

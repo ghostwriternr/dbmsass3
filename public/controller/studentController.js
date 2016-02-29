@@ -111,19 +111,19 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToRegistration = function(email, name) {
         console.log(email + " " + name);
-        $window.open("/register_course.html" + "?email=" + email + "?course=" + name);
+        $window.location.href=("/register_course.html" + "?email=" + email + "?course=" + name);
     }
 
     $scope.goToLecture = function(lecture) {
-        $window.open("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number);
+        $window.location.href=("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number);
     }
 
     $scope.goToAssignment = function(assignment) {
-        $window.open('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number);
+        $window.location.href=('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number);
     }
 
     $scope.goToProfile = function() {
-            $window.open('/profile_student.html' + "?email=" + $scope.studentEmail);
+            $window.location.href=('/profile_student.html' + "?email=" + $scope.studentEmail);
     }
         //Fill the contents of the course
     $scope.replyMessage = function(index) {

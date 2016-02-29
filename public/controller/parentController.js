@@ -21,7 +21,7 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
 
     $scope.viewProfile = function(child) {
         console.log(child);
-        $window.open('/student.html' + "?email=" + child.childEmail);
+        $window.location.href=('/student.html' + "?email=" + child.childEmail);
     }
 
     $scope.addChild = function(childEmailRequest) {

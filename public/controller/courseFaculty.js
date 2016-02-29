@@ -62,11 +62,11 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
     }
 
     $scope.goToLecture = function(email, course, lectureNum) {
-        $window.open('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum);
+        $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum);
     }
 
     $scope.goToAssignment = function(email, course, assignmentNum) {
-        $window.open('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum);
+        $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum);
     }
 
     $scope.setTypeOfContent = function(type) {

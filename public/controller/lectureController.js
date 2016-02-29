@@ -13,6 +13,7 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         $scope.courseName = tempData[1];
         tempData = res[3].split('=');
         var lectureNumber = tempData[1];
+        $scope.lectureCurrentNumber=tempData[1];
         var student = {};
         var course = {};
         var lecture = {};
@@ -40,7 +41,7 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
                 for (var index = 0; index < response[0].course.length; index++) {
                     console.log(response[0].course[index]);
                     var check = function() {
-                        if (response[0].course[index].courseName == courseName) {
+                        if (response[0].course[index].courseName == courseName && parseInt(response[0].course[index].lecturesCompleted)+1==parseInt($scope.lectureCurrentNumber)) {
                             console.log(response[0].course[index].courseName);
                             response[0].course[index].lecturesCompleted = (parseInt(response[0].course[index].lecturesCompleted) + 1) + "";
                             var update = function() {
@@ -58,5 +59,9 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
             }
             addCount();
         })
+    }
+
+    $scope.goToProfile=function(){
+        $window.location.href="/student.html"+"?email="+$scope.studentEmail;
     }
 }])

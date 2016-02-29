@@ -56,4 +56,9 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
             console.log(response[0]);
         })
     }
+
+    $scope.goToHome=function(){
+        console.log('Go to HOME');
+        $window.location.href="/student.html"+"?email="+$scope.studentEmail;
+    }
 }])
