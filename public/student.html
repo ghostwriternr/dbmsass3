@@ -48,25 +48,28 @@
                                     <ul class="dropdown-menu" style="display: block; position: static; width: 100%;">
                                         <li class="dropdown-header">Lecture Notifications</li>
                                         <div ng-repeat="lectureNoti in lectureNotifications" style="padding-left: 20px;">
-                                        <li><a href="#"  style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="goToLecture(lectureNoti)">{{lectureNoti.message}}</a></li>
+                                            <li><a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="goToLecture(lectureNoti)">{{lectureNoti.message}}</a></li>
                                         </div>
                                         <li class="divider"></li>
                                         <li class="dropdown-header">Assignment Notifications</li>
                                         <div ng-repeat="assignmentNoti in assignmentNotifications" style="padding-left: 20px;">
-                                        <li><a href="#"  style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="goToAssignment(assignmentNoti)">{{assignmentNoti.message}}</a></li>
+                                            <li><a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="goToAssignment(assignmentNoti)">{{assignmentNoti.message}}</a></li>
                                         </div>
                                         <li class="divider"></li>
                                         <li class="dropdown-header">Messages</li>
-                                        <div ng-repeat="messageNoti in messageNotifications" style="padding-left: 20px;">
-                                        <li>
-                                            <span><b>From </b>{{messageNoti.from}}</span><br>
-                                            <a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;">{{messageNoti.message}}</a>
-                                        </li>
+                                        <div ng-repeat="messageNoti in messageNotifications track by $index" style="padding-left: 20px;">
+                                            <li>
+                                                <span><b>From </b>{{messageNoti.from}}</span>
+                                                <br>
+                                                <a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="replyMessage($index)">{{messageNoti.message}}</a>
+                                            </li>
                                         </div>
                                     </ul>
                                 </div>
                             </div>
-                            <div id="notificationFooter"><a href="#"></a></div>
+                            <div id="notificationFooter">
+                                <a href="#"></a>
+                            </div>
                         </div>
                     </li>
                     <li><span class="btn-separator"></span></li>
@@ -140,8 +143,8 @@
                                     </div>
                                     <div class="progress p2">
                                         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuemax="100" ng-style='{"width":((courseTaken.completedAssignments/courseTaken.courseAssignment)*100)+"%"}'>
-                                        <span><b>Assignment Completion</b></span></div>
-                                        </div>
+                                            <span><b>Assignment Completion</b></span></div>
+                                    </div>
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>
@@ -194,6 +197,37 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 class="modal-title" id="myModalLabel" align="center">Reply</h3>
+                </div>
+                <div ng-controller="studentCtrl">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <h5><b>From: </b>{{messageNotifications[messageSender].from}}</h5>
+                            <h5><b>Message: </b>{{messageNotifications[messageSender].message}}</h5>
+                            <h5><b>Reply: </b></h5>
+                            <br/>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3">Type here</textarea>
+                            </div>
+                            <button class="btn btn-success" type="button">Send!</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!--
 <script>
 $('#registerModal').on('show.bs.modal', function() {
@@ -206,8 +240,9 @@ $('#registerModal').on('hide.bs.modal', function() {
 </script>
 -->
 <script type="text/javascript">
-function change(x)
-    {document.getElementById("course").innerHTML=x;}
+function change(x) {
+    document.getElementById("course").innerHTML = x;
+}
 $(document).ready(function() {
     $("#notificationLink").click(function() {
         $("#notificationContainer").fadeToggle(300);

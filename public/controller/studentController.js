@@ -124,7 +124,13 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToProfile = function() {
             $window.open('/profile_student.html' + "?email=" + $scope.studentEmail);
-        }
+    }
         //Fill the contents of the course
-
+    $scope.replyMessage = function(index) {
+        var messageSender;
+        console.log("index = " + index);
+        $scope.messageSender=index;
+        $('#notificationLink').trigger("click");
+        $('#messageModal').modal('show');
+    }
 }]);
