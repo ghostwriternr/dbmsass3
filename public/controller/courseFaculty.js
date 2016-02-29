@@ -62,19 +62,27 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
     }
 
     $scope.goToLecture = function(email, course, lectureNum) {
-        $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum);
+        $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum+"?type=faculty");
     }
 
     $scope.goToAssignment = function(email, course, assignmentNum) {
-        $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum);
+        $window.location.href=('/assignment.html' + "?email=" + email + "?course=" + course + "?assignmentNum=" + assignmentNum+"?type=faculty");
     }
 
     $scope.setTypeOfContent = function(type) {
         $scope.content.type = type;
-        for (index = 0; index < $scope.questionsCount; index++) {
-            $scope.choices.push({ 'id': '' });
+        // for (index = 0; index < $scope.questionsCount; index++) {
+        //     $scope.choices.push({ 'id': '' });
+        // }
+        // console.log($scope.content.type);
+        $scope.choices=[];
+        var push=function(){
+            for (index = 0; index < $scope.questionsCount; index++) {
+                $scope.choices.push({ 'id': '' });
+            }
+            console.log($scope.content.type);
         }
-        console.log($scope.content.type)
+        push();
     }
 
     $scope.addContent = function(content) {

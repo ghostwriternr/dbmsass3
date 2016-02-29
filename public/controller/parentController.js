@@ -40,4 +40,8 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
         }
         fill();
     }
+
+    $scope.goToProfile=function(){
+        //qwe
+    }
 }])

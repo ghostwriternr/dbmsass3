@@ -6,7 +6,16 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
         var urlLogin = $location.absUrl();
         var faculty = {};
         var query = {};
-        var output = urlLogin.substr(urlLogin.lastIndexOf('=') + 1);
+        //
+        var res = $location.absUrl().split('?');
+        $scope.locationRes=$location.absUrl().split('?');
+        var tempData = res[1].split('=');
+        var userEmail = tempData[1];
+        var output=tempData[1];
+        tempData=res[2].split('=');
+        $scope.userType=tempData[1];
+        //
+        //var output = tempData[1];
         console.log(output);
         query = { 'email': output };
 
@@ -58,5 +67,14 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
         $http.post('/faculty/updateDetails/' + $scope.faculty.email, { 'contactInfo': $scope.facultyContactInfo }).success(function(response) {
             console.log(response[0]);
         })
+    }
+
+    $scope.goToProfile=function(){
+        if($scope.userType=='faculty'){
+            $window.location.href="/faculty.html"+"?email="+$scope.faculty.email+"?type=faculty";
+        }
+        else if($scope.userType=='parent'){
+            //qwe
+        }
     }
 }])
