@@ -78,47 +78,33 @@
             <div class="col-xs-3" align="center"></div>
         </div>
     </div>
-    <div>
-    </div>
-    <div class="row" align="center">
-        <div class="col-md-2"></div>
-        <div class="col-md-4" align="center">
-            <font size="4">
-                <b>Department: </b>{{course.departmentName}}
-            </font>
-        </div>
-        <div class="col-md-4" align="center">
-            <font size="4">
-                <b>Date: </b>{{lecture.lectureDate}}
-            </font>
-        </div>
-        <div class="col-md-2"></div>
-    </div>
-    <hr style="border-color: #555555">
-    <div align="center">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6" align="center">
-                <h2>{{lecture.lectureName}}</h2>
+    <div align="center" style="position: relative;top: -60px;">
+        <div class="row" align="center">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+                    <h5>LECTURE {{lecture.lectureNumber}}</h5>
+                    <h2>{{lecture.lectureName}}</h2>
+                    <h5>Department: {{course.departmentName}}</h5>
+                    <p>Date: {{lecture.lectureDate}}</p>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <font size="4">
+                                {{lecture.lectureContent}}
+                            </font>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <br/>
+                </div>
             </div>
-            <div class="col-md-3" align="Left" style="padding-top: 30px">
-                <h6>{{lecture.lectureDate}}</h6>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <font size="4">
-                    {{lecture.lectureContent}}
-                </font>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
-        <div>
-            <hr style="border-color: #555555">
+            <div class="col-md-2"></div>
         </div>
     </div>
-    <div align="center">
+    <div align="center" style="position: relative;top: -60px;">
         <button class="btn btn-primary" type="button" ng-click="doneWithLecture(studentEmail,courseName)">Done with this lecture !</button>
     </div>
     <!-- Bootstrap core JavaScript

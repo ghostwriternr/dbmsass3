@@ -3,11 +3,13 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     console.log("Hello World from login studentController_new");
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
-        $window.open("/view_course.html" + "?email=" + email);
+        //$window.open("/view_course.html" + "?email=" + email);
+        $window.location.href="/view_course.html" + "?email=" + email;
     }
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
-        $window.open("/view_course.html" + "?email=" + email + "?course=" + courseName);
+        //$window.open("/view_course.html" + "?email=" + email + "?course=" + courseName);
+        $window.location.href="/view_course.html" + "?email=" + email + "?course=" + courseName;
     }
     $scope.init = function() {
         console.log("check if this works");
