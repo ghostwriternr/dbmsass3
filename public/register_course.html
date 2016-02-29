@@ -124,7 +124,8 @@
     <div class="row" style="padding-top: 15px;">
         <div class="col-md-2" align="center"></div>
         <div class="col-md-8" align="center">
-            <button class="btn btn-primary btn-block" ng-class="{'disabled': courseNotCompleted.length!=0}" type="button" style="font-size: 20px;" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
+            <button class="btn btn-primary btn-block" ng-show=" courseNotCompleted.length==0 " type="button" style="font-size: 20px;" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
+            <h5><span class="label label-danger" ng-hide = " courseNotCompleted.length == 0 " align="center">Prerequistes haven't been fulfilled. Cannot Register !</span></h5>
         </div>
         <div class="col-md-2" align="center"></div>
     </div>
@@ -133,7 +134,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+        window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
