@@ -71,10 +71,10 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
 
     $scope.setTypeOfContent = function(type) {
         $scope.content.type = type;
-        // for (index = 0; index < $scope.questionsCount; index++) {
-        //     $scope.choices.push({ 'id': '' });
-        // }
-        // console.log($scope.content.type);
+        console.log("Type: " + $scope.content.type)
+    }
+
+    $scope.setAnswerToQuestions = function() {
         $scope.choices=[];
         var push=function(){
             for (index = 0; index < $scope.questionsCount; index++) {
