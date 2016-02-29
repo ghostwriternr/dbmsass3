@@ -36,43 +36,6 @@
                     <li><a href="#" ng-click="goToProfile()"><b>Home</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="font-size: 15px;">
-                    <li id="notification_li">
-                        <span id="notification_count">{{notificationCount}}</span>
-                        <button class="btn btn-default btn-link" style="font-size:20px;padding-top: 15px;" id="notificationLink">
-                            <span class="glyphicon glyphicon-inbox"></span>
-                        </button>
-                        <div id="notificationContainer">
-                            <div id="notificationTitle">Notifications</div>
-                            <div id="notificationsBody" class="notifications">
-                                <div class="dropdown">
-                                    <ul class="dropdown-menu" style="display: block; position: static; width: 100%;">
-                                        <li class="dropdown-header">Lecture Notifications</li>
-                                        <div ng-repeat="lectureNoti in lectureNotifications" style="padding-left: 20px;">
-                                            <li><a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="goToLecture(lectureNoti)">{{lectureNoti.message}}</a></li>
-                                        </div>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Assignment Notifications</li>
-                                        <div ng-repeat="assignmentNoti in assignmentNotifications" style="padding-left: 20px;">
-                                            <li><a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="goToAssignment(assignmentNoti)">{{assignmentNoti.message}}</a></li>
-                                        </div>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Messages</li>
-                                        <div ng-repeat="messageNoti in messageNotifications" style="padding-left: 20px;">
-                                            <li>
-                                                <span><b>From </b>{{messageNoti.from}}</span>
-                                                <br>
-                                                <a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;">{{messageNoti.message}}</a>
-                                            </li>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div id="notificationFooter">
-                                <a href="#"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li><span class="btn-separator"></span></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><b>  Menu</b></a>
                         <ul class="dropdown-menu">
@@ -108,7 +71,7 @@
             <div class="row">
                 <div class="col-md-1" align="center"></div>
                 <div class="col-md-2" align="center">
-                    <img src="images/faculty.png">
+                    <img src="images/guardian.png">
                 </div>
                 <div class="col-md-8" align="center" style="padding-top: 20px">
                     <h1>{{faculty.name}}</h1>
