@@ -9,7 +9,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
         //$window.open("/view_course.html" + "?email=" + email + "?course=" + courseName);
-        if($scope.locationRes==3){
+        if($scope.locationRes.length==3){
             $window.location.href="/view_course.html" + "?email=" + email + "?course=" + courseName+"?type=student";
         }
         else{
