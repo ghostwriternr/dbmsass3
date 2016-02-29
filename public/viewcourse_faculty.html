@@ -106,7 +106,9 @@
                 <br>
             </font>
             <div ng-repeat="lecture in lectureCourse">
-                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToLecture(facultyEmail,courseName,lecture.lectureNumber)">{{lecture.lectureName+" "+lecture.lectureNumber}}</button>
+                <div style="padding-bottom: 3px">
+                    <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToLecture(facultyEmail,courseName,lecture.lectureNumber)">{{lecture.lectureName+" "+lecture.lectureNumber}}</button>
+                </div>
             </div>
         </div>
         <div class="col-md-5" align="center" style="padding-right: 10px;">
@@ -115,7 +117,9 @@
                 <br>
             </font>
             <div ng-repeat="assignment in assignmentCourse">
-                <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToAssignment(facultyEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentName+" "+assignment.assignmentNumber}}</button>
+                <div style="padding-bottom: 3px">
+                    <button class="btn btn-default btn-block" style="padding: 2%;" type="button" ng-click="goToAssignment(facultyEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentName+" "+assignment.assignmentNumber}}</button>
+                </div>
             </div>
         </div>
         <div class="col-md-1" align="left"></div>

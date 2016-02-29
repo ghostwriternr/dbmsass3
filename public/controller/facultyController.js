@@ -22,14 +22,14 @@ myApp.controller('facultyCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToCourse = function(email, courseName) {
         console.log("here->" + email + " " + courseName);
-        $window.open("/viewcourse_faculty.html" + "?email=" + email + "?course=" + courseName);
+        $window.location.href=("/viewcourse_faculty.html" + "?email=" + email + "?course=" + courseName+"?type=faculty");
     }
 
     $scope.addNewCourse = function(email) {
-        $window.open("/add_course.html" + "?email=" + email);
+        $window.location.href=("/add_course.html" + "?email=" + email+"?type=faculty");
     }
 
     $scope.goToProfile = function() {
-        $window.open("/profile.html" + "?email=" + $scope.facultyEmail);
+        $window.location.href=("/profile.html" + "?email=" + $scope.facultyEmail+"?type=faculty");
     }
 }])

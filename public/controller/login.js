@@ -25,7 +25,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
                     console.log("Authnetication success");
                     var url = "/faculty.html";
                     console.log("Authentication successful");
-                    $window.location.href = url + "?email=" + $scope.person.email;
+                    $window.location.href = url + "?email=" + $scope.person.email+"?type=faculty";
                     console.log("Authnetication successfull");
                 } else {
                     console.log("Authentication failed");

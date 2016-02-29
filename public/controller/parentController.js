@@ -21,7 +21,11 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
 
     $scope.viewProfile = function(child) {
         console.log(child);
-        $window.open('/student.html' + "?email=" + child.childEmail);
+        $window.location.href=('/student.html' + "?email=" + child.childEmail);
+    }
+
+    $scope.goToProfile = function() {
+            $window.open('/profile.html' + "?email=" + $scope.parent.email);
     }
 
     $scope.addChild = function(childEmailRequest) {
@@ -39,5 +43,9 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
             sendRequest();
         }
         fill();
+    }
+
+    $scope.goToProfile=function(){
+        //qwe
     }
 }])
