@@ -24,7 +24,7 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
         })
         $http.post('/courseInstructor/getDetails', { 'courseName': courseName }).success(function(response) {
             var reply = response;
-            console.log(response[0].facultyName + " " + response[1].facultyName);
+            //console.log(response[0].facultyName + " " + response[1].facultyName);
             $scope.courseInstructor = response;
         })
         $http.post('/course/getDetails', { 'name': courseName }).success(function(response) {
