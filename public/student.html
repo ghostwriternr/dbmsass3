@@ -215,9 +215,9 @@
                             <h5><b>Reply: </b></h5>
                             <br/>
                             <div class="form-group">
-                                <textarea class="form-control" rows="3">Type here</textarea>
+                                <textarea class="form-control" rows="3" ng-model="messageToSend">Type here</textarea>
                             </div>
-                            <button class="btn btn-success" type="button">Send!</button>
+                            <button class="btn btn-success" type="button" ng-click="sendMessage()">Send!</button>
                         </div>
                         <div class="col-md-1"></div>
                     </div>

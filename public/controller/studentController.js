@@ -133,4 +133,29 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         $('#notificationLink').trigger("click");
         $('#messageModal').modal('show');
     }
+
+    $scope.sendMessage=function(){
+        console.log("Click on sendMessage");
+        console.log($scope.messageToSend);
+        console.log($scope.messageNotifications[$scope.messageSender].fromEmail);
+        console.log($scope.studentEmail);
+        console.log($scope.studentName);
+        console.log($scope.messageNotifications[$scope.messageSender].courseName);
+        var notification={
+            'email':$scope.messageNotifications[$scope.messageSender].fromEmail,
+            'message':$scope.messageToSend,
+            'type':'message',
+            'from':$scope.studentName,
+            'fromEmail':$scope.studentEmail,
+            'number':'0',
+            'courseName':$scope.messageNotifications[$scope.messageSender].courseName
+        }
+        var display=function(){
+            console.log(notification);
+            $http.post('/notification/student',notification).success(function(response){
+                console.log(response[0]);
+            })
+        }
+        display();
+    }
 }]);
