@@ -7,6 +7,7 @@ myApp.controller('parentCtrl', ['$scope', '$http', '$window', '$log', '$location
         var res = $location.absUrl().split('?');
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
+        $scope.parentEmail=tempData[1];
         var output=userEmail;
         tempData=res[2].split('=');
         $scope.personType="parent";

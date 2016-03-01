@@ -128,6 +128,7 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
             var student = { 'email': $scope.personR.email };
             $http.post('/student/login', student).success(function(response) {
                 if (response == 0) {
+                    console.log('here');
                     student = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
                     $http.post('/student/register', student).success(function(reply) {
                         console.log(reply);
