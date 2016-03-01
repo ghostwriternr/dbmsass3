@@ -22,6 +22,8 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
         $http.post('/faculty/getDetails', query).success(function(response) {
             faculty = response[0];
             $scope.faculty = response[0];
+            $scope.facultyName=response[0].name;
+            $scope.facultyEmail=response[0].email;
             $scope.facultyPassword = response[0].password;
             console.log(response[0]);
         })
@@ -90,5 +92,30 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
         $scope.messageSender=index;
         $('#notificationLink').trigger("click");
         $('#messageModal').modal('show');
+    }
+
+    $scope.sendMessage=function(){
+        console.log("Click on sendMessage");
+        console.log($scope.messageToSend);
+        console.log($scope.messageNotifications[$scope.messageSender].fromEmail);
+        console.log($scope.facultyEmail);
+        console.log($scope.facultyName);
+        console.log($scope.messageNotifications[$scope.messageSender].courseName);
+        var notification={
+            'email':$scope.messageNotifications[$scope.messageSender].fromEmail,
+            'message':$scope.messageToSend,
+            'type':'message',
+            'from':$scope.facultyName,
+            'fromEmail':$scope.facultyEmail,
+            'number':'0',
+            'courseName':$scope.messageNotifications[$scope.messageSender].courseName
+        }
+        var display=function(){
+            console.log(notification);
+            $http.post('/notification/student',notification).success(function(response){
+                console.log(response[0]);
+            })
+        }
+        display();
     }
 }])
