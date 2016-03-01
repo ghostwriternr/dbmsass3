@@ -83,19 +83,22 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
                     console.log("herererer");
                     console.log("idar hun");
                     var dataset=[];
+                    $scope.value=0;
                     var fill=function(){
                         for(var index=0;index<response.length;index++){
                             dataset=dataset.concat(30*parseFloat(response[index].assignmentMarks)/parseFloat(response[index].assignmentQuestions));
+                            $scope.value=$scope.value+parseFloat(response[index].assignmentMarks)/parseFloat(response[index].assignmentQuestions);
                         }
-                        d3.select("#graph").selectAll("div")
-                            .data(dataset)
-                            .enter()
-                            .append("div")
-                            .attr("class", "bar")
-                            .style("height", function(d) {
-                                var barHeight = d * 5;
-                                return barHeight + "px";
-                            });
+                        // d3.select("#graph").selectAll("div")
+                        //     .data(dataset)
+                        //     .enter()
+                        //     .append("div")
+                        //     .attr("class", "bar")
+                        //     .style("height", function(d) {
+                        //         var barHeight = d * 5;
+                        //         return barHeight + "px";
+                        //     });
+                        $scope.value=10*$scope.value/parseFloat(response.length);
                     }
                     fill();
                 })
