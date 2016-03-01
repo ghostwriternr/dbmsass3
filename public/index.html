@@ -54,7 +54,6 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
     <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center">
@@ -82,6 +81,14 @@
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
                         <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="loginForm.$valid && studentLogin()" a href="#">Sign in</button>
+                        <div ng-show="registerForm.$valid==false">
+                            <br/>
+                            <p class="text-warning"><b>Do fill out all details</b></p>
+                            <br/>
+                        </div>
+                        <div ng-show="authSuccess==0">
+                            <p class="text-danger"><b>Authentication Failed!</b></p>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -101,9 +108,9 @@
                     <h4 class="modal-title" id="myModalLabel">Register</h4>
                 </div>
                 <div class="modal-body" ng-controller="personRegister">
-                    <form class="form-signin">
+                    <form name="registerForm" class="form-signin" novalidate>
                         <label class="sr-only">First Name</label>
-                        <input type="text" class="form-control" placeholder="First Name" ng-model="personR.fName" required></input>
+                        <input type="text" class="form-control" placeholder="First Name" ng-model="personR.fName" required autofocus></input>
                         <label class="sr-only">Last Name</label>
                         <input type="text" class="form-control" placeholder="Last Name" ng-model="personR.lName" required></input>
                         <label for="inputEmail" class="sr-only">Email address</label>
@@ -123,7 +130,11 @@
                             </ul>
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
-                        <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="registerPerson()">Register</button>
+                        <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="registerForm.$valid && registerPerson()">Register</button>
+                        <div ng-show="registerForm.$valid==false">
+                            <br/>
+                            <p class="text-warning"><b>Do fill out all details</b></p>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -137,7 +148,9 @@
 <script src="controller/login.js"></script>
 <script src="js/angular-route.js"></script>
 <script type="text/javascript">
-function role(x,y)
-	{document.getElementById(x).innerHTML=y;}
+function role(x, y) {
+    document.getElementById(x).innerHTML = y;
+}
 </script>
+
 </html>

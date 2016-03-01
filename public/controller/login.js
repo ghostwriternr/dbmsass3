@@ -4,16 +4,19 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
 
     $scope.studentLogin = function() {
         var type = $scope.person.type;
+        $scope.authSuccess=-1;
         if (type == 1) {
             var student = { 'email': $scope.person.email, 'password': $scope.person.password };
             console.log(student);
             $http.post('/student/login', student).success(function(response) {
                 if (response == 1) {
+                    $scope.authSuccess=1;
                     var url = "/student.html";
                     console.log("Authentication successful");
                     $window.location.href = url + "?email=" + $scope.person.email+"?type=student";
                     console.log("Authnetication successfull");
                 } else {
+                    $scope.authSuccess=0;
                     console.log("Authentication failed");
                 }
             })
@@ -22,12 +25,14 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
             console.log(faculty);
             $http.post('/faculty/login', faculty).success(function(response) {
                 if (response == 1) {
+                    $scope.authSuccess=1;
                     console.log("Authnetication success");
                     var url = "/faculty.html";
                     console.log("Authentication successful");
                     $window.location.href = url + "?email=" + $scope.person.email+"?type=faculty";
                     console.log("Authnetication successfull");
                 } else {
+                    $scope.authSuccess=0;
                     console.log("Authentication failed");
                 }
             })
@@ -36,11 +41,13 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
             console.log(parent);
             $http.post('/parent/login', parent).success(function(response) {
                 if (response == 1) {
+                    $scope.authSuccess=1;
                     var url = "/parent.html";
                     console.log("Authentication successful");
                     $window.location.href = url + "?email=" + $scope.person.email+"?type=parent";
                     console.log("Authnetication successfull");
                 } else {
+                    $scope.authSuccess=0;
                     console.log("Authentication failed");
                 }
             })
@@ -49,11 +56,13 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
             console.log(admin);
             $http.post('/admin/login', admin).success(function(response) {
                 if (response == 1) {
+                    $scope.authSuccess=1;
                     var url = "/administrator.html"+"?type=administrator";
                     console.log("Authentication successful");
                     $window.location.href = url;
                     console.log("Authnetication successfull");
                 } else {
+                    $scope.authSuccess=0;
                     console.log("Authentication failed");
                 }
             })
