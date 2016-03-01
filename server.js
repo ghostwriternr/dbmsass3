@@ -452,6 +452,15 @@ app.post('/calender/addEvent',function(req,res){
 	})
 })
 
+app.post('/parent/updateDetails/:email',function(req,res){
+	console.log('Got a POST request from /parent/getDetails');
+	console.log(req.params.email);
+	dbParent.parent.update({'email':req.params.email},{$set:req.body},function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	})
+})
+
 //To Add a new course->db.studentCourse.update({email:'abc@xyz'},{$push:{course:{courseId:"56cf294f3d25a2f651cd56a8",assignmentCompleted:'2',lecturesCompleted:'4'}}})
 
 //To get the list of all courses not registered by that guy->db.course.find({'name':{$nin:['Algorithms']}})
