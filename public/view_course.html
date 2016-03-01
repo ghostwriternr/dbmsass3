@@ -15,17 +15,18 @@
     <!-- Custom styles for this template -->
     <link href="css/navbar-fixed-top.css" rel="stylesheet">
     <link href="css/spage.css" rel="stylesheet">
+    <link href="css/viewcourse.css" rel="stylesheet">
 </head>
-
 <script type="text/javascript" src="js/d3.min.js"></script>
 <style type="text/css">
-  div.bar {
+div.bar {
     display: inline-block;
     width: 20px;
-    height: 75px; /* Gets overriden by D3-assigned height below */
+    height: 75px;
+    /* Gets overriden by D3-assigned height below */
     margin-right: 2px;
     background-color: teal;
-  }
+}
 </style>
 
 <body ng-controller="cStudentCtrl" ng-init="init()">
@@ -61,12 +62,7 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 35%;margin-bottom: 20px; background: #2390fd;
-    background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
-    background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
-    background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
-    background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-    background:         linear-gradient(to right, #2390fd, #54cfcb);">
+    <div class="wide" style=" height : 35%;margin-bottom: 20px; background: #ffa500; background: -webkit-linear-gradient(left, #ffa500, #ff0000); background: -moz-linear-gradient(left, #ffa500, #ff0000); background: -ms-linear-gradient(left, #ffa500, #ff0000); background: -o-linear-gradient(left, #ffa500, #ff0000); background: linear-gradient(to right, #ffa500, #ff0000);">
         <div class="row">
             <div class="col-xs-5 line" style="padding-top: 30px">
                 <hr>
@@ -118,7 +114,7 @@
                 <br>
             </font>
             <div ng-repeat="lecture in lectureCourse" style="padding-bottom: 5px">
-                <button class="btn btn-block" ng-class="$index<lecturesCompleted?'btn-success':'btn-default'" style="padding: 2%;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureNumber+". "+lecture.lectureName}}</button>
+                <button class="btn btn-block" ng-class="$index<lecturesCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureNumber+". "+lecture.lectureName}}</button>
             </div>
         </div>
         <div class="col-md-5" align="center" style="padding-right: 10px;">
@@ -127,7 +123,7 @@
                 <br>
             </font>
             <div ng-repeat="assignment in assignmentCourse" style="padding-bottom: 5px">
-                <button class="btn btn-block" ng-class="$index<assignmentCompleted?'btn-success':'btn-default'" style="padding: 2%;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentNumber+". "+assignment.assignmentName}}</button>
+                <button class="btn btn-block" ng-class="$index<assignmentCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentNumber+". "+assignment.assignmentName}}</button>
             </div>
         </div>
         <div class="col-md-1" align="left"></div>
@@ -171,7 +167,7 @@
     window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     </script>
     <script src="js/bootstrap.min.js"></script>
-    <div id="graph" align ="center"></div>
+    <div id="graph" align="center"></div>
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
