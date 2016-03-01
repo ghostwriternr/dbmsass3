@@ -10,7 +10,7 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
         var userEmail = tempData[1];
         $scope.userEmail=tempData[1];
         tempData = res[2].split('=');
-        var courseName = tempData[1];
+        var courseName = tempData[1].split('%20').join(' ');
         console.log(userEmail + " " + courseName);
         $scope.courseName = courseName;
         $http.post('/student/getDetails', { 'email': userEmail }).success(function(response) {
@@ -98,7 +98,12 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
                         //         var barHeight = d * 5;
                         //         return barHeight + "px";
                         //     });
-                        $scope.value=10*$scope.value/parseFloat(response.length);
+                        if(response.length!=0){
+                            $scope.value=10*$scope.value/parseFloat(response.length);
+                        }
+                        else{
+                            $scope.value=0;
+                        }
                     }
                     fill();
                 })

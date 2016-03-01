@@ -8,7 +8,7 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
         tempData = res[2].split('=');
-        var courseName = tempData[1];
+        var courseName = tempData[1].split('%20').join(' ');
         console.log(userEmail + " " + courseName);
         $scope.courseName = courseName;
         $scope.coursePrerequisites = [];
@@ -30,10 +30,10 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
         $http.post('/course/getDetails', { 'name': courseName }).success(function(response) {
             var reply = response[0];
             $scope.course = response[0];
-            $scope.courseStartDate = reply.startDate;
-            $scope.courseEndDate = reply.endDate;
-            $scope.courseDescription = reply.description;
-            $scope.courseDepartmentName = reply.departmentName;
+            $scope.courseStartDate = response[0].startDate;
+            $scope.courseEndDate = response[0].endDate;
+            $scope.courseDescription = response[0].description;
+            $scope.courseDepartmentName = response[0].departmentName;
             console.log(response[0]);
         })
         $http.post('/course/getPrerequisites', { 'courseName': courseName }).success(function(response) {
@@ -142,7 +142,7 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
                 calenderEnd.courseName=course;
                 calenderEnd.evenType="end";
                 calenderEnd.content="Course "+course+" is going to end";
-                calenderEnd.date=$scope.courseStartDate;
+                calenderEnd.date=$scope.courseEndDate;
                 calenderEnd.numberOFDays=parseInt(endDate[0])+parseInt(endDate[1])*30+parseInt(endDate[2])*365;
 
                 var add=function(){

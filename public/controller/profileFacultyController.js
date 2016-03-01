@@ -57,6 +57,7 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
             console.log($scope.facultyOldPassword + " " + $scope.facultyNewPassword + " " + $scope.facultyNewPasswordC);
             $http.post('/faculty/updateDetails/' + $scope.faculty.email, { 'password': $scope.facultyNewPassword }).success(function(response) {
                 console.log(response[0]);
+                $window.location.href=$location.absUrl();
             })
         } else {
             console.log('LOLXD');
@@ -66,6 +67,7 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
     $scope.setContact = function() {
         $http.post('/faculty/updateDetails/' + $scope.faculty.email, { 'contactInfo': $scope.facultyContactInfo }).success(function(response) {
             console.log(response[0]);
+            $window.location.href=$location.absUrl();
         })
     }
 

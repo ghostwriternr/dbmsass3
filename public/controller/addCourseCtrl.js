@@ -53,6 +53,7 @@ myApp.controller('addCourseCtrl', ['$scope', '$http', '$window', '$log', '$locat
                 console.log(course);
                 $http.post('/course/AddCourse', course).success(function(response) {
                     console.log(response[0]);
+                    //$window.location.href=$location.absUrl();
                 })
             }
             addCourse();

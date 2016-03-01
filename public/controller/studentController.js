@@ -79,7 +79,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
                                         var reply = response;
                                         coursesNotRegistered = reply;
                                         $scope.coursesNotRegistered = reply;
-                                        console.log("here->" + coursesNotRegistered[0].name);
+                                        //console.log("here->" + coursesNotRegistered[0].name);
                                     })
                                 }
                                 getNotReg(courseListName);

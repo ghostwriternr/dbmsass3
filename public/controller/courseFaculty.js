@@ -8,7 +8,7 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
         tempData = res[2].split('=');
-        var courseName = tempData[1];
+        var courseName = tempData[1].split('%20').join(' ');
         console.log(userEmail + " " + courseName);
         $scope.courseName = courseName;
         $scope.choices = [];
@@ -21,7 +21,7 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
         })
         $http.post('/courseInstructor/getDetails', { 'courseName': courseName }).success(function(response) {
             var reply = response;
-            console.log(reply[0].facultyName + " " + reply[1].facultyName);
+            //console.log(reply[0].facultyName + " " + reply[1].facultyName);
             $scope.courseInstructor = reply;
         })
         $http.post('/course/getDetails', { 'name': courseName }).success(function(response) {

@@ -50,6 +50,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
             console.log($scope.studentOldPassword + " " + $scope.studentNewPassword + " " + $scope.studentNewPasswordC);
             $http.post('/student/updateDetails/' + $scope.studentEmail, { 'password': $scope.studentNewPassword }).success(function(response) {
                 console.log(response[0]);
+                $window.location.href=$location.absUrl();
             })
         }
     }
@@ -57,6 +58,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     $scope.setContact = function() {
         $http.post('/student/updateDetails/' + $scope.studentEmail, { 'contactInfo': $scope.studentNewContact }).success(function(response) {
             console.log(response[0]);
+            $window.location.href=$location.absUrl();
         })
     }
 
