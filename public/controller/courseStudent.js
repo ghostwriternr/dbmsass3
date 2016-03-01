@@ -117,6 +117,10 @@ myApp.controller('cStudentCtrl', ['$scope', '$http', '$window', '$log', '$locati
         }
     }
 
+    $scope.isParent=function(){
+        return ( $location.absUrl().indexOf('?type=parent') >= 0 );
+    }
+
     $scope.emailFaculty = function() {
         if($scope.locationRes.length==4){
             var notification = {};

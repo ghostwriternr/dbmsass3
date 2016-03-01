@@ -184,6 +184,10 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         $('#messageModal').modal('show');
     }
 
+    $scope.isParent=function(){
+        return ( $location.absUrl().indexOf('?type=parent') >= 0 );
+    }
+
     $scope.sendMessage=function(){
         console.log("Click on sendMessage");
         console.log($scope.messageToSend);
