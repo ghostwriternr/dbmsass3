@@ -100,6 +100,7 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                 var lecture = {};
                 var lectureContent = {};
                 var addLecture = function() {
+                    var date=[];
                     lecture.courseName = $scope.courseName;
                     lecture.lectureName = content.title;
                     lecture.lectureNumber = $scope.course.lectures + "";
@@ -108,6 +109,7 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                     lectureContent.courseName = $scope.courseName;
                     lectureContent.lectureName = content.title;
                     lectureContent.lectureNumber = $scope.course.lectures + "";
+                    date=content.startDate.split('-');
                     var httprequest = function(lecture) {
                         console.log(lecture);
                         $http.post('/lecture/addLecture', lecture).success(function(response) {
@@ -126,8 +128,19 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                                 notification.fromEmail = $scope.facultyEmail;
                                 notification.number = lectureContent.lectureNumber;
                                 notification.courseName = lectureContent.courseName;
+                                var calender={};
+                                calender.email=$scope.studentsEnrolled[index].email;
+                                calender.type="lecture";
+                                calender.courseName=lectureContent.courseName;
+                                calender.evenType="start";
+                                calender.content="Lecture Number "+lectureContent.lectureNumber+" "+"for course "+$scope.courseName;
+                                calender.date=lecture.lectureDate;
+                                calender.numberOFDays=parseInt(date[0])+parseInt(date[1])*30+parseInt(date[2])*365;
                                 var send = function() {
                                     $http.post('/notification/student', notification).success(function(response) {
+                                        console.log(response[0]);
+                                    })
+                                    $http.post('/calender/addEvent',calender).success(function(response){
                                         console.log(response[0]);
                                     })
                                 }
@@ -175,6 +188,8 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                 var assignmentContent = {};
                 var assignmentAnswer = {};
                 var addLecture = function() {
+                    var startDate=[];
+                    var endDate=[];
                     assignment.courseName = $scope.courseName;
                     assignment.assignmentName = content.title;
                     assignment.assignmentNumber = $scope.course.assignment + "";
@@ -187,6 +202,8 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                     assignmentContent.assignmentNumber = $scope.course.assignment + "";
                     assignmentAnswer.courseName = $scope.courseName;
                     assignmentAnswer.assignmentNumber = $scope.course.assignment + "";
+                    startDate=content.startDate.split('-');
+                    endDate=content.endDate.split('-');
                     assignmentAnswer.answer = [];
                     var FillArray = function() {
                         for (var index = 0; index < $scope.questionsCount; index++) {
@@ -208,6 +225,8 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                             var sendAll = function() {
                                 for (var index = 0; index < $scope.studentsEnrolled.length; index++) {
                                     var notification = {};
+                                    var calenderStart={};
+                                    var calenderEnd={};
                                     notification.email = $scope.studentsEnrolled[index].email;
                                     notification.message = "Assignment number " + assignmentContent.assignmentNumber + " " + "for course " + $scope.courseName;
                                     notification.type = "assignment";
@@ -215,8 +234,33 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                                     notification.fromEmail = $scope.facultyEmail;
                                     notification.number = assignmentContent.assignmentNumber;
                                     notification.courseName = assignmentContent.courseName;
+
+                                    calenderStart.email=$scope.studentsEnrolled[index].email;
+                                    calenderStart.type="assignment";
+                                    calenderStart.courseName=assignmentContent.courseName;
+                                    calenderStart.evenType="start";
+                                    calenderStart.content="Assignment Number "+assignmentContent.assignmentNumber+" "+"for course "+$scope.courseName+" added";
+                                    calenderStart.date=content.startDate;
+                                    calenderStart.numberOFDays=parseInt(startDate[0])+parseInt(startDate[1])*30+parseInt(startDate[2])*365;
+
+                                    calenderEnd.email=$scope.studentsEnrolled[index].email;
+                                    calenderEnd.type="assignment";
+                                    calenderEnd.courseName=assignmentContent.courseName;
+                                    calenderEnd.evenType="end";
+                                    calenderEnd.content="Assignment Number "+assignmentContent.assignmentNumber+" "+"for course "+$scope.courseName+" is ending today";
+                                    calenderEnd.date=content.endDate;
+                                    calenderEnd.numberOFDays=parseInt(endDate[0])+parseInt(endDate[1])*30+parseInt(endDate[2])*365;
+
                                     var send = function() {
+                                        console.log(calenderEnd);
+                                        console.log(calenderStart);
                                         $http.post('/notification/student', notification).success(function(response) {
+                                            console.log(response[0]);
+                                        })
+                                        $http.post('/calender/addEvent',calenderStart).success(function(response){
+                                            console.log(response[0]);
+                                        })
+                                        $http.post('/calender/addEvent',calenderEnd).success(function(response){
                                             console.log(response[0]);
                                         })
                                     }

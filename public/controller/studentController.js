@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngRoute']);
-myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$location', function($scope, $http, $window, $log, $location) {
+myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$location','$filter', function($scope, $http, $window, $log, $location,$filter) {
     console.log("Hello World from login studentController_new");
     // $scope.goToCourse = function(email, courseName) {
     //     console.log($scope.studentName);
@@ -39,6 +39,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         //Filling in the content of course
         var courseStudent = [];
         var courseListName = [];
+        var calender=[];
         var coursesNotRegistered = [];
         $scope.lectureNotifications = [];
         $scope.assignmentNotifications = [];
@@ -121,6 +122,27 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         else{
             $scope.notificationCount=0;
         }
+
+        var dateCurrent=function(){
+            var date=$filter('date')(new Date(),'dd-MM-yyyy');
+            var display=function(){
+                console.log(date);
+                var dateSplit=date.split('-');
+                var getVal=function(){
+                    var dateVal=parseInt(dateSplit[0])+parseInt(dateSplit[1])*30+parseInt(dateSplit[2])*365;
+                    var getContent=function(){
+                        $http.post('/calender/getDetails',{'email':$scope.studentEmail,'numberOFDays':{$gt:dateVal}}).success(function(response){
+                            console.log(response);
+                            $scope.calender=response;
+                        })
+                    }
+                    getContent();
+                }
+                getVal();
+            }
+            display();
+        }
+        dateCurrent();
     }
 
     $scope.goToRegistration = function(email, name) {

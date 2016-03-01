@@ -20,6 +20,7 @@ var dbNotification=mongojs('notification',['notification']);
 var dbParentChild=mongojs('parentChild',['parentChild']);
 var dbParentChildRequest=mongojs('parentChildRequest',['parentChildRequest']);
 var dbAssignmentMarks=mongojs('assignmentMarks',['assignmentMarks']);
+var dbCalender=mongojs('calender',['calender']);
 var app=express();
 
 app.use(express.static(__dirname+"/public"));
@@ -429,6 +430,23 @@ app.post('/assignmentMarks/getDetails',function(req,res){
 	console.log("here");
 	console.log(req.body);
 	dbAssignmentMarks.assignmentMarks.find(req.body,function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	})
+})
+
+app.post('/calender/getDetails/',function(req,res){
+	console.log('Got a POST request from /calender/getDetails');
+	console.log(req.body);
+	dbCalender.calender.find(req.body,function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	})
+})
+
+app.post('/calender/addEvent',function(req,res){
+	console.log('Got a POST request from /calender/addEvent');
+	dbCalender.calender.insert(req.body,function(err,docs){
 		console.log(docs);
 		res.json(docs);
 	})

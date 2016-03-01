@@ -143,21 +143,23 @@ div.bar {
             <div id="calendar" class="collapse">
                 <div class="jumbotron" style="padding: 0!important;">
                     <div id="accordion">
-                        <div class="panel panel-default list-group">
+                        <div class="panel panel-default list-group" ng-repeat="calenderEvent in calender">
+                            <div ng-repeat="event in calender">
                             <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#courseCal" style="background-color: #F3A746;margin: 10px;">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div>
-                                            <font color="white" size="5px"><b>19</b> Jan, <b>2016</b></font>
+                                            <font color="white" size="5px">{{event.date}}</b></font>
                                         </div>
                                     </div>
                                     <div class="col-md-9">
                                         <div style="text-align: left;color: white;font-size: 25px;">
-                                            <td>The end is near.</td>
+                                            <td>{{event.content}}</td>
                                         </div>
                                     </div>
                                 </div>
                             </a>
+                            </div>
                             <div id="courseCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
                                 <img src="images/spring.png">
                             </div>

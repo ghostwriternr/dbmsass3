@@ -122,5 +122,41 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
         } else {
             console.log("LOLXD");
         }
+
+        var addingCourse=function(){
+            var calenderStart={};
+            var calenderEnd={};
+            var startDate=$scope.courseStartDate.split('-');
+            var endDate=$scope.courseEndDate.split('-');
+            var addToCalender=function(){
+                calenderStart.email=email;
+                calenderStart.type="course";
+                calenderStart.courseName=course;
+                calenderStart.evenType="start";
+                calenderStart.content="Course "+course+" is going to start";
+                calenderStart.date=$scope.courseStartDate;
+                calenderStart.numberOFDays=parseInt(startDate[0])+parseInt(startDate[1])*30+parseInt(startDate[2])*365;
+
+                calenderEnd.email=email;
+                calenderEnd.type="course";
+                calenderEnd.courseName=course;
+                calenderEnd.evenType="end";
+                calenderEnd.content="Course "+course+" is going to end";
+                calenderEnd.date=$scope.courseStartDate;
+                calenderEnd.numberOFDays=parseInt(endDate[0])+parseInt(endDate[1])*30+parseInt(endDate[2])*365;
+
+                var add=function(){
+                    $http.post('/calender/addEvent',calenderStart).success(function(response){
+                        console.log(response[0]);
+                    })
+                    $http.post('/calender/addEvent',calenderEnd).success(function(response){
+                        console.log(response[0]);
+                    })
+                }
+                add();
+            }
+            addToCalender();
+        }
+        addingCourse();
     }
 }])
