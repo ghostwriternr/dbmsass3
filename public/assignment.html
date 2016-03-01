@@ -97,7 +97,7 @@
                         <div class="col-md-1"></div>
                     </div>
                     <br/>
-                    <div class="row">
+                    <div class="row" ng-hide=" !isStudent()">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="form-group" ng-controller="assignmentCtrl">
@@ -116,7 +116,7 @@
                         </div>
                         <div class="col-md-1"></div>
                     </div>
-                    <div class="row" align="center">
+                    <div class="row" align="center" ng-hide=" !isStudent()">
                         <div class="col-md-3"></div>
                         <div class="col-md-6" align="center">
                             <button class="addfields btn btn-default btn-block" ng-click="evaluate();showme=true" align="center">Evaluate</button>
@@ -131,7 +131,7 @@
         </div>
     </div>
     <div align="center" style="position: relative;top: -75px;">
-        <button class="btn btn-primary" type="button" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
+        <button class="btn btn-primary" type="button" ng-hide=" !isStudent()" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

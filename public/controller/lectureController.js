@@ -67,6 +67,10 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         }
     }
 
+    $scope.isStudent = function() {
+    return ($scope.personType=='student');
+    }
+
     $scope.goToProfile=function(){
         console.log('hiii');
         if($scope.personType=='student'){
