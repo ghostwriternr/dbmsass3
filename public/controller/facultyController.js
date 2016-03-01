@@ -24,7 +24,7 @@ myApp.controller('facultyCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToCourse = function(email, courseName) {
         console.log("here->" + email + " " + courseName);
-        $window.location.href=("/viewcourse_faculty.html" + "?email=" + email + "?course=" + courseName+"?type=faculty");
+        $window.location.href=("/viewcourse_facultl" + "?email=" + email + "?course=" + courseName+"?type=faculty");
     }
 
     $scope.addNewCourse = function(email) {
@@ -33,6 +33,10 @@ myApp.controller('facultyCtrl', ['$scope', '$http', '$window', '$log', '$locatio
 
     $scope.goToProfile = function() {
         $window.location.href=("/profile.html" + "?email=" + $scope.facultyEmail+"?type=faculty");
+    }
+
+    $scope.goToHome = function() {
+        $window.location.href = $location.absUrl();
     }
 
     $scope.logout=function(){

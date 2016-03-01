@@ -61,6 +61,25 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
         })
     }
 
+    $scope.goToHome=function(){
+    var res = $location.absUrl().split('?');
+    var tempData = res[3].split('=');
+    var personType = tempData[1];    
+    console.log(personType);
+    if(personType == 'faculty'){
+        $window.location.href="/faculty.html"+"?email="+$scope.facultyEmail+"?type=faculty";
+        console.log("/faculty.html"+"?email="+$scope.facultyEmail+"?type=faculty");
+    }
+    }
+
+    $scope.goToProfile = function() {
+    $window.location.href=("/profile.html" + "?email=" + $scope.facultyEmail+"?type=faculty");
+    }
+
+    $scope.logOut = function() {
+    $window.location.href=("/index.html");
+    }
+
     $scope.goToLecture = function(email, course, lectureNum) {
         $window.location.href=('/lecture.html' + "?email=" + email + "?course=" + course + "?lectNum=" + lectureNum+"?type=faculty");
     }

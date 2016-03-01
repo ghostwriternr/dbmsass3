@@ -32,16 +32,16 @@
             <a class="navbar-brand" href="#"><b>Studious</b> | Study + Discover</a>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="font-size: 15px;">
-                    <li><a href="#"><b>Home</b></a></li>
+                    <li><a href="#" ng-click="goToHome()"><b>Home</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="font-size: 15px;">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><b>  Menu</b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="#" ng-click="goToProfile()" >Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <!--<li class="dropdown-header">Nav header</li>-->
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="#" ng-click="logOut()" >Logout</a></li>
                         </ul>
                     </li>
                 </ul>

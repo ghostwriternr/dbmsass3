@@ -48,6 +48,10 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
         })
     }
 
+    $scope.isStudent = function() {
+    return ($scope.personType=='student');
+    }
+
     $scope.evaluate = function() {
         if($scope.personType=='student'){
             var answers = [];
