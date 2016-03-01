@@ -127,7 +127,7 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
         if (type == 1) {
             var student = { 'email': $scope.personR.email };
             $http.post('/student/login', student).success(function(response) {
-                if (response == 0) {
+                if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
                     console.log('here');
                     student = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
                     $http.post('/student/register', student).success(function(reply) {
@@ -141,19 +141,43 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
                 }
             })
         } else if (type == 2) {
-            var faculty = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
-            $http.post('/faculty/register', faculty).success(function(response) {
-                console.log(response);
+            var faculty = { 'email': $scope.personR.email };
+            $http.post('/faculty/login', faculty).success(function(response) {
+                if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
+                    console.log('here');
+                    faculty = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
+                    $http.post('/faculty/register', faculty).success(function(response) {
+                        console.log(response);
+                    })
+                } else if (response >= 1) {
+                    console.log('A person with that email-id already exists');
+                }
             })
         } else if (type == 3) {
-            var parent = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
-            $http.post('parent/register', parent).success(function(response) {
-                console.log(response);
+            var parent = { 'email': $scope.personR.email };
+            $http.post('/parent/login', parent).success(function(response) {
+                if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
+                    console.log('here');
+                    parent = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
+                    $http.post('/parent/register', faculty).success(function(response) {
+                        console.log(response);
+                    })
+                } else if (response >= 1) {
+                    console.log('A person with that email-id already exists');
+                }
             })
         } else if (type == 4) {
-            var admin = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
-            $http.post('admin/register', admin).success(function(response) {
-                console.log(response);
+            var admin = { 'email': $scope.personR.email };
+            $http.post('/admin/login', admin).success(function(response) {
+                if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
+                    console.log('here');
+                    admin = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
+                    $http.post('/admin/register', faculty).success(function(response) {
+                        console.log(response);
+                    })
+                } else if (response >= 1) {
+                    console.log('A person with that email-id already exists');
+                }
             })
         }
     }
