@@ -81,13 +81,17 @@
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
                         <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="loginForm.$valid && studentLogin()" a href="#">Sign in</button>
-                        <div ng-show="registerForm.$valid==false">
+                        <div ng-show="loginForm.$valid==false">
                             <br/>
                             <p class="text-warning"><b>Do fill out all details</b></p>
                         </div>
                         <div ng-show="authSuccess==0">
                             <br/>
                             <p class="text-danger"><b>Authentication Failed!</b></p>
+                        </div>
+                        <div ng-show="authSuccess==1">
+                            <br/>
+                            <p class="text-success"><b>Registration successful!</b></p>
                         </div>
                     </form>
                 </div>

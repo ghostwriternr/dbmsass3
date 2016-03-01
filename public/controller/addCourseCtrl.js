@@ -16,14 +16,31 @@ myApp.controller('addCourseCtrl', ['$scope', '$http', '$window', '$log', '$locat
     $scope.coursePreList = [];
     $scope.facultyCourseList = [];
     $scope.y = '';
+
     $scope.setPreReq = function(courseName, $index, x) {
-        console.log(courseName);
-        $scope.coursePreList.push({ 'name': courseName });
+        var prflag = -1;
+        for (var i=0;i<$scope.coursePreList.length;i++) {
+            if ($scope.coursePreList[i].name == courseName)
+                prflag = i;
+        }
+        if (prflag == -1)
+            $scope.coursePreList.push({ 'name': courseName });
+        else
+            $scope.coursePreList.splice(prflag,1);
+        console.log($scope.coursePreList);
     };
 
     $scope.setFaculty = function(facultyEmail, facultyName, $index, x) {
-        console.log(facultyEmail);
-        $scope.facultyCourseList.push({ 'email': facultyEmail, 'name': facultyName });
+        var facflag = -1;
+        for (i=0;i<$scope.facultyCourseList.length;i++) {
+            if ($scope.facultyCourseList[i].email == facultyEmail)
+                facflag = i;
+        }
+        if (facflag == -1)
+            $scope.facultyCourseList.push({ 'email': facultyEmail, 'name': facultyName });
+        else
+            $scope.facultyCourseList.splice(facflag,1);
+        console.log($scope.facultyCourseList);
     };
 
     $scope.addCourse = function() {
