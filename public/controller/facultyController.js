@@ -42,4 +42,12 @@ myApp.controller('facultyCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     $scope.logout=function(){
         $window.location.href=("/index.html");
     }
+
+    $scope.replyMessage = function(index) {
+        var messageSender;
+        console.log("index = " + index);
+        $scope.messageSender=index;
+        $('#notificationLink').trigger("click");
+        $('#messageModal').modal('show');
+    }
 }])

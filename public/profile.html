@@ -57,11 +57,11 @@
                                         </div>
                                         <li class="divider"></li>
                                         <li class="dropdown-header">Messages</li>
-                                        <div ng-repeat="messageNoti in messageNotifications" style="padding-left: 20px;">
+                                        <div ng-repeat="messageNoti in messageNotifications track by $index" style="padding-left: 20px;">
                                             <li>
                                                 <span><b>From </b>{{messageNoti.from}}</span>
                                                 <br>
-                                                <a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;">{{messageNoti.message}}</a>
+                                                <a href="#" style="text-decoration: none !important;color: black;padding-left: 10px;" ng-click="replyMessage($index)">{{messageNoti.message}}</a>
                                             </li>
                                         </div>
                                     </ul>
@@ -179,6 +179,37 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 class="modal-title" id="myModalLabel" align="center">Reply</h3>
+                </div>
+                <div ng-controller="profileFacultyCtrl">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <h5><b>From: </b>{{messageNotifications[messageSender].from}}</h5>
+                            <h5><b>Message: </b>{{messageNotifications[messageSender].message}}</h5>
+                            <h5><b>Reply: </b></h5>
+                            <br/>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" ng-model="messageToSend">Type here</textarea>
+                            </div>
+                            <button class="btn btn-success" type="button" ng-click="sendMessage()">Send!</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
     $("#notificationLink").click(function() {
