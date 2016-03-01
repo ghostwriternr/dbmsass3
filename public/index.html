@@ -84,9 +84,9 @@
                         <div ng-show="registerForm.$valid==false">
                             <br/>
                             <p class="text-warning"><b>Do fill out all details</b></p>
-                            <br/>
                         </div>
                         <div ng-show="authSuccess==0">
+                            <br/>
                             <p class="text-danger"><b>Authentication Failed!</b></p>
                         </div>
                     </form>
@@ -134,6 +134,10 @@
                         <div ng-show="registerForm.$valid==false">
                             <br/>
                             <p class="text-warning"><b>Do fill out all details</b></p>
+                        </div>
+                        <div ng-show="authSuccess==0">
+                            <br/>
+                            <p class="text-danger"><b>Such account with the same email id already exists!</b></p>
                         </div>
                     </form>
                 </div>
