@@ -91,7 +91,7 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <font size="4">
-                                {{assignment.assignmentContent}}
+                                <pre>{{assignment.assignmentContent}}</pre>
                             </font>
                         </div>
                         <div class="col-md-1"></div>
@@ -131,7 +131,7 @@
         </div>
     </div>
     <div align="center" style="position: relative;top: -1%;" >
-        <button class="btn btn-primary" type="button" ng-hide=" !isStudent()" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
+        <button class="btn btn-primary" type="button" ng-hide=" !isStudent() || isDoneWithAssignment()" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

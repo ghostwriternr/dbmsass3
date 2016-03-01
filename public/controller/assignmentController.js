@@ -9,8 +9,8 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
         var userEmail = tempData[1];
         $scope.studentEmail = tempData[1];
         tempData = res[2].split('=');
-        var courseName = tempData[1];
-        $scope.courseName = tempData[1];
+        var courseName = tempData[1].split('%20').join(' ');
+        $scope.courseName = tempData[1].split('%20').join(' ');
         tempData = res[3].split('=');
         var assignmentNumber = tempData[1];
         $scope.currentAssignmentNumber=tempData[1];
@@ -46,10 +46,12 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
             }
             createListAnswer($scope.assignment);
         })
+
     }
 
     $scope.isStudent = function() {
-    return ($scope.personType=='student');
+        //console.log('hererer');
+        return ($scope.personType=='student');
     }
 
     $scope.evaluate = function() {
