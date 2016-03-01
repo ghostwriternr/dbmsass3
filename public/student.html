@@ -143,59 +143,66 @@ div.bar {
             <div id="calendar" class="collapse">
                 <div class="jumbotron" style="padding: 0!important;">
                     <div id="accordion">
-                        <div class="panel panel-default list-group" ng-repeat="calenderEvent in calender">
-                            <div ng-repeat="event in calender">
-                            <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#courseCal" style="background-color: #F3A746;margin: 10px;">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div>
-                                            <font color="white" size="5px">{{event.date}}</b></font>
+                        <div class="panel panel-default list-group">
+                            <div ng-repeat="event in calender" ng-if="event.type=='course'">
+                                <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#courseCal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url(images/spring.png);margin: 10px;background-size: cover;">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div>
+                                                <font color="white" size="5px"><b>{{event.date}}</b></font>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div style="text-align: left;color: white;font-size: 25px;">
+                                                <i class="glyphicon glyphicon-education"></i><td> {{event.content}}</td>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-9">
-                                        <div style="text-align: left;color: white;font-size: 25px;">
-                                            <td>{{event.content}}</td>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                                <!--
+                                <div id="courseCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
+                                    <img src="images/spring.png">
+                                </div>-->
                             </div>
-                            <div id="courseCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
-                                <img src="images/spring.png">
+                            <div ng-repeat="event in calender" ng-if="event.type=='lecture'">
+                                <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#lecCal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url(images/summer.png);margin: 10px;background-size: cover;">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div>
+                                                <font color="white" size="5px"><b>{{event.date}}</b></font>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div style="text-align: left;color: white;font-size: 25px;">
+                                                <i class="glyphicon glyphicon-book"></i><td> {{event.content}}</td>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!--
+                                <div id="lecCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
+                                    <img src="images/summer.png">
+                                </div>-->
                             </div>
-                            <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#lecCal" style="background-color: #46E4FB;margin: 10px;">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div>
-                                            <font color="white" size="5px"><b>20</b> Jan, <b>2016</b></font>
+                            <div ng-repeat="event in calender" ng-if="event.type=='course'">
+                                <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#assignCal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url(images/autumn.png);margin: 10px;background-size: cover;">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div>
+                                                <font color="white" size="5px"><b>{{event.date}}</b></font>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div style="text-align: left;color: white;font-size: 25px;">
+                                                <i class="glyphicon glyphicon-duplicate"></i><td> {{event.content}}</td>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-9">
-                                        <div style="text-align: left;color: white;font-size: 25px;">
-                                            <td>Seriously, you are screwed.</td>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div id="lecCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
-                                <img src="images/summer.png">
-                            </div>
-                            <a href="#" class="list-group-item" data-toggle="collapse" data-parent="#accordion" data-target="#assignCal" style="background-color: #5BB58E;margin: 10px;">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div>
-                                            <font color="white" size="5px"><b>20</b> Jan, <b>2016</b></font>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div style="text-align: left;color: white;font-size: 25px;">
-                                            <td>Lulz.</td>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div id="assignCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
-                                <img src="images/autumn.png">
+                                </a>
+                                <!--
+                                <div id="assignCal" class="jumbotron collapse" style="padding: 0!important;background-color: #F5F6FA;">
+                                    <img src="images/autumn.png">
+                                </div>-->
                             </div>
                         </div>
                     </div>
