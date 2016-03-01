@@ -10,8 +10,8 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         var userEmail = tempData[1];
         $scope.studentEmail = tempData[1];
         tempData = res[2].split('=');
-        var courseName = tempData[1];
-        $scope.courseName = tempData[1];
+        var courseName = tempData[1].split('%20').join(' ');
+        $scope.courseName = tempData[1].split('%20').join(' ');
         tempData = res[3].split('=');
         var lectureNumber = tempData[1];
         $scope.lectureCurrentNumber=tempData[1];
