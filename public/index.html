@@ -53,47 +53,47 @@
                     <div class="container">
                         <div class="row">
                             <!-- Card Projects -->
-                            <div class="col-md-3 col-xs-4 col-xs-offset-2 col-md-offset-0">
+                            <div class="col-md-3 col-xs-5 col-xs-offset-1 col-md-offset-0">
                                 <div class="card">
                                     <div class="card-image">
                                         <img class="img-responsive" src="images/panig.jpg">
-                                        <span class="card-title">Sandeep Pani</span>
+                                        <span class="card-title">Sandeep</span>
                                     </div>
                                     <div class="card-content">
                                         <p>13CS30027</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-xs-4 col-xs-offset-0 col-md-offset-0">
+                            <div class="col-md-3 col-xs-5 col-xs-offset-0 col-md-offset-0">
                                 <div class="card">
                                     <div class="card-image">
                                         <img class="img-responsive" src="images/nareshg.jpg">
-                                        <span class="card-title">Naresh R</span>
+                                        <span class="card-title">Naresh</span>
                                     </div>
                                     <div class="card-content">
                                         <p>13CS30024</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-xs-4 col-xs-offset-2 col-md-offset-0">
+                            <div class="col-md-3 col-xs-5 col-xs-offset-1 col-md-offset-0">
                                 <div class="card">
                                     <div class="card-image">
                                         <img id="im1" class="img-responsive" src="images/vikasg.jpg">
-                                        <span class="card-title">Vikas Choudhary</span>
+                                        <span class="card-title">Vikas</span>
                                     </div>
                                     <div class="card-content">
                                         <p>13CS30038</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-xs-4 col-xs-offset-0 col-md-offset-0">
+                            <div class="col-md-3 col-xs-5 col-xs-offset-0 col-md-offset-0">
                                 <div class="card">
                                     <div class="card-image">
                                         <img class="img-responsive" src="images/anmolg.jpg">
-                                        <span class="card-title">Anmol Gulati</span>
+                                        <span class="card-title">Anmol</span>
                                     </div>
                                     <div class="card-content">
-                                        <p>13CS30027</p>
+                                        <p>12MA20006</p>
                                     </div>
                                 </div>
                             </div>
@@ -152,10 +152,6 @@
                             <br/>
                             <p class="text-danger"><b>Authentication Failed!</b></p>
                         </div>
-                        <div ng-show="authSuccess==1">
-                            <br/>
-                            <p class="text-success"><b>Registration successful!</b></p>
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -202,9 +198,13 @@
                             <br/>
                             <p class="text-warning"><b>Do fill out all details</b></p>
                         </div>
-                        <div ng-show="authSuccess==0">
+                        <div ng-show="regSuccess==0">
                             <br/>
                             <p class="text-danger"><b>Such account with the same email id already exists!</b></p>
+                        </div>
+                        <div ng-show="regSuccess==1">
+                            <br/>
+                            <p class="text-success"><b>Registration successful!</b></p>
                         </div>
                     </form>
                 </div>

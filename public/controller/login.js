@@ -123,14 +123,14 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
     $scope.registerPerson = function(type) {
         console.log($scope.personR);
         console.log('hereh');
-        $scope.authSuccess=-1;
+        $scope.regSuccess=-1;
         var type = $scope.personR.type;
         if (type == 1) {
             var student = { 'email': $scope.personR.email };
             $http.post('/student/login', student).success(function(response) {
                 if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
                     console.log('here');
-                    $scope.authSuccess=1;
+                    $scope.regSuccess=1;
                     student = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
                     $http.post('/student/register', student).success(function(reply) {
                         console.log(reply);
@@ -139,7 +139,7 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
                         console.log(response);
                     })
                 } else if (response >= 1) {
-                    $scope.authSuccess=0;
+                    $scope.regSuccess=0;
                     console.log('A person with that email-id already exists');
                 }
             })
@@ -148,13 +148,13 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
             $http.post('/faculty/login', faculty).success(function(response) {
                 if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
                     console.log('here');
-                    $scope.authSuccess=1;
+                    $scope.regSuccess=1;
                     faculty = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
                     $http.post('/faculty/register', faculty).success(function(response) {
                         console.log(response);
                     })
                 } else if (response >= 1) {
-                    $scope.authSuccess=0;
+                    $scope.regSuccess=0;
                     console.log('A person with that email-id already exists');
                 }
             })
@@ -163,13 +163,13 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
             $http.post('/parent/login', parent).success(function(response) {
                 if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
                     console.log('here');
-                    $scope.authSuccess=1;
+                    $scope.regSuccess=1;
                     parent = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
                     $http.post('/parent/register', faculty).success(function(response) {
                         console.log(response);
                     })
                 } else if (response >= 1) {
-                    $scope.authSuccess=0;
+                    $scope.regSuccess=0;
                     console.log('A person with that email-id already exists');
                 }
             })
@@ -178,13 +178,13 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
             $http.post('/admin/login', admin).success(function(response) {
                 if (response == 0 && $scope.personR.pass==$scope.personR.repass) {
                     console.log('here');
-                    $scope.authSuccess=1;
+                    $scope.regSuccess=1;
                     admin = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
                     $http.post('/admin/register', faculty).success(function(response) {
                         console.log(response);
                     })
                 } else if (response >= 1) {
-                    $scope.authSuccess=0;
+                    $scope.regSuccess=0;
                     console.log('A person with that email-id already exists');
                 }
             })
