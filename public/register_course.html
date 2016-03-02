@@ -47,34 +47,33 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 35%;margin-bottom: 20px;
+    <div class="wide" style=" height : 35vh;margin-bottom: 20px;
     background: #2390fd;
-	background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
-	background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
-	background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
-	background:      -o-linear-gradient(left, #2390fd, #54cfcb);
-	background:         linear-gradient(to right, #2390fd, #54cfcb);">
+    background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
+    background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
+    background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
+    background:      -o-linear-gradient(left, #2390fd, #54cfcb);
+    background:         linear-gradient(to right, #2390fd, #54cfcb);">
         <div class="row">
-            <div class="col-xs-5 line" style="padding-top: 25px">
+            <div class="col-md-4 col-xs-2 line" style="padding-top: 25px">
                 <hr>
             </div>
-            <div class="col-xs-2 logo">
-                <font color="white" size="5">{{courseName}}</font>
+            <div class="col-md-4 col-xs-8 logo">
+                <font color="white" size="5vw">{{courseName}}</font>
             </div>
-            <div class="col-xs-5 line" style="padding-top: 25px">
+            <div class="col-md-4 col-xs-2 line" style="padding-top: 25px">
                 <hr>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-3" align="center"></div>
-            <div class="col-xs-6" align="center">
-                <h3 style="color: white">{{courseDescription}}</h3>
+        <div class="row" align="center" style="padding-top: -25px;">
+            <div class="col-md-2 col-xs-1" align="center"></div>
+            <div class="col-md-8 col-xs-10" align="center">
+                <h3 style="color: white;font-size: 4vh;">{{courseDescription}}</h3>
             </div>
-            <div class="col-xs-3" align="center"></div>
+            <div class="col-md-2 col-xs-1" align="center"></div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" align="center">
         <div class="col-md-2"></div>
         <div class="col-md-4" align="center">
             <font size="4">
@@ -85,37 +84,46 @@
             </font>
         </div>
         <div class="col-md-4" align="center">
-            <font size="4">
-                {{department}}
-                <br>
-            </font>
-            <font size="4">
-                <b>Start Date: </b>{{courseStartDate}}
-            </font>
-            <font size="4">
-                <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date: </b>{{courseEndDate}}
-                <br>
-            </font>
+            <div class="row">
+                <div class="col-xs-4">
+                    <font size="4vw">
+                        <b>Department</b><br/>{{courseDepartmentName}}
+                    </font>
+                </div>
+                <div class="col-xs-4">
+                    <font size="4vw">
+                        <b>Start Date</b><br/>{{courseStartDate}}
+                    </font>
+                </div>
+                <div class="col-xs-4">
+                    <font size="4vw">
+                        <b>End Date</b><br/>{{courseEndDate}}
+                        <br>
+                    </font>
+                </div>
+            </div>
         </div>
         <div class="col-md-2"></div>
     </div>
     <hr style="border-color: #555555">
     <div class="row">
         <div class="col-md-2" align="center"></div>
-        <div class="col-md-8" align="center">
+        <div class="col-md-8 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
             <h3>Pre-requisites</h3>
             <div style="padding-top: 15px;">
                 <div ng-repeat="courseNamePre in courseCompleted" align="center">
                     <div style="padding-bottom:3px">
                         <button class="btn btn-success btn-block" type="button" style="font-size: 20px" a ng-click="goToCourse(studentEmail,courseNamePre.name)">{{courseNamePre.name}}</button>
-                    </div>                    <!-- check here -->
+                    </div>
+                    <!-- check here -->
                 </div>
             </div>
             <div style="padding-top: 15px;">
                 <div ng-repeat="courseNamePre in courseNotCompleted" align="center">
                     <div style="padding-bottom:3px">
                         <button class="btn btn-warning btn-block" type="button" style="font-size: 20px" a ng-click="goToRegistration(studentEmail,courseNamePre.name)">{{courseNamePre.name+" "}}</button>
-                    </div>                    <!-- check here -->
+                    </div>
+                    <!-- check here -->
                 </div>
             </div>
         </div>
@@ -123,7 +131,7 @@
     </div>
     <div class="row" style="padding-top: 15px;">
         <div class="col-md-2" align="center"></div>
-        <div class="col-md-8" align="center">
+        <div class="col-md-8 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
             <button class="btn btn-primary btn-block" ng-show=" courseNotCompleted.length==0 && regSuccess==false " type="button" style="font-size: 20px;" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
             <h5><span class="label label-success" ng-show="regSuccess==true" align="center">Registration complete!</span></h5>
             <h5><span class="label label-danger" ng-hide = " courseNotCompleted.length == 0 " align="center">Prerequistes haven't been fulfilled. Cannot Register !</span></h5>
@@ -135,11 +143,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     </script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-
 <script src="js/angular.min.js"></script>
 <script src="controller/registerCourse.js"></script>
 <script src="js/angular-route.js"></script>

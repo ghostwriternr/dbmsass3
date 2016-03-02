@@ -11,7 +11,7 @@ body {
 
 .wide {
     width: 100%;
-    height: 35%;
+    height: 35vh;
     background: #df4c97;
     background: -webkit-linear-gradient(left, #df4c97, #272262);
     background: -moz-linear-gradient(left, #df4c97, #272262);

@@ -50,7 +50,7 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 35%;margin-bottom: 20px;
+    <div class="wide" style=" height : 35vh;margin-bottom: 20px;
     background: #2390fd;
     background: -webkit-linear-gradient(left, #2390fd, #54cfcb);
     background:    -moz-linear-gradient(left, #2390fd, #54cfcb);
@@ -60,43 +60,42 @@
 
     ">
         <div class="row">
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-1 line" style="padding-top: 30px">
                 <hr>
             </div>
-            <div class="col-xs-2 logo">
+            <div class="col-md-4 col-xs-10 logo">
                 <font color="white" size="6">{{course.name}}</font>
             </div>
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-1 line" style="padding-top: 30px">
                 <hr>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-3" align="center"></div>
-            <div class="col-xs-6" align="center">
-                <h1 style="color: white">Lecture</h1>
+        <div class="row vertical-align">
+            <div class="col-md-2 col-xs-1" align="center"></div>
+            <div class="col-md-8 col-xs-10" align="center">
+                <span style="color: white;font-size: 3vw;">Lecture</span>
             </div>
-            <div class="col-xs-3" align="center"></div>
+            <div class="col-md-2 col-xs-1" align="center"></div>
         </div>
     </div>
-    <div align="center" style="position: relative;top: -60px;">
+    <div align="center" style="position: relative;top: -12vh;">
         <div class="row" align="center">
             <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-8 col-xs-10 col-xs-offset-1 col-md-offset-0">
                 <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
-                    <h5>LECTURE {{lecture.lectureNumber}}</h5>
-                    <h2>{{lecture.lectureName}}</h2>
-                    <h5>Department: {{course.departmentName}}</h5>
-                    <p>Date: {{lecture.lectureDate}}</p>
-                    <br/>
+                    <h5 style="font-size: 5vh;">LECTURE {{lecture.lectureNumber}}</h5>
+                    <h2 style="font-size: 4vh;">{{lecture.lectureName}}</h2>
+                    <h5 style="font-size: 4vh;">Department: {{course.departmentName}}</h5>
+                    <p  style="font-size: 3vh;">Date: {{lecture.lectureDate}}</p>
                     <br/>
                     <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <font size="4">
-                                <pre>{{lecture.lectureContent}}</pre>
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-10">
+                            <font size="4vh">
+                                {{lecture.lectureContent}}
                             </font>
                         </div>
-                        <div class="col-md-1"></div>
+                        <div class="col-xs-1"></div>
                     </div>
                     <br/>
                 </div>
@@ -104,7 +103,7 @@
             <div class="col-md-2"></div>
         </div>
     </div>
-    <div align="center" style="position: relative;top: -60px;">
+    <div align="center" style="position: relative;top: -12vh;">
         <button class="btn btn-primary" type="button" ng-hide=" !isStudent()" ng-click="doneWithLecture(studentEmail,courseName)">Done with this lecture !</button>
     </div>
     <!-- Bootstrap core JavaScript

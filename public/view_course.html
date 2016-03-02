@@ -17,17 +17,6 @@
     <link href="css/spage.css" rel="stylesheet">
     <link href="css/viewcourse.css" rel="stylesheet">
 </head>
-<script type="text/javascript" src="js/d3.min.js"></script>
-<style type="text/css">
-div.bar {
-    display: inline-block;
-    width: 20px;
-    height: 75px;
-    /* Gets overriden by D3-assigned height below */
-    margin-right: 2px;
-    background-color: teal;
-}
-</style>
 
 <body ng-controller="cStudentCtrl" ng-init="init()">
     <!-- Fixed navbar -->
@@ -62,59 +51,55 @@ div.bar {
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 35%;margin-bottom: 20px; background: #ffa500; background: -webkit-linear-gradient(left, #ffa500, #ff0000); background: -moz-linear-gradient(left, #ffa500, #ff0000); background: -ms-linear-gradient(left, #ffa500, #ff0000); background: -o-linear-gradient(left, #ffa500, #ff0000); background: linear-gradient(to right, #ffa500, #ff0000);">
+    <div class="wide" style=" height : 35vh;margin-bottom: 20px; background: #ffa500; background: -webkit-linear-gradient(left, #ffa500, #ff0000); background: -moz-linear-gradient(left, #ffa500, #ff0000); background: -ms-linear-gradient(left, #ffa500, #ff0000); background: -o-linear-gradient(left, #ffa500, #ff0000); background: linear-gradient(to right, #ffa500, #ff0000);">
         <div class="row">
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-2 line" style="padding-top: 30px">
                 <hr>
             </div>
-            <div class="col-xs-2 logo">
-                <font color="white" size="6">{{courseName}}</font>
+            <div class="col-md-4 col-xs-8 logo">
+                <font color="white" style="font-size: 4vh;">{{courseName}}</font>
             </div>
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-2 line" style="padding-top: 30px">
                 <hr>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-xs-3" align="center"></div>
-            <div class="col-xs-6" align="center">
-                <h3 style="color: white">{{courseDescription}}</h3>
+            <div class="col-md-2 col-xs-1" align="center"></div>
+            <div class="col-md-8 col-xs-10" align="center" style="font-size: 3vh;">
+                <span style="color: white">{{courseDescription}}</span>
             </div>
-            <div class="col-xs-3" align="center"></div>
+            <div class="col-md-2 col-xs-1" align="center"></div>
         </div>
     </div>
     <div class="row vertical-align">
-        <div class="jumbotron jumbopos" style="top: -60px;">
-            <div class="col-md-1"></div>
-            <div class="col-md-3" align="center">
+        <div class="jumbotron jumbopos" style="top: -5vh;">
+            <div class="col-md-4" align="center">
                 <p><b>Instructors</b></p>
                 <div ng-repeat="courseInstructorName in courseInstructor">
                     <p>{{courseInstructorName.facultyName}}</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4" align="center">
                 <p><b>Contact Information</b></p>
-                <div ng-repeat="courseInstructorName in courseInstructor" align="left">
+                <div ng-repeat="courseInstructorName in courseInstructor" align="center">
                     <p>{{courseInstructorName.facultyEmail}}</p>
                 </div>
+                <p><b>Current GPA: </b>{{value}}</p>
             </div>
             <div class="col-md-4" align="center">
                 <p>
-                    <br/>
                     <b>Start Date: </b>{{startDate}}
-                    <br/>
                 </p>
                 <p>
                     <b>End Date: </b>{{endDate}}
                 </p>
-                <p><b>Current GPA: </b>{{value}}</p>
             </div>
-            <div class="col-md-1"></div>
         </div>
     </div>
     <div class="row" style="top: -60px;">
         <div class="col-md-1" align="center"></div>
-        <div class="col-md-5" align="center">
+        <div class="col-md-5 col-xs-10 col-md-offset-0 col-xs-offset-1" align="center">
             <font size="5">
                 Lectures
                 <br>
@@ -123,7 +108,7 @@ div.bar {
                 <button class="btn btn-block" ng-class="$index<lecturesCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureNumber+". "+lecture.lectureName}}</button>
             </div>
         </div>
-        <div class="col-md-5" align="center" style="padding-right: 10px;">
+        <div class="col-md-5 col-xs-10 col-md-offset-0 col-xs-offset-1" align="center" align="center">
             <font size="5">
                 Assignments
                 <br>
@@ -132,7 +117,7 @@ div.bar {
                 <button class="btn btn-block" ng-class="$index<assignmentCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentNumber+". "+assignment.assignmentName}}</button>
             </div>
         </div>
-        <div class="col-md-1" align="left"></div>
+        <div class="col-md-1" align="center"></div>
     </div>
     <hr style="border-color: #555555">
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
