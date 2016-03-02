@@ -51,7 +51,7 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style=" height : 35vh;margin-bottom: 20px; background: #ffa500; background: -webkit-linear-gradient(left, #ffa500, #ff0000); background: -moz-linear-gradient(left, #ffa500, #ff0000); background: -ms-linear-gradient(left, #ffa500, #ff0000); background: -o-linear-gradient(left, #ffa500, #ff0000); background: linear-gradient(to right, #ffa500, #ff0000);">
+    <div class="wide" style=" height : 35vh;margin-bottom: 20px; background: #ffa500; background: background: #ff4d17; background: -webkit-linear-gradient(left, #ff4d17, #ff8717); background: -moz-linear-gradient(left, #ff4d17, #ff8717); background: -ms-linear-gradient(left, #ff4d17, #ff8717); background: -o-linear-gradient(left, #ff4d17, #ff8717); background: linear-gradient(to right, #ff4d17, #ff8717);">
         <div class="row">
             <div class="col-md-4 col-xs-2 line" style="padding-top: 30px">
                 <hr>
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="row vertical-align">
-        <div class="jumbotron jumbopos" style="top: -5vh;">
+        <div id="jumboDesign" class="jumbotron jumbopos" style="top: -5vh;">
             <div class="col-md-4" align="center">
                 <p><b>Instructors</b></p>
                 <div ng-repeat="courseInstructorName in courseInstructor">
@@ -119,7 +119,6 @@
         </div>
         <div class="col-md-1" align="center"></div>
     </div>
-    <hr style="border-color: #555555">
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
@@ -147,7 +146,7 @@
     </div>
     <br>
     <div align="center">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" ng-hide="isParent()">Contact Faculty</button>
+        <button id="contactButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" ng-hide="isParent()">Contact Faculty</button>
     </div>
     <br>
     <!-- Bootstrap core JavaScript

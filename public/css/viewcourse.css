@@ -1,3 +1,25 @@
 .btn-success {
-	background-color: #ffce40;
+    background-color: #ff9500;
+}
+
+.btn-success:hover {
+    background-color: #ff8000;
+}
+
+#contactButton {
+    background-color: #ff1a49;
+}
+
+#contactButton{
+	background-color: #ff1a49;
+}
+
+#contactButton:hover{
+	background-color: #e6002f;
+}
+
+#jumboDesign {
+	border-bottom-style: solid;
+	border-bottom-width: 5px;
+	border-bottom-color: #ff1a49;
 }

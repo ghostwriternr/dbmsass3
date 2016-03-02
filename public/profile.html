@@ -16,6 +16,7 @@
     <link href="css/navbar-fixed-top.css" rel="stylesheet">
     <link href="css/spage.css" rel="stylesheet">
     <link href="css/notifications.css" rel="stylesheet">
+    <link href="css/profileFaculty.css" rel="stylesheet">
 </head>
 
 <body ng-controller="profileFacultyCtrl" ng-init="init()">
@@ -91,12 +92,7 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style="background: #1e1919;
-                                    background: -webkit-linear-gradient(left, #1e1919, #6b3232);
-                                    background:    -moz-linear-gradient(left, #1e1919, #6b3232);
-                                    background:     -ms-linear-gradient(left, #1e1919, #6b3232);
-                                    background:      -o-linear-gradient(left, #1e1919, #6b3232);
-                                    background:         linear-gradient(to right, #1e1919, #6b3232);
+    <div class="wide" style="background: #e2994e; background: -webkit-linear-gradient(left, #e2994e, #e24f4e); background: -moz-linear-gradient(left, #e2994e, #e24f4e); background: -ms-linear-gradient(left, #e2994e, #e24f4e); background: -o-linear-gradient(left, #e2994e, #e24f4e); background: linear-gradient(to right, #e2994e, #e24f4e);
                             ">
         <div class="col-md-4 col-xs-2 line">
             <hr>
@@ -107,7 +103,7 @@
         </div>
     </div>
     <div class="row vertical-align">
-        <div class="jumbotron jumbopos">
+        <div id="courseJumbo" class="jumbotron jumbopos">
             <div class="row">
                 <div class="col-md-1" align="center"></div>
                 <div class="col-md-2" align="center">
@@ -143,7 +139,7 @@
                             <label class="sr-only">Re-Enter New Password</label>
                             <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="facultyNewPasswordC" required>
                             <div style="padding-top: 10px">
-                                <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setPassword()">Update</button>
+                                <button id="updateButton" class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setPassword()">Update</button>
                             </div>
                         </form>
                     </div>
@@ -164,7 +160,7 @@
                         <label class="sr-only">New Phone Number</label>
                         <input type="text" class="form-control" placeholder="New Phone Number" ng-model="facultyContactInfo" required>
                         <div style="padding-top: 10px">
-                            <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setContact()">Update</button>
+                            <button id="updateButton" class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setContact()">Update</button>
                         </div>
                     </div>
                     <div class="col-md-1" align="center"></div>

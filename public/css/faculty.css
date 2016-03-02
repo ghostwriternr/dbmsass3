@@ -1,0 +1,21 @@
+#courseButton {
+	background-color: #7064e5;
+}
+
+#courseButton:hover{
+	background-color: #4838de;
+}
+
+#addCourse {
+	background-color: #de3938;
+}
+
+#addCourse:hover{
+	background-color: #c32120;
+}
+
+#courseJumbo{
+	border-bottom: 5px;
+	border-bottom-style: solid;
+	border-bottom-color: #e2994e;
+}

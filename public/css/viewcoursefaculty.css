@@ -1,0 +1,34 @@
+.btn-default {
+	background-color: #3590ae;
+	color: white;
+}
+
+#jumboMain {
+	border-bottom: 5px;
+	border-bottom-style: solid;
+	border-bottom-color: #a0c23b;
+}
+
+#addLec {
+	background-color: #90ae35;
+}
+
+#addLec:hover {
+	background-color: #708729;
+}
+
+#addAss {
+	background-color: #90ae35;
+}
+
+#addAss:hover {
+	background-color: #708729;
+}
+
+.btn-info {
+	background-color: #8c74d5;
+}
+
+.btn-info:hover {
+	background-color: #7c60cf;
+}

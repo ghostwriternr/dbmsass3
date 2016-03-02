@@ -1,0 +1,15 @@
+.btn-warning{
+	background-color: #13778b;
+}
+
+.btn-warning:hover{
+	background-color: #106475;
+}
+
+.btn-warning:active{
+	background-color: #106475;
+}
+
+.btn-warning:focus{
+	background-color: #106475;
+}

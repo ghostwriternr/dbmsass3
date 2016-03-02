@@ -16,6 +16,7 @@
     <link href="css/navbar-fixed-top.css" rel="stylesheet">
     <link href="css/spage.css" rel="stylesheet">
     <link href="css/notifications.css" rel="stylesheet">
+    <link href="css/faculty.css" rel="stylesheet">
 </head>
 
 <body ng-controller="facultyCtrl" ng-init="init()">
@@ -91,12 +92,7 @@
         </div>
     </nav>
     <!-- /container -->
-    <div class="wide" style="background: #1e1919;
-                                    background: -webkit-linear-gradient(left, #1e1919, #6b3232);
-                                    background:    -moz-linear-gradient(left, #1e1919, #6b3232);
-                                    background:     -ms-linear-gradient(left, #1e1919, #6b3232);
-                                    background:      -o-linear-gradient(left, #1e1919, #6b3232);
-                                    background:         linear-gradient(to right, #1e1919, #6b3232);
+    <div class="wide" style="background:background: #e2994e; background: -webkit-linear-gradient(left, #e2994e, #e24f4e); background: -moz-linear-gradient(left, #e2994e, #e24f4e); background: -ms-linear-gradient(left, #e2994e, #e24f4e); background: -o-linear-gradient(left, #e2994e, #e24f4e); background: linear-gradient(to right, #e2994e, #e24f4e);
                             ">
         <div class="col-md-4 col-xs-2 line">
             <hr>
@@ -107,7 +103,7 @@
         </div>
     </div>
     <div class="row vertical-align">
-        <div class="jumbotron jumbopos">
+        <div id="courseJumbo" class="jumbotron jumbopos">
             <div class="row">
                 <div class="col-md-1" align="center"></div>
                 <div class="col-md-2" align="center">
@@ -123,14 +119,14 @@
     <div class="row" style="position: relative; top: -12vh;">
         <div class="col-md-1" align="center"></div>
         <div class="col-md-10" align="center">
-            <h1 style="font-size: 7vh;">Courses</h1>
+            <h1 style="font-size: 5vh;">Courses</h1>
             <div class="col-md-1" align="center"></div>
             <div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
                 <div ng-repeat="course in courseList" style="padding-bottom: 5px;">
                     <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
                         <div style="margin: -20px;">
-                            <h3 style="font-size: 5vh;">{{course.courseName}}</h3>
-                            <p><a class="btn btn-info" ng-click="goToCourse(facultyEmail,course.courseName)">Go to course page</a></p>
+                            <h3 style="font-size: 4vh;">{{course.courseName}}</h3>
+                            <p><a id="courseButton" class="btn btn-info" ng-click="goToCourse(facultyEmail,course.courseName)">Go to course page</a></p>
                         </div>
                     </div>
                 </div>
@@ -139,9 +135,8 @@
         </div>
         <div class="col-md-1" align="center"></div>
     </div>
-    <hr style="border-color: #555555;position: relative; top: -12vh;">
     <div align="center" style="position: relative; top: -12vh;">
-        <button class="btn btn-danger" type="button" ng-click="addNewCourse(facultyEmail)">Add New Course</button>
+        <button id="addCourse" class="btn btn-danger" type="button" ng-click="addNewCourse(facultyEmail)">Add New Course</button>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -164,7 +159,7 @@
                 <div ng-controller="facultyCtrl">
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                        <div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-0">
                             <h5><b>From: </b>{{messageNotifications[messageSender].from}}</h5>
                             <h5><b>Message: </b>{{messageNotifications[messageSender].message}}</h5>
                             <h5><b>Reply: </b></h5>
