@@ -131,7 +131,8 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
                 var getVal=function(){
                     var dateVal=parseInt(dateSplit[0])+parseInt(dateSplit[1])*30+parseInt(dateSplit[2])*365;
                     var getContent=function(){
-                        $http.post('/calender/getDetails',{'email':$scope.studentEmail,'numberOFDays':{$gt:dateVal}}).success(function(response){
+                        console.log($location.absUrl().split('?')[1].split('=')[1]);
+                        $http.post('/calender/getDetails',{'email':$location.absUrl().split('?')[1].split('=')[1],'numberOFDays':{$gt:dateVal}}).success(function(response){
                             console.log(response);
                             $scope.calender=response;
                         })

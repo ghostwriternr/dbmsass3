@@ -124,7 +124,8 @@
     <div class="row" style="padding-top: 15px;">
         <div class="col-md-2" align="center"></div>
         <div class="col-md-8" align="center">
-            <button class="btn btn-primary btn-block" ng-show=" courseNotCompleted.length==0 " type="button" style="font-size: 20px;" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
+            <button class="btn btn-primary btn-block" ng-show=" courseNotCompleted.length==0 && regSuccess==false " type="button" style="font-size: 20px;" a ng-click="register(studentEmail,courseName)">&nbsp;&nbsp;&nbsp;Register</button>
+            <h5><span class="label label-success" ng-show="regSuccess==true" align="center">Registration complete!</span></h5>
             <h5><span class="label label-danger" ng-hide = " courseNotCompleted.length == 0 " align="center">Prerequistes haven't been fulfilled. Cannot Register !</span></h5>
         </div>
         <div class="col-md-2" align="center"></div>

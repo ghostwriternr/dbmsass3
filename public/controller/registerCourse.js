@@ -106,10 +106,12 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
         checkIfComplete();
     }
 
+    $scope.regSuccess = false;
     $scope.register = function(email, course) {
         console.log($scope.courseNotCompleted.length);
         if ($scope.courseNotCompleted.length == 0) {
             $http.post('/course/RegisterStudent/' + email, { 'courseName': course, 'assignmentCompleted': '0', 'lecturesCompleted': '0' }).success(function(response) {
+                    $scope.regSuccess = true;
                     var reply = response;
                     console.log(response[0]);
                 })
