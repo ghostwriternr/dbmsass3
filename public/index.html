@@ -189,7 +189,9 @@
                                 <li><a href="#" ng-click="setType(1)" onclick="role('ro','Student')">Student</a></li>
                                 <li><a href="#" ng-click="setType(2)" onclick="role('ro','Faculty')">Faculty</a></li>
                                 <li><a href="#" ng-click="setType(3)" onclick="role('ro','Parent')">Parent</a></li>
+                                <!---
                                 <li><a href="#" ng-click="setType(4)" onclick="role('ro','Adminstrator')">Adminstrator</a></li>
+                                -->
                             </ul>
                         </div>
                         <div class="col-xs-12" style="height:20px;"></div>
@@ -232,7 +234,7 @@ $(document).ready(function() {
             $('#homeButton').addClass('active');
             $('#aboutContent').fadeOut(0);
             $('#devContent').fadeOut(0);
-            $('#mainContent').fadeIn(1000);
+            $('#mainContent').fadeIn(300);
         }
     );
     $('#aboutButton').click(
@@ -242,7 +244,7 @@ $(document).ready(function() {
             $('#aboutButton').addClass('active');
             $('#mainContent').fadeOut(0);
             $('#devContent').fadeOut(0);
-            $('#aboutContent').fadeIn(1000);
+            $('#aboutContent').fadeIn(300);
         }
     );
     $('#devButton').click(
@@ -252,7 +254,7 @@ $(document).ready(function() {
             $('#devButton').addClass('active');
             $('#mainContent').fadeOut(0);
             $('#aboutContent').fadeOut(0);
-            $('#devContent').fadeIn(1000);
+            $('#devContent').fadeIn(300);
         }
     );
 });

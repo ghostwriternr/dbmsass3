@@ -33,4 +33,8 @@ myApp.controller('administratorCtrl', ['$scope', '$http', '$window', '$log', '$l
     $scope.goToParent=function(parent){
         $window.location.href="/parent.html"+"?email="+parent.email+"?type=parent";
     }
+
+    $scope.logout=function(){
+        $window.location.href="/index.html";
+    }
 }])

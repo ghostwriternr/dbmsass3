@@ -58,79 +58,92 @@
     background:      -o-linear-gradient(left, #2390fd, #54cfcb);
     background:         linear-gradient(to right, #2390fd, #54cfcb);">
         <div class="row">
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-1 line" style="padding-top: 30px">
                 <hr>
             </div>
-            <div class="col-xs-2 logo">
+            <div class="col-md-4 col-xs-10 logo">
                 <font color="white" size="6">{{course.name}}</font>
             </div>
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-1 line" style="padding-top: 30px">
                 <hr>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-3" align="center"></div>
-            <div class="col-xs-6" align="center">
-                <h1 style="color: white">Assignment</h1>
+            <div class="col-md-2 col-xs-1" align="center"></div>
+            <div class="col-md-8 col-xs-10" align="center">
+                <h1 style="color: white;font-size: 4vh;">Assignment</h1>
             </div>
-            <div class="col-xs-3" align="center"></div>
+            <div class="col-md-2 col-xs-1" align="center"></div>
         </div>
     </div>
-    <div align="center" style="position: relative;top: -1%;">
+    <div align="center" style="position: relative;top: -12vh;">
         <div class="row" align="center">
             <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
-                    <h5>ASSIGNMENT {{assignment.assignmentNumber}}</h5>
-                    <h2>{{assignment.assignmentName}}</h2>
-                    <h5>Mode of Evaluation: Self</h5>
-                    <p>Float Date: {{assignment.assignmentStartDate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due Date: {{assignment.assignmentEndDate}}</p>
-                    <br/>
-                    <br/>
+            <div class="col-md-8 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;" align="center">
                     <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <font size="4">
-                                <pre>{{assignment.assignmentContent}}</pre>
-                            </font>
-                        </div>
-                        <div class="col-md-1"></div>
-                    </div>
-                    <br/>
-                    <div class="row" ng-hide=" !isStudent()">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <div class="form-group" ng-controller="assignmentCtrl">
-                                <div data-ng-repeat="choice in choices track by $index">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <p>Q{{$index+1}}:</p>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" ng-model="choice.answer" name="" placeholder="Your answer">
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-10">
+                            <h5 style="font-size: 5vh;">ASSIGNMENT {{assignment.assignmentNumber}}</h5>
+                            <h2 style="font-size: 4vh;">{{assignment.assignmentName}}</h2>
+                            <p style="font-size: 4vh;">Mode of Evaluation: Self</p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <p style="font-size: 3vh;" align="center">Float Date
+                                        <br/>{{assignment.assignmentStartDate}}</p>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p style="font-size: 3vh;" align="center">Due Date
+                                        <br/>{{assignment.assignmentEndDate}}</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-1"></div>
-                    </div>
-                    <div class="row" align="center" ng-hide=" !isStudent()">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6" align="center">
-                            <button class="addfields btn btn-default btn-block" ng-click="evaluate();showme=true" align="center">Evaluate</button>
                             <br/>
-                            <p ng-show="showme">Your Score: {{correctAnswerCount}}</p>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <font size="4vh">
+                                        <text>{{assignment.assignmentContent}}</text>
+                                    </font>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <br/>
+                            <div class="row" ng-hide=" !isStudent()">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <div class="form-group" ng-controller="assignmentCtrl">
+                                        <div data-ng-repeat="choice in choices track by $index">
+                                            <div class="row">
+                                                <div class="col-xs-1">
+                                                    <p>Q{{$index+1}}:</p>
+                                                </div>
+                                                <div class="col-xs-11">
+                                                    <input class="form-control" type="text" ng-model="choice.answer" name="" placeholder="Your answer">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <div class="row" align="center" ng-hide=" !isStudent()">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6" align="center">
+                                    <button class="addfields btn btn-default btn-block" ng-click="evaluate();showme=true" align="center">Evaluate</button>
+                                    <br/>
+                                    <p ng-show="showme">Your Score: {{correctAnswerCount}}</p>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
                         </div>
-                        <div class="col-md-3"></div>
                     </div>
+                    <div class="col-xs-1"></div>
                 </div>
             </div>
             <div class="col-md-2"></div>
         </div>
     </div>
-    <div align="center" style="position: relative;top: -1%;" >
+    <div align="center" style="position: relative;top: -12vh;">
         <button class="btn btn-primary" type="button" ng-hide=" !isStudent() || isDoneWithAssignment()" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
     </div>
     <!-- Bootstrap core JavaScript

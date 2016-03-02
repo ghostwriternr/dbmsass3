@@ -33,6 +33,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     $scope.reject = function(parent) {
         $http.post('/parentChild/deleteRequest', { 'parentName': parent.parentName, 'parentEmail': parent.parentEmail, 'childEmail': parent.childEmail }).success(function(response) {
             console.log(response[0]);
+            $window.location.href=$location.absUrl();
         })
     }
 
@@ -44,6 +45,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         $http.post('/parentChild/addEntry', { 'parentName': parent.parentName, 'parentEmail': parent.parentEmail, 'childEmail': $scope.studentEmail, 'childName': $scope.studentName }).success(function(response) {
             console.log(response[0]);
         })
+        $window.location.href=$location.absUrl();
     }
 
     $scope.setPassword = function() {
