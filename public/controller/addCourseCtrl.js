@@ -115,4 +115,16 @@ myApp.controller('addCourseCtrl', ['$scope', '$http', '$window', '$log', '$locat
         fill();
         successfulAddition = 1;
     }
+
+    $scope.goToHome=function(){
+        $window.location.href="/faculty.html"+"?email="+$location.absUrl().split('?')[1].split('=')[1]+"?type=faculty";
+    }
+
+    $scope.goToProfile=function(){
+        $window.location.href="/profile.html"+"?email="+$location.absUrl().split('?')[1].split('=')[1]+"?type=faculty";
+    }
+
+    $scope.logout=function(){
+        $window.location.href="/index.html";
+    }
 }]);

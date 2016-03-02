@@ -32,16 +32,16 @@
             <a class="navbar-brand" href="#"><b>Studious</b> | Study + Discover</a>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="font-size: 15px;">
-                    <li><a href="#"><b>Home</b></a></li>
+                    <li><a href="#" ng-click="goToHome()"><b>Home</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="font-size: 15px;">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><b>  Menu</b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="#" ng-click="goToProfile()">Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <!--<li class="dropdown-header">Nav header</li>-->
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="#" ng-click="logout()">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -88,8 +88,6 @@
                             <input type="text" class="form-control" placeholder="Title" ng-model="courseName" autofocus required>
                             <label class="sr-only">Department Name</label>
                             <input type="text" class="form-control" placeholder="Department Name" ng-model="courseDepartment" required>
-                            <label class="sr-only">Fee</label>
-                            <input type="text" class="form-control" placeholder="Fee (in INR)" required>
                             <button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#facultyModal" style="text-align: left;text-transform: lowercase;text-transform: capitalize;">Faculty</button>
                             <button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#prereqModal" style="text-align: left;text-transform: lowercase;text-transform: capitalize;">Prerequisites</button>
                             <label class="sr-only">Start Date</label>

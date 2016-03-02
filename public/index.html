@@ -15,6 +15,7 @@
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/card.css" rel="stylesheet">
 </head>
 
 <body>
@@ -23,20 +24,82 @@
             <div class="cover-container">
                 <div class="masthead clearfix">
                     <div class="inner">
-                        <h3 class="masthead-brand">Studious</h3>
+                        <h3 class="masthead-brand" style="display: none;">Studious</h3>
                         <nav>
                             <ul class="nav masthead-nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">The Devs</a></li>
+                                <li id="homeButton" class="active"><a href="#">Home</a></li>
+                                <li id="aboutButton"><a href="#">About</a></li>
+                                <li id="devButton"><a href="#">The Devs</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
-                <h1 style="font-size: 6vw; font-style: italic; color: white;">STUDY + DISCOVER</h1>
-                <p class="lead" style="font-size: 3vh; font-weight: bold;">All your course management in one place. Welcome to STUDIOUS.</p>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerModal">Register</button>
+                <div id="mainContent">
+                    <h1 style="font-size: 6vw; font-style: italic; color: white;">STUDY + DISCOVER</h1>
+                    <p class="lead" style="font-size: 3vh; font-weight: bold;">All your course management in one place. Welcome to STUDIOUS.</p>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerModal">Register</button>
+                </div>
+                <div id="aboutContent" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-1 col-xs-1"></div>
+                        <div class="col-md-10 col-xs-10">
+                            <h1 class="lead" style="font-weight: bold;color: white;">Course management system built for DBMS Lab assignment 3, following the given specifications. The site was built upon the MEAN stack, with Bootstrap as the frontend framework. The site has only 3 dependencies, namely mongojs, expressjs, and body-parser. </h1>
+                        </div>
+                        <div class="col-md-1 col-xs-1"></div>
+                    </div>
+                </div>
+                <div id="devContent" style="display: none;">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Card Projects -->
+                            <div class="col-md-3 col-xs-4 col-xs-offset-2 col-md-offset-0">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img class="img-responsive" src="images/pani.jpg">
+                                        <span class="card-title">Sandeep Pani</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>13CS30027</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-4 col-xs-offset-0 col-md-offset-0">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img class="img-responsive" src="images/naresh.jpg">
+                                        <span class="card-title">Naresh R</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>13CS30024</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-4 col-xs-offset-2 col-md-offset-0">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img id="im1" class="img-responsive" src="images/vikas.jpg">
+                                        <span class="card-title">Vikas Choudhary</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>13CS30038</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-4 col-xs-offset-0 col-md-offset-0">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img class="img-responsive" src="images/anmol.jpg">
+                                        <span class="card-title">Anmol Gulati</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>13CS30027</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="mastfoot">
                     <div class="inner">
                         <p>Made with <i class="glyphicon glyphicon-heart"></i> for DBMS Assignment 3.</p>
@@ -159,6 +222,40 @@
 function role(x, y) {
     document.getElementById(x).innerHTML = y;
 }
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#homeButton').click(
+        function() {
+            $('#aboutButton').removeClass('active');
+            $('#devButton').removeClass('active');
+            $('#homeButton').addClass('active');
+            $('#aboutContent').fadeOut(0);
+            $('#devContent').fadeOut(0);
+            $('#mainContent').fadeIn(1000);
+        }
+    );
+    $('#aboutButton').click(
+        function() {
+            $('#homeButton').removeClass('active');
+            $('#devButton').removeClass('active');
+            $('#aboutButton').addClass('active');
+            $('#mainContent').fadeOut(0);
+            $('#devContent').fadeOut(0);
+            $('#aboutContent').fadeIn(1000);
+        }
+    );
+    $('#devButton').click(
+        function() {
+            $('#homeButton').removeClass('active');
+            $('#aboutButton').removeClass('active');
+            $('#devButton').addClass('active');
+            $('#mainContent').fadeOut(0);
+            $('#aboutContent').fadeOut(0);
+            $('#devContent').fadeIn(1000);
+        }
+    );
+});
 </script>
 
 </html>

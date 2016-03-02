@@ -18,6 +18,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
             $scope.studentName = student[0].name;
             $scope.studentEmail = student[0].email;
             $scope.studentPassword = response[0].password;
+            $scope.studentContactInfo = response[0].contactInfo;
             console.log($scope.studentEmail + " " + response[0].password);
         })
         $http.post('/parentChild/getDetails', { 'childEmail': output }).success(function(response) {
