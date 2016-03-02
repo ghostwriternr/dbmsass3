@@ -56,7 +56,7 @@
     background:     -ms-linear-gradient(left, #2390fd, #54cfcb);
     background:      -o-linear-gradient(left, #2390fd, #54cfcb);
     background:         linear-gradient(to right, #2390fd, #54cfcb);">
-        <div class="row" >
+        <div class="row">
             <div class="col-xs-5 line" style="padding-top: 30px">
                 <hr>
             </div>
@@ -83,7 +83,7 @@
                 <div class="row" align="center">
                     <div class="col-md-1" align="center"></div>
                     <div class="col-md-10" align="center">
-                        <form class="form-signin">
+                        <form name="newCourseForm" class="form-signin" novalidate>
                             <label class="sr-only">Title</label>
                             <input type="text" class="form-control" placeholder="Title" ng-model="courseName" autofocus required>
                             <label class="sr-only">Department Name</label>
@@ -98,9 +98,17 @@
                             <input type="text" class="form-control" placeholder="End Date dd-mm-yyyy" ng-model="endDate" required>
                             <textarea placeholder="Description" class="form-control" rows="3" ng-model="courseDescription"></textarea>
                             <div style="padding-top: 10px">
-                                <button class="btn btn-primary" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="addCourse()">Add Course</button>
+                                <button class="btn btn-primary" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="newCourseForm.$valid && addCourse()" onclick="clearForm()">Add Course</button>
                             </div>
                         </form>
+                        <div ng-show="newCourseForm.$valid==false">
+                            <br/>
+                            <p class="text-warning"><b>Do fill out all details</b></p>
+                        </div>
+                        <div ng-show="successfulAddition==1">
+                            <br/>
+                            <p class="text-success"><b>Successfully added!</b></p>
+                        </div>
                     </div>
                     <div class="col-md-1" align="center"></div>
                 </div>
@@ -137,7 +145,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="facultyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" col-md-6>
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
@@ -179,5 +186,11 @@
 <script src="js/angular.min.js"></script>
 <script src="controller/addCourseCtrl.js"></script>
 <script src="js/angular-route.js"></script>
+<script type="text/javascript">
+function clearForm() {
+    frm = document.getElementsByName('newCourseForm')[0];
+    frm.reset();
+}
+</script>
 
 </html>

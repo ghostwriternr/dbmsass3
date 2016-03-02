@@ -16,6 +16,7 @@ myApp.controller('addCourseCtrl', ['$scope', '$http', '$window', '$log', '$locat
     $scope.coursePreList = [];
     $scope.facultyCourseList = [];
     $scope.y = '';
+    $scope.successfulAddition = -1;
 
     $scope.setPreReq = function(courseName, $index, x) {
         var prflag = -1;
@@ -112,5 +113,6 @@ myApp.controller('addCourseCtrl', ['$scope', '$http', '$window', '$log', '$locat
             addStudentCourse();
         }
         fill();
+        successfulAddition = 1;
     }
 }]);
