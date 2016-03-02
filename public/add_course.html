@@ -57,32 +57,32 @@
     background:      -o-linear-gradient(left, #2390fd, #54cfcb);
     background:         linear-gradient(to right, #2390fd, #54cfcb);">
         <div class="row">
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-2 line" style="padding-top: 30px">
                 <hr>
             </div>
-            <div class="col-xs-2 logo">
-                <font color="white" size="6">Edit</font>
+            <div class="col-md-4 col-xs-8 logo">
+                <font color="white" size="6vh">Edit</font>
             </div>
-            <div class="col-xs-5 line" style="padding-top: 30px">
+            <div class="col-md-4 col-xs-2 line" style="padding-top: 30px">
                 <hr>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-xs-3" align="center"></div>
-            <div class="col-xs-6" align="center">
-                <h3 style="color: white">Add New Course</h3>
+            <div class="col-md-2 col-xs-1" align="center"></div>
+            <div class="col-md-8 col-xs-10" align="center">
+                <h3 style="color: white;font-size: 4vh;">Add New Course</h3>
             </div>
-            <div class="col-xs-3" align="center"></div>
+            <div class="col-md-2 col-xs-1" align="center"></div>
         </div>
     </div>
     <div class="row" align="center">
         <div class="col-md-2" align="center"></div>
-        <div class="col-md-8" align="center">
-            <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
+        <div class="col-md-8 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
+            <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;margin-top: -12vh;">
                 <div class="row" align="center">
                     <div class="col-md-1" align="center"></div>
-                    <div class="col-md-10" align="center">
+                    <div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
                         <form name="newCourseForm" class="form-signin" novalidate>
                             <label class="sr-only">Title</label>
                             <input type="text" class="form-control" placeholder="Title" ng-model="courseName" autofocus required>
@@ -96,7 +96,7 @@
                             <input type="text" class="form-control" placeholder="End Date dd-mm-yyyy" ng-model="endDate" required>
                             <textarea placeholder="Description" class="form-control" rows="3" ng-model="courseDescription"></textarea>
                             <div style="padding-top: 10px">
-                                <button class="btn btn-primary" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="newCourseForm.$valid && addCourse()" onclick="clearForm()">Add Course</button>
+                                <button class="btn btn-primary btn-block" type="button" ng-click="newCourseForm.$valid && addCourse()" onclick="clearForm()">Add Course</button>
                             </div>
                         </form>
                         <div ng-show="newCourseForm.$valid==false">
@@ -123,7 +123,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                        <div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-0">
                             <div class="form-group">
                                 <div ng-repeat="course in courseList">
                                     <div class="checkbox">
@@ -152,7 +152,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                        <div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-0">
                             <div class="form-group">
                                 <div ng-repeat="faculty in facultyList">
                                     <div class="checkbox">
