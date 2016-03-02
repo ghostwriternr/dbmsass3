@@ -38,9 +38,6 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><b>  Menu</b></a>
                         <ul class="dropdown-menu">
-                            <!--li><a href="#">Profile</a></li>
-                            <li role="separator" class="divider"></li-->
-                            <!--<li class="dropdown-header">Nav header</li>-->
                             <li><a href="#" ng-click="logout()">Logout</a></li>
                         </ul>
                     </li>
@@ -57,11 +54,11 @@
                                     background:      -o-linear-gradient(left, #5b0000, #ef8d18);
                                     background:         linear-gradient(to right, #5b0000, #ef8d18);
                             ">
-        <div class="col-xs-5 line">
+        <div class="col-md-5 col-xs-2 line">
             <hr>
         </div>
-        <div class="col-xs-2 logo">Welcome</div>
-        <div class="col-xs-5 line">
+        <div class="col-md-2 col-xs-8 logo">Welcome</div>
+        <div class="col-md-5 col-xs-2 line">
             <hr>
         </div>
     </div>
@@ -73,18 +70,18 @@
                     <img src="images/student.png">
                 </div>
                 <div class="col-md-8" align="center" style="padding-top: 20px">
-                    <h1>{{studentName}}</h1>
-                    <h4>{{studentEmail}}</h4>
-                    <h4>{{studentContactInfo}}</h4>
+                    <h1 style="font-size: 5vh;">{{studentName}}</h1>
+                    <h4 style="font-size: 2.5vh;">{{studentEmail}}</h4>
+                    <h4 style="font-size: 2.5vh;">{{studentContactInfo}}</h4>
                     <br>
                 </div>
                 <div class="col-md-1" align="center"></div>
             </div>
         </div>
     </div>
-    <div class="row" style="position: relative; top: -100px;">
+    <div class="row" style="position: relative; top: -12vh;" align="center">
         <div class="col-md-1" align="center"></div>
-        <div class="col-md-4" align="center">
+        <div class="col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
             <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
                 <div style="padding-bottom: 20px">
                     <font size="5"> Pending Parent Requests
@@ -96,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3" align="center">
+        <div class="col-md-3 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
             <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
                 <div style="padding-bottom: 20px">
                     <font size="5">Update Password
@@ -105,7 +102,7 @@
                 </div>
                 <div class="row" align="center">
                     <div class="col-md-1" align="center"></div>
-                    <div class="col-md-10" align="center">
+                    <div class="col-md-10 col-xs-10 col-md-offset-0 col-xs-offset-1" align="center">
                         <form class="form-signin">
                             <label class="sr-only">Old Password</label>
                             <input type="password" class="form-control" placeholder="Old Password" ng-model="studentOldPassword" required>
@@ -114,7 +111,7 @@
                             <label class="sr-only">Re-Enter New Password</label>
                             <input type="password" class="form-control" placeholder="Re-Enter New Password" ng-model="studentNewPasswordC" required>
                             <div style="padding-top: 10px">
-                                <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setPassword()">Update</button>
+                                <button class="btn btn-warning btn-block" type="button" ng-click="setPassword()">Update</button>
                             </div>
                         </form>
                     </div>
@@ -122,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3" align="center">
+        <div class="col-md-3 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
             <div class="jumbotron" style="box-shadow: 1px 1px 5px #888888;">
                 <div style="padding-bottom: 20px">
                     <font size="5">Update Contact Info
@@ -131,11 +128,11 @@
                 </div>
                 <div class="row" align="center">
                     <div class="col-md-1" align="center"></div>
-                    <div class="col-md-10" align="center">
+                    <div class="col-md-10 col-xs-10 col-md-offset-0 col-xs-offset-1" align="center">
                         <label class="sr-only">New Phone Number</label>
                         <input type="text" class="form-control" placeholder="New Phone Number" ng-model="studentNewContact" required>
                         <div style="padding-top: 10px">
-                            <button class="btn btn-warning" type="button" style="padding-left: 100px ; padding-right: 100px" ng-click="setContact()">Update</button>
+                            <button class="btn btn-warning btn-block" type="button" ng-click="setContact()">Update</button>
                         </div>
                     </div>
                     <div class="col-md-1" align="center"></div>
@@ -156,21 +153,22 @@
                     <div class="modal-body">
                         <form>
                             <div align="center">
-                                <font size="4">
+                                <font size="6vh">
                                     {{selectedParent.parentName}}
-                                    <br>
+                                    <br/>
                                 </font>
-                                <font size="4">
+                                <font size="4vh">
                                     {{selectedParent.parentEmail}}
+                                    <br/><br/>
                                 </font>
                             </div>
                             <div class="form-group" align="center">
                                 <div class="row">
                                     <div class="col-md-6" align="center">
-                                        <button class="btn btn-primary" type="submit" ng-click="reject(selectedParent)">Reject</button>
+                                        <button class="btn btn-danger btn-block" type="submit" ng-click="reject(selectedParent)">Reject</button>
                                     </div>
                                     <div class="col-md-6" align="center">
-                                        <button class="btn btn-primary" type="submit" ng-click="confirm(selectedParent)">Confirm</button>
+                                        <button class="btn btn-success btn-block" type="submit" ng-click="confirm(selectedParent)">Confirm</button>
                                     </div>
                                 </div>
                             </div>

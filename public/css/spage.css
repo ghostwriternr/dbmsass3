@@ -42,7 +42,7 @@ body {
 
 .jumbopos {
     position: relative;
-    top: -140px;
+    top: -15vh;
     width: 75%;
     margin: 0 auto;
     box-shadow: 1px 1px 5px #888888;

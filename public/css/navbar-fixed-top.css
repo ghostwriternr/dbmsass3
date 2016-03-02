@@ -4,11 +4,13 @@ body {
 
 .navbar-brand {
     position: absolute;
+    font-size: 3vh;
     width: 100%;
     left: 0;
     top: 0;
     text-align: center;
     margin: auto;
+    z-index: -1;
 }
 
 .btn-separator:after {
