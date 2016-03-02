@@ -11,7 +11,7 @@
 
 .card span.card-title {
     color: #fff;
-    font-size: 24px;
+    font-size: 2vh;
     font-weight: 300;
     text-transform: uppercase;
 }
@@ -26,16 +26,6 @@
     background-clip: padding-box;
     position: relative;
     z-index: 6;
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
-        opacity: .6;
-    }
 }
 
 .card .card-image span.card-title {
