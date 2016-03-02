@@ -85,11 +85,17 @@ div.bar {
     </div>
     <div class="row vertical-align">
         <div class="jumbotron jumbopos" style="top: -60px;">
-            <div class="col-md-2"></div>
-            <div class="col-md-4" align="center">
+            <div class="col-md-1"></div>
+            <div class="col-md-3" align="center">
                 <p><b>Instructors</b></p>
                 <div ng-repeat="courseInstructorName in courseInstructor">
                     <p>{{courseInstructorName.facultyName}}</p>
+                </div>
+            </div>
+            <div class="col-md-3" >
+                <p><b>Contact Information</b></p>
+                <div ng-repeat="courseInstructorName in courseInstructor" align="left">
+                    <p>{{courseInstructorName.facultyEmail}}</p>
                 </div>
             </div>
             <div class="col-md-4" align="center">
@@ -103,7 +109,7 @@ div.bar {
                 </p>
                 <p>{{value}}</p>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
         </div>
     </div>
     <div class="row" style="top: -60px;">

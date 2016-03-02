@@ -269,7 +269,7 @@ div.bar {
                                 </button>
                                 <ul class="dropdown-menu" style="width: 100%;">
                                     <div ng-repeat="courseList in coursesNotRegistered" align="center">
-                                        <li><a a href="#" ng-click="goToRegistration(studentEmail,courseList.name)" style="text-decoration: none !important;color: black;">{{courseList.name}}</a></li>
+                                        <li><a a href="#" ng-click="goToRegistration(studentEmail,courseList.name)" style="text-decoration: none !important;color: black;">{{courseList.name}} From {{courseList.startDate}}</a></li>
                                     </div>
                                 </ul>
                             </div>
