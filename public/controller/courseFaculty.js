@@ -320,8 +320,9 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
         }
     }
 
-    $scope.setStudentRecieveEmail = function(email) {
+    $scope.setStudentRecieveEmail = function(email,name) {
         $scope.studentREmail = email;
+        document.getElementById("rcvr").innerHTML = name;
     }
 
     $scope.sendMessage = function(courseName) {
