@@ -128,7 +128,7 @@
                                 <div ng-repeat="course in courseList">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" ng-model="x" ng-change="setPreReq(course.name, $index, x)">{{course.name}}
+                                            <input type="checkbox" ng-model="x" ng-change="setPreReq(course.name, $index, x)">  {{course.name}}
                                         </label>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                                 <div ng-repeat="faculty in facultyList">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" ng-model="x" ng-change="setFaculty(faculty.email,faculty.name,$index, y)">{{faculty.name}}
+                                            <input type="checkbox" ng-model="x" ng-change="setFaculty(faculty.email,faculty.name,$index, y)">  {{faculty.name}}
                                         </label>
                                     </div>
                                 </div>
