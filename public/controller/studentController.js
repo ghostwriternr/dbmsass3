@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngRoute']);
-myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$location','$filter', function($scope, $http, $window, $log, $location,$filter) {
+myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$location', '$filter', function($scope, $http, $window, $log, $location, $filter) {
     console.log("Hello World from login studentController_new");
     // $scope.goToCourse = function(email, courseName) {
     //     console.log($scope.studentName);
@@ -7,20 +7,20 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     //     $window.location.href="/view_course.html" + "?email=" + email+"?type=student";
     // }
 
-    var socket=io.connect('http://localhost:3007');
-    socket.on('notificationSent',function(data){
+    var socket = io.connect('http://localhost:3007');
+    socket.on('notificationSent', function(data) {
         console.log(data);
 
         var fillNotifications = function() {
-            $http.post('/notification/getDetails', {'email':$location.absUrl().split('?')[1].split('=')[1]}).success(function(response) {
+            $http.post('/notification/getDetails', { 'email': $location.absUrl().split('?')[1].split('=')[1] }).success(function(response) {
                 console.log(response);
-                $scope.messageNotifications=[];
-                while($scope.messageNotifications.legnth>0){
+                $scope.messageNotifications = [];
+                while ($scope.messageNotifications.legnth > 0) {
                     $scope.messageNotifications.pop();
                 }
-                $scope.messageNotifications=[];
-                $scope.lectureNotifications=[];
-                $scope.assignmentNotifications=[];
+                $scope.messageNotifications = [];
+                $scope.lectureNotifications = [];
+                $scope.assignmentNotifications = [];
                 $scope.notificationCount = response.length;
                 var fill = function() {
                     for (var index = 0; index < response.length; index++) {
@@ -33,26 +33,31 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
                             $scope.assignmentNotifications.push(response[index]);
                         }
                     }
+                    $("#notification_count").fadeIn("slow");
+                    $("#notificationAlert").fadeIn("slow");
+                    window.setTimeout(function() {
+                        $("#notificationAlert").fadeTo(500, 0).slideUp(500, function() {
+                            $(this).remove();
+                        });
+                    }, 4000);
                 }
                 fill();
             })
         }
-        if($scope.locationRes.length==3){
+        if ($scope.locationRes.length == 3) {
             fillNotifications();
-        }
-        else{
-            $scope.notificationCount=0;
+        } else {
+            $scope.notificationCount = 0;
         }
     })
 
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
         //$window.open("/view_course.html" + "?email=" + email + "?course=" + courseName);
-        if($scope.locationRes.length==3){
-            $window.location.href="/view_course.html" + "?email=" + email + "?course=" + courseName+"?type=student";
-        }
-        else{
-            $window.location.href="/view_course.html" + "?email=" + email + "?course=" + courseName+"?type=student"+"?type=parent";
+        if ($scope.locationRes.length == 3) {
+            $window.location.href = "/view_course.html" + "?email=" + email + "?course=" + courseName + "?type=student";
+        } else {
+            $window.location.href = "/view_course.html" + "?email=" + email + "?course=" + courseName + "?type=student" + "?type=parent";
         }
     }
     $scope.init = function() {
@@ -61,10 +66,10 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         var student = {};
         var query = {};
         var res = $location.absUrl().split('?');
-        $scope.locationRes=$location.absUrl().split('?');
+        $scope.locationRes = $location.absUrl().split('?');
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
-        var output=tempData[1];
+        var output = tempData[1];
         console.log(output);
         query = { 'email': output };
         $http.post('/student/getDetails', query).success(function(response) {
@@ -78,7 +83,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         //Filling in the content of course
         var courseStudent = [];
         var courseListName = [];
-        var calender=[];
+        var calender = [];
         var coursesNotRegistered = [];
         $scope.lectureNotifications = [];
         $scope.assignmentNotifications = [];
@@ -155,25 +160,24 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
                 fill();
             })
         }
-        if($scope.locationRes.length==3){
+        if ($scope.locationRes.length == 3) {
             fillNotifications();
-        }
-        else{
-            $scope.notificationCount=0;
+        } else {
+            $scope.notificationCount = 0;
         }
 
-        var dateCurrent=function(){
-            var date=$filter('date')(new Date(),'dd-MM-yyyy');
-            var display=function(){
+        var dateCurrent = function() {
+            var date = $filter('date')(new Date(), 'dd-MM-yyyy');
+            var display = function() {
                 console.log(date);
-                var dateSplit=date.split('-');
-                var getVal=function(){
-                    var dateVal=parseInt(dateSplit[0])+parseInt(dateSplit[1])*30+parseInt(dateSplit[2])*365;
-                    var getContent=function(){
+                var dateSplit = date.split('-');
+                var getVal = function() {
+                    var dateVal = parseInt(dateSplit[0]) + parseInt(dateSplit[1]) * 30 + parseInt(dateSplit[2]) * 365;
+                    var getContent = function() {
                         console.log($location.absUrl().split('?')[1].split('=')[1]);
-                        $http.post('/calender/getDetails',{'email':$location.absUrl().split('?')[1].split('=')[1],'numberOFDays':{$gt:dateVal}}).success(function(response){
+                        $http.post('/calender/getDetails', { 'email': $location.absUrl().split('?')[1].split('=')[1], 'numberOFDays': { $gt: dateVal } }).success(function(response) {
                             console.log(response);
-                            $scope.calender=response;
+                            $scope.calender = response;
                         })
                     }
                     getContent();
@@ -186,78 +190,76 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     }
 
     $scope.goToRegistration = function(email, name) {
-        if($scope.locationRes.length==3){
+        if ($scope.locationRes.length == 3) {
             console.log(email + " " + name);
-            $window.location.href=("/register_course.html" + "?email=" + email + "?course=" + name+"?type=student");
+            $window.location.href = ("/register_course.html" + "?email=" + email + "?course=" + name + "?type=student");
         }
     }
 
     $scope.goToLecture = function(lecture) {
-        if($scope.locationRes.length==3){
-            $window.location.href=("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number+"?type=student");
-        }
-        else{
-            $window.location.href=("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number+"?type=student"+"?type=parent");
+        if ($scope.locationRes.length == 3) {
+            $window.location.href = ("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number + "?type=student");
+        } else {
+            $window.location.href = ("/lecture.html" + "?=email" + $scope.studentEmail + "?course=" + lecture.courseName + "?lectNum=" + lecture.number + "?type=student" + "?type=parent");
         }
     }
 
     $scope.goToAssignment = function(assignment) {
-        if($scope.locationRes.length==3){
-            $window.location.href=('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number+"?type=student");
-        }
-        else{
-            $window.location.href=('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number+"?type=student"+"?type=parent");
+        if ($scope.locationRes.length == 3) {
+            $window.location.href = ('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number + "?type=student");
+        } else {
+            $window.location.href = ('/assignment.html' + '?email=' + $scope.studentEmail + "?course=" + assignment.courseName + "?assignmentNum=" + assignment.number + "?type=student" + "?type=parent");
         }
     }
 
     $scope.goToProfile = function() {
-        if($scope.locationRes.length==3){
-            $window.location.href=('/profile_student.html' + "?email=" + $scope.studentEmail+"?type=student");
+            if ($scope.locationRes.length == 3) {
+                $window.location.href = ('/profile_student.html' + "?email=" + $scope.studentEmail + "?type=student");
+            }
         }
-    }
         //Fill the contents of the course
     $scope.replyMessage = function(index) {
         var messageSender;
         console.log("index = " + index);
-        $scope.messageSender=index;
+        $scope.messageSender = index;
         $('#notificationLink').trigger("click");
         $('#messageModal').modal('show');
     }
 
-    $scope.isParent=function(){
-        return ( $location.absUrl().indexOf('?type=parent') >= 0 );
+    $scope.isParent = function() {
+        return ($location.absUrl().indexOf('?type=parent') >= 0);
     }
 
-    $scope.sendMessage=function(){
+    $scope.sendMessage = function() {
         console.log("Click on sendMessage");
         console.log($scope.messageToSend);
         console.log($scope.messageNotifications[$scope.messageSender].fromEmail);
         console.log($scope.studentEmail);
         console.log($scope.studentName);
         console.log($scope.messageNotifications[$scope.messageSender].courseName);
-        var notification={
-            'email':$scope.messageNotifications[$scope.messageSender].fromEmail,
-            'message':$scope.messageToSend,
-            'type':'message',
-            'from':$scope.studentName,
-            'fromEmail':$scope.studentEmail,
-            'number':'0',
-            'courseName':$scope.messageNotifications[$scope.messageSender].courseName
+        var notification = {
+            'email': $scope.messageNotifications[$scope.messageSender].fromEmail,
+            'message': $scope.messageToSend,
+            'type': 'message',
+            'from': $scope.studentName,
+            'fromEmail': $scope.studentEmail,
+            'number': '0',
+            'courseName': $scope.messageNotifications[$scope.messageSender].courseName
         }
-        var display=function(){
+        var display = function() {
             console.log(notification);
-            $http.post('/notification/student',notification).success(function(response){
+            $http.post('/notification/student', notification).success(function(response) {
                 console.log(response[0]);
             })
-            var socket=io.connect('http://localhost:3007');
-            socket.emit('notificationRecieve',{'data':'Notification Sent'});
+            var socket = io.connect('http://localhost:3007');
+            socket.emit('notificationRecieve', { 'data': 'Notification Sent' });
         }
         display();
     }
 
-    $scope.logout=function(){
-        if($scope.locationRes.length==3){
-            $window.location.href="/index.html";
+    $scope.logout = function() {
+        if ($scope.locationRes.length == 3) {
+            $window.location.href = "/index.html";
         }
     }
 }]);
