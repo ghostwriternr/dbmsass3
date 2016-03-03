@@ -4,6 +4,7 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
 
     $scope.init = function() {
         console.log($location.absUrl());
+        $scope.isVis=true;
         var res = $location.absUrl().split('?');
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
@@ -86,7 +87,8 @@ myApp.controller('assignmentCtrl', ['$scope', '$http', '$window', '$log', '$loca
     }
 
     $scope.doneWithAssignment = function(studentEmail, courseName) {
-        if($scope.personType=='student'){
+        $scope.isVis=false;
+            if($scope.personType=='student'){
             $http.post('/studentCourse/getContent', { 'email': studentEmail }).success(function(response) {
                 console.log(response[0]);
                 var addCount = function() {

@@ -148,11 +148,11 @@
                             </div>
                             <!-- Textarea -->
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" autofocus style="background-color: white" ng-model="message"></textarea>
+                                <textarea class="form-control" autofocus rows="5" id="texta" style="background-color: white" ng-model="message"></textarea>
                             </div>
                             <!-- Button -->
                             <div class="form-group" align="center">
-                                <button class="btn btn-primary" type="submit" ng-click="sendMessage(courseName)">Email</button>
+                                <button class="btn btn-primary" type="submit" ng-click="sendMessage(courseName)" data-dismiss="modal">Email</button>
                             </div>
                         </form>
                     </div>
@@ -176,15 +176,15 @@
                                 <div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
                                     <form class="form-signin">
                                         <label class="sr-only">Title</label>
-                                        <input type="text" class="form-control" placeholder="Title" ng-model="content.title" required>
+                                        <input type="text" class="form-control" placeholder="Title" ng-model="content.title" required id="t1">
                                         <label class="sr-only">Start Date</label>
-                                        <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="content.startDate" required>
+                                        <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="content.startDate" required id="t2">
                                         <label class="sr-only">End Date</label>
-                                        <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="content.endDate" required>
-                                        <textarea placeholder="Content" class="form-control" rows="5" ng-model="content.content"></textarea>
+                                        <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="content.endDate" required id="t3">
+                                        <textarea placeholder="Content" class="form-control" rows="5" ng-model="content.content" id="t4"></textarea>
                                         <br/>
                                         <div>
-                                            <button class="btn btn-lg btn-info btn-block" type="submit" ng-click="addContent(content)">Add</button>
+                                            <button class="btn btn-lg btn-info btn-block" type="submit" ng-click="addContent(content)" onclick = "reset()">Add</button>
                                         </div>
                                     </form>
                                 </div>
@@ -202,14 +202,14 @@
                                 <div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-0" align="center">
                                     <form class="form-signin">
                                         <label class="sr-only">Title</label>
-                                        <input type="text" class="form-control" placeholder="Title" ng-model="content.title" required>
-                                        <label class="sr-only">Assignment Number of Questions</label>
-                                        <input type="text" class="form-control" placeholder="Number of questions" ng-model="questionsCount">
+                                        <input type="text" class="form-control" placeholder="Title" ng-model="content.title" required id="t5">
+                                        <label class="sr-only" >Assignment Number of Questions</label>
+                                        <input type="text" class="form-control" placeholder="Number of questions" ng-model="questionsCount" id="t6">
                                         <label class="sr-only">Start Date</label>
-                                        <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="content.startDate" required>
+                                        <input type="text" class="form-control" placeholder="Start Date dd-mm-yy" ng-model="content.startDate" required id="t7">
                                         <label class="sr-only">End Date</label>
-                                        <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="content.endDate" required>
-                                        <textarea placeholder="Content" class="form-control" rows="5" ng-model="content.content"></textarea>
+                                        <input type="text" class="form-control" placeholder="End Date dd-mm-yy" ng-model="content.endDate" required id="t8">
+                                        <textarea placeholder="Content" class="form-control" rows="5" ng-model="content.content" id="t9"></textarea>
                                         <button class="btn btn-info btn-block" type="button" data-toggle="collapse" ng-click="setAnswerToQuestions()" href="#collapseAnswers">Set Answers to Questions</button>
                                         <br/>
                                         <div id="collapseAnswers" class="panel-collapse collapse">
@@ -224,7 +224,7 @@
                                             </div>
                                             <br/>
                                         </div>
-                                        <button class="btn btn-lg btn-info btn-block" type="submit" ng-click="addContent(content)">Add</button>
+                                        <button class="btn btn-lg btn-info btn-block" type="submit" ng-click="addContent(content)" onclick = "reset()">Add</button>
                                     </form>
                                 </div>
                                 <div class="col-md-1" align="center"></div>
@@ -239,7 +239,7 @@
     </div>
     <br>
     <div align="center" style="padding: 1%;">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Contact Students</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"  onclick = "clearContents();" >Contact Students</button>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -258,6 +258,22 @@
 <script type="text/javascript">
 function change(x) {
     document.getElementById("type").innerHTML = x;
+}
+function clearContents() {
+    document.getElementById("texta").value = '';
+}
+
+function reset()
+{
+    document.getElementById("t1").value = '';
+    document.getElementById("t2").value = '';
+    document.getElementById("t3").value = '';
+    document.getElementById("t4").value = '';
+    document.getElementById("t5").value = '';
+    document.getElementById("t6").value = '';
+    document.getElementById("t7").value = '';
+    document.getElementById("t8").value = '';
+    document.getElementById("t9").value = '';
 }
 </script>
 

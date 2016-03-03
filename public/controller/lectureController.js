@@ -5,6 +5,7 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     $scope.init = function() {
         console.log($location.absUrl());
         $scope.locationRes=$location.absUrl().split('?');
+        $scope.isVis=true;
         var res = $location.absUrl().split('?');
         var tempData = res[1].split('=');
         var userEmail = tempData[1];
@@ -39,6 +40,7 @@ myApp.controller('lectureCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     }
 
     $scope.doneWithLecture = function(studentEmail, courseName) {
+        $scope.isVis=false;
         if($scope.personType=='student'){
             $http.post('/studentCourse/getContent', { 'email': studentEmail }).success(function(response) {
                 console.log(response[0]);

@@ -104,7 +104,8 @@
         </div>
     </div>
     <div align="center" style="position: relative;top: -12vh;">
-        <button class="btn btn-primary" type="button" ng-hide=" !isStudent()" ng-click="doneWithLecture(studentEmail,courseName)">Done with this lecture !</button>
+        <button class="btn btn-primary" type="button" ng-hide=" !isStudent() || !isVis" ng-click="doneWithLecture(studentEmail,courseName)" >Done with this lecture !</button>
+        <span class="label label-success" id="success" ng-show="!isVis" style="font-size: 20px" >Success !</span>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

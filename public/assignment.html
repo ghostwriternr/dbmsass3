@@ -41,7 +41,7 @@
                             <li><a href="#" ng-click="goToProfile()">Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <!--<li class="dropdown-header">Nav header</li>-->
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="index.html">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -144,7 +144,8 @@
         </div>
     </div>
     <div align="center" style="position: relative;top: -12vh;">
-        <button class="btn btn-primary" type="button" ng-hide=" !isStudent() || isDoneWithAssignment()" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
+        <button class="btn btn-primary" type="button" ng-hide=" !isStudent() || isDoneWithAssignment() || !isVis" ng-click="doneWithAssignment(studentEmail,courseName)">Done with this assignment!</button>
+        <span class="label label-success" id="success" ng-show="!isVis" style="font-size: 20px" >Success !</span>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
