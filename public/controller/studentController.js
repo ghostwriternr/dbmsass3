@@ -51,6 +51,9 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         }
     })
 
+    $scope.isAdmin = function() {
+        return ($location.absUrl().indexOf('adminstrator') > -1);
+    }
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
         //$window.open("/view_course.html" + "?email=" + email + "?course=" + courseName);
