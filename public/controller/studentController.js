@@ -6,6 +6,38 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
     //     //$window.open("/view_course.html" + "?email=" + email);
     //     $window.location.href="/view_course.html" + "?email=" + email+"?type=student";
     // }
+
+    var socket=io.connect('http://localhost:3007');
+    socket.on('notificationSent',function(data){
+        console.log(data);
+
+        var fillNotifications = function() {
+            $http.post('/notification/getDetails', {'email':$location.absUrl().split('?')[1].split('=')[1]}).success(function(response) {
+                console.log(response);
+                $scope.notificationCount = response.length;
+                var fill = function() {
+                    for (var index = 0; index < response.length; index++) {
+                        console.log(response[index]);
+                        if (response[index].type == 'message') {
+                            $scope.messageNotifications.push(response[index]);
+                        } else if (response[index].type == 'lecture') {
+                            $scope.lectureNotifications.push(response[index]);
+                        } else if (response[index].type == 'assignment') {
+                            $scope.assignmentNotifications.push(response[index]);
+                        }
+                    }
+                }
+                fill();
+            })
+        }
+        if($scope.locationRes.length==3){
+            fillNotifications();
+        }
+        else{
+            $scope.notificationCount=0;
+        }
+    })
+
     $scope.goToCourse = function(email, courseName) {
         console.log($scope.studentName);
         //$window.open("/view_course.html" + "?email=" + email + "?course=" + courseName);

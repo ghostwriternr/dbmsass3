@@ -4,6 +4,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
 
     $scope.studentLogin = function() {
         var type = $scope.person.type;
+        var socket=io.connect('http://localhost:3007');
         $scope.authSuccess=-1;
         if (type == 1) {
             var student = { 'email': $scope.person.email, 'password': $scope.person.password };
@@ -13,6 +14,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$window', '$log', '$location', 
                     $scope.authSuccess=1;
                     var url = "/student.html";
                     console.log("Authentication successful");
+                    socket.emit('connection',{'data':'Hello World'});
                     $window.location.href = url + "?email=" + $scope.person.email+"?type=student";
                     console.log("Authnetication successfull");
                 } else {

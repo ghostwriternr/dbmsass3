@@ -2,6 +2,8 @@ var myApp = angular.module('myApp', ['ngRoute']);
 myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$location', function($scope, $http, $window, $log, $location) {
     console.log("Hello World from cFacultyCtrl");
 
+    var socket=io.connect('http://localhost:3007');
+
     $scope.init = function() {
         console.log($location.absUrl());
         var res = $location.absUrl().split('?');
@@ -162,6 +164,7 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                                     $http.post('/calender/addEvent',calender).success(function(response){
                                         console.log(response[0]);
                                     })
+                                    socket.emit('notificationRecieve',{'data':'Notification Sent'});
                                 }
                                 send();
                             }
@@ -282,6 +285,7 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                                         $http.post('/calender/addEvent',calenderEnd).success(function(response){
                                             console.log(response[0]);
                                         })
+                                        socket.emit('notificationRecieve',{'data':'Notification Sent'});
                                     }
                                     send();
                                 }
@@ -334,11 +338,13 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
         notification.fromEmail = $scope.facultyEmail;
         notification.number = "0";
         notification.courseName = courseName;
+        var socket=io.connect('http://localhost:3007');
         var display = function() {
             console.log(notification);
             $http.post('/notification/student', notification).success(function(response) {
                 console.log(response[0]);
             })
+            socket.emit('notificationRecieve',{'data':'Notification Sent'});
         }
         display();
     }

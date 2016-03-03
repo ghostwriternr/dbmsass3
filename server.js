@@ -22,10 +22,21 @@ var dbParentChildRequest=mongojs('parentChildRequest',['parentChildRequest']);
 var dbAssignmentMarks=mongojs('assignmentMarks',['assignmentMarks']);
 var dbCalender=mongojs('calender',['calender']);
 var app=express();
+var server=require('http').Server(app);
+var io=require('socket.io')(server);
 
+server.listen(3007);
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 console.log("Hello World from Server");
+
+io.on('connection',function(socket){
+	console.log('Another connection added');
+	socket.on('notificationRecieve',function(data){
+		io.emit('notificationSent',{'data':'notification Reload'});
+		console.log('sent DATA');
+	})
+})
 
 app.post('/student/login',function(req,res){
 	console.log('Got a POST request')

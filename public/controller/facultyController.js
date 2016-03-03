@@ -98,6 +98,8 @@ myApp.controller('facultyCtrl', ['$scope', '$http', '$window', '$log', '$locatio
             $http.post('/notification/student',notification).success(function(response){
                 console.log(response[0]);
             })
+            var socket=io.connect('http://localhost:3007');
+            socket.emit('notificationRecieve',{'data':'Notification Sent'});
         }
         display();
     }
