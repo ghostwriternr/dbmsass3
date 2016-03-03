@@ -23,7 +23,7 @@ myApp.controller('administratorCtrl', ['$scope', '$http', '$window', '$log', '$l
     }
 
     $scope.goToStudent=function(student){
-        $window.location.href="/student.html"+"?email="+student.email+"?type=student";
+        $window.location.href="/student.html"+"?email="+student.email+"?type=adminstrator";
     }
 
     $scope.goToFaculty=function(faculty){
