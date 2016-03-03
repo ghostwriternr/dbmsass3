@@ -2,6 +2,38 @@ var myApp = angular.module('myApp', ['ngRoute']);
 myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$location', function($scope, $http, $window, $log, $location) {
     console.log('Hello World from profileFacultyCtrl');
 
+    var socket=io.connect('http://localhost:3007');
+    socket.on('notificationSent',function(data){
+        console.log(data);
+
+        var fillNotifications = function() {
+            $http.post('/notification/getDetails', {'email':$location.absUrl().split('?')[1].split('=')[1]}).success(function(response) {
+                console.log(response);
+                $scope.messageNotifications=[];
+                $scope.lectureNotifications=[];
+                $scope.assignmentNotifications=[];
+                while($scope.messageNotifications.legnth>0){
+                    $scope.messageNotifications.pop();
+                }
+                $scope.notificationCount = response.length;
+                var fill = function() {
+                    for (var index = 0; index < response.length; index++) {
+                        console.log(response[index]);
+                        if (response[index].type == 'message') {
+                            $scope.messageNotifications.push(response[index]);
+                        } else if (response[index].type == 'lecture') {
+                            $scope.lectureNotifications.push(response[index]);
+                        } else if (response[index].type == 'assignment') {
+                            $scope.assignmentNotifications.push(response[index]);
+                        }
+                    }
+                }
+                fill();
+            })
+        }
+        fillNotifications();
+    })
+
     $scope.init = function() {
         var urlLogin = $location.absUrl();
         var faculty = {};
@@ -115,6 +147,8 @@ myApp.controller('profileFacultyCtrl', ['$scope', '$http', '$window', '$log', '$
             $http.post('/notification/student',notification).success(function(response){
                 console.log(response[0]);
             })
+            var socket=io.connect('http://localhost:3007');
+            socket.emit('notificationRecieve',{'data':'Notification Sent'});
         }
         display();
     }

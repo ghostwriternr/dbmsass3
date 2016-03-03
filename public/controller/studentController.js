@@ -14,6 +14,13 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         var fillNotifications = function() {
             $http.post('/notification/getDetails', {'email':$location.absUrl().split('?')[1].split('=')[1]}).success(function(response) {
                 console.log(response);
+                $scope.messageNotifications=[];
+                while($scope.messageNotifications.legnth>0){
+                    $scope.messageNotifications.pop();
+                }
+                $scope.messageNotifications=[];
+                $scope.lectureNotifications=[];
+                $scope.assignmentNotifications=[];
                 $scope.notificationCount = response.length;
                 var fill = function() {
                     for (var index = 0; index < response.length; index++) {
@@ -242,6 +249,8 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
             $http.post('/notification/student',notification).success(function(response){
                 console.log(response[0]);
             })
+            var socket=io.connect('http://localhost:3007');
+            socket.emit('notificationRecieve',{'data':'Notification Sent'});
         }
         display();
     }
