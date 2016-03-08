@@ -12,6 +12,7 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
         console.log(data);
 
         var fillNotifications = function() {
+            var notiCount = $scope.notificationCount;
             $http.post('/notification/getDetails', { 'email': $location.absUrl().split('?')[1].split('=')[1] }).success(function(response) {
                 console.log(response);
                 $scope.messageNotifications = [];
@@ -33,13 +34,15 @@ myApp.controller('studentCtrl', ['$scope', '$http', '$window', '$log', '$locatio
                             $scope.assignmentNotifications.push(response[index]);
                         }
                     }
-                    $("#notification_count").fadeIn("slow");
-                    $("#notificationAlert").fadeIn("slow");
-                    window.setTimeout(function() {
-                        $("#notificationAlert").fadeTo(500, 0).slideUp(500, function() {
-                            $(this).remove();
-                        });
-                    }, 4000);
+                    console.log(notiCount);
+                    console.log($scope.notificationCount);
+                    if (notiCount != $scope.notificationCount) {
+                        $("#notification_count").fadeIn("slow");
+                        $("#notificationAlert").addClass('in');
+                        window.setTimeout(function() {
+                            $("#notificationAlert").removeClass('in');
+                        }, 4000);
+                    }
                 }
                 fill();
             })
