@@ -167,7 +167,7 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
                     console.log('here');
                     $scope.regSuccess=1;
                     parent = { 'name': $scope.personR.fName + ' ' + $scope.personR.lName, 'email': $scope.personR.email, 'password': $scope.personR.pass, 'contactInfo': '123' };
-                    $http.post('/parent/register', faculty).success(function(response) {
+                    $http.post('/parent/register', parent).success(function(response) {
                         console.log(response);
                     })
                 } else if (response >= 1) {
