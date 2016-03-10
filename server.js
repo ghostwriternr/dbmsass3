@@ -472,6 +472,14 @@ app.post('/parent/updateDetails/:email',function(req,res){
 	})
 })
 
+app.post('/courseComplete/addEntry',function(req,res){
+	console.log('Got a POST request from /courseComplete/addEntry');
+	console.log(req.body);
+	dbCourseComplete.courseComplete.insert(req.body,function(err,docs){
+		res.json(docs);
+	})
+})
+
 //To Add a new course->db.studentCourse.update({email:'abc@xyz'},{$push:{course:{courseId:"56cf294f3d25a2f651cd56a8",assignmentCompleted:'2',lecturesCompleted:'4'}}})
 
 //To get the list of all courses not registered by that guy->db.course.find({'name':{$nin:['Algorithms']}})

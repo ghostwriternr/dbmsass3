@@ -58,6 +58,7 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
                                 $scope.courseComplete.push({ 'name': $scope.coursePrerequisites[index].name })
                             } else {
                                 //$scope.courseCanRegsiter="NOPE";
+                                console.log($scope.coursePrerequisites[index].name);
                                 $scope.courseNotCompleted.push({ 'name': $scope.coursePrerequisites[index].name });
                             }
                         }
@@ -160,5 +161,13 @@ myApp.controller('registerCourseCtrl', ['$scope', '$http', '$window', '$log', '$
             addToCalender();
         }
         addingCourse();
+    }
+
+    $scope.logout=function(){
+        $window.location.href = "/index.html";
+    }
+
+    $scope.home=function(){
+        $window.location.href="/student.html"+"?email="+$scope.studentEmail+"?type=student";
     }
 }])

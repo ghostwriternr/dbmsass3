@@ -140,6 +140,9 @@ myApp.controller('personRegister', ['$scope', '$http', '$window', '$log', '$loca
                     $http.post('/studentCourseReg/addEntry', { 'email': $scope.personR.email, 'course': [] }).success(function(response) {
                         console.log(response);
                     })
+                    $http.post('/courseComplete/addEntry',{'email':$scope.personR.email,'courseCompleted':[]}).success(function(response){
+                        console.log(response);
+                    })
                 } else if (response >= 1) {
                     $scope.regSuccess=0;
                     console.log('A person with that email-id already exists');
