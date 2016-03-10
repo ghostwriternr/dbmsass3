@@ -105,7 +105,7 @@
                 <br>
             </font>
             <div ng-repeat="lecture in lectureCourse" style="padding-bottom: 5px">
-                <button class="btn btn-block" ng-class="$index<lecturesCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureNumber}}</button>
+                <button class="btn btn-block" ng-class="$index<lecturesCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToLecture(studentEmail,courseName,lecture.lectureNumber)">{{lecture.lectureName}}</button>
             </div>
         </div>
         <div class="col-md-5 col-xs-10 col-md-offset-0 col-xs-offset-1" align="center" align="center">
@@ -114,7 +114,7 @@
                 <br>
             </font>
             <div ng-repeat="assignment in assignmentCourse" style="padding-bottom: 5px">
-                <button class="btn btn-block" ng-class="$index<assignmentCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentNumber}}</button>
+                <button class="btn btn-block" ng-class="$index<assignmentCompleted?'btn-success':'btn-default'" style="padding: 2%;height: 60px;" type="button" ng-click="goToAssignment(studentEmail,courseName,assignment.assignmentNumber)">{{assignment.assignmentName}}</button>
             </div>
         </div>
         <div class="col-md-1" align="center"></div>
