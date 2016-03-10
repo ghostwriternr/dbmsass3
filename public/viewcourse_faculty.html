@@ -142,8 +142,8 @@
                             <div class="dropdown">
                                 <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 10px;" id="rcvr">Receiver
                                     <span class="caret"></span></button>
-                                <ul class="dropdown-menu" ng-repeat="student in studentsEnrolled">
-                                    <li><a href="#" ng-click="setStudentRecieveEmail(student.email,student.name)">{{student.name}}</a></li>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="student in studentsEnrolled"><a href="#" ng-click="setStudentRecieveEmail(student.email,student.name)">{{student.name}}</a></li>
                                 </ul>
                             </div>
                             <!-- Textarea -->

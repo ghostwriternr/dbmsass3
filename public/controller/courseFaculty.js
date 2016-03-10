@@ -52,7 +52,9 @@ myApp.controller('cFacultyCtrl', ['$scope', '$http', '$window', '$log', '$locati
                         $http.post('/student/getDetails', { 'email': response[0].studentEmail[index].email }).success(function(responseStudent) {
                             console.log(responseStudent[0]);
                             var fill = function() {
-                                $scope.studentsEnrolled.push({ 'email': studentEmail, 'name': responseStudent[0].name });
+                                //console.log(studentEmail)
+                                console.log(responseStudent[0].name);
+                                $scope.studentsEnrolled.push({ 'email': responseStudent[0].email, 'name': responseStudent[0].name });
                             }
                             fill();
                         })
